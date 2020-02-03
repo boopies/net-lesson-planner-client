@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ApiContext from '../../ApiContext'
-//import config from '../config'
+import PropTypes from 'prop-types';
 
 export default class EditActivity extends Component {
   constructor(props) {
@@ -35,7 +35,6 @@ export default class EditActivity extends Component {
         return res.json()
       })
       .then(responseData => {
-        console.log(responseData)
         this.setState({
           id: responseData.id,
           name: responseData.name,
@@ -43,7 +42,7 @@ export default class EditActivity extends Component {
           groups: responseData.groups,
           categoryId: responseData.categoryId,
           content: responseData.content,
-        }, console.log(this.state))
+        })
       })
       .catch(error => {
         console.error(error)
@@ -55,36 +54,26 @@ export default class EditActivity extends Component {
     this.props.history.goBack();
 }
 
-updateName(name){
-  this.setState({name: {value: name }});
-}
-
 updateContent(content){
-  this.setState({content: {value: content }});
+  this.setState({content: content });
 }
 
 updateCategoryId(categoryId){
-  this.setState({categoryId: {value: categoryId }});
+  this.setState({categoryId: categoryId });
 }
 
 updateDuration(duration){
-    this.setState({duration: {value: duration }});
+    this.setState({duration: duration });
   }
 
 updateGroups(groups){
-    this.setState({groups: {value: groups }});
+    this.setState({groups: groups });
   }
-
 
   handleSubmit = e => {
     e.preventDefault()
     const { activityId } = this.props.match.params
-    const updatedActivity = {         
-    name: e.target['name'].value,
-    categoryId: e.target['categoryId'].value,
-    content: e.target['content'].value,
-    groups: e.target['groups'].value,
-    duration: e.target['duration'].value,}
+    const updatedActivity = this.state
     fetch(`http://localhost:9090/activities/${activityId}`, {
       method: 'PATCH',
       body: JSON.stringify(updatedActivity),
@@ -111,24 +100,8 @@ updateGroups(groups){
     const { categories=[] } = this.context
     return (
       <section className='AddActivity'>
-        <h2>Create a activity</h2>
+        <h2>Edit Activity: <i>{name}</i></h2>
         <form onSubmit={this.handleSubmit}>
-          <div className='field'>
-            <label 
-            htmlFor='newActivityName'>
-              Name
-            </label>
-            <input
-            type='text' 
-            id='new-activity-name-input' 
-            name='name'
-            placeholder="Activity Name"
-            aria-label="Name of the new activity" 
-            aria-required="true"
-            aria-describedby="NNErrorMessage"
-            defaultValue = {name}
-            onChange={e => this.updateName(e.target.value)}/>
-          </div>
           <div className='field'>
             <label 
             htmlFor='newActivityDurattion'>
@@ -140,7 +113,7 @@ updateGroups(groups){
                 aria-label='Duration of the Activity' 
                 aria-required='true'
                 aria-describedby='FSErrorMessage'
-                defaultOption = {duration}
+                value = {duration}
                 onChange={e => this.updateDuration(e.target.value)} >
               <option value='5 min'>5 min</option>
               <option value='10 min'>10 min</option>
@@ -161,7 +134,7 @@ updateGroups(groups){
                 aria-label='Duration of the Activity' 
                 aria-required='true'
                 aria-describedby='FSErrorMessage'
-                defaultOption = {groups}
+                value = {groups}
                 onChange={e => this.updateGroups(e.target.value)} >
               <option value='Whole Class'>Whole Class</option>
               <option value='Single'>Single</option>
@@ -180,7 +153,7 @@ updateGroups(groups){
                 aria-label='category selection to add activity' 
                 aria-required='true'
                 aria-describedby='FSErrorMessage'
-                defaultOption = {categoryId}
+                value = { categoryId }
                 onChange={e => this.updateCategoryId(e.target.value)} >
               {categories.map(category =>
                 <option 
@@ -229,4 +202,20 @@ updateGroups(groups){
       </section>
     )
   }
+}
+
+EditActivity.defaultProps = {
+  name: '',
+  content:'',
+  categoryId:'',
+  groups:'',
+  duration:''
+};
+
+EditActivity.propTypes ={
+  name: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  categoryId: PropTypes.string.isRequired,
+  groups: PropTypes.string.isRequired,
+  duration: PropTypes.string.isRequired
 }

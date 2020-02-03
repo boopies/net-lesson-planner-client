@@ -20,7 +20,6 @@ export default class ActivityListMain extends React.Component {
     const { categoryId } = this.props.match.params
     const { activities=[] } = this.context
     const activityForCategory = getActivityForCategory(activities, categoryId)
-    console.log(this.props)
     return (
       <section className='ActivityListMain'>
         <ul>
