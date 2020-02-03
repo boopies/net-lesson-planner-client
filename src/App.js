@@ -2,34 +2,92 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom'
 import './App.css';
 import NavBar from './NavBar/NavBar'
-import LandingButtons from './LandingButtons/LandingButtons'
+import LandingPage from './LandingPage/LandingPage'
+import CreateLesson from './CreateLesson/CreateLesson'
+import LessonPlan from './CreateLesson/LessonPlan/LessonPlan'
+import ReadActivities from './ReadActivities/ReadActivities'
+import ApiContext from './ApiContext'
 
-class App extends React.Component{
+export default class App extends React.Component{
+  state = {
+    activities: [],
+    categories: []
+}
+
+componentDidMount() {
+  Promise.all([
+    fetch (`http://localhost:9090/activities`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      },
+    }),
+    fetch (`http://localhost:9090/categories`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      },
+    })
+  ])
+    .then(([activitiesRes, categoriesRes]) => {
+      if (!activitiesRes.ok)
+        return activitiesRes.json().then(e => Promise.reject(e))
+      if (!categoriesRes.ok)
+        return categoriesRes.json().then(e => Promise.reject(e))
+
+      return Promise.all([
+        activitiesRes.json(),
+        categoriesRes.json(),
+      ])
+    })
+    .then(([activities, categories]) => {
+      this.setState({ activities, categories })
+    })
+    .catch(error => {
+      console.error({ error })
+    })
+}
+
+handleAddActivity = newActivity => {
+this.setState({
+  activities: [
+        ...this.state.activities,
+        newActivity
+    ]
+})
+}
+
+handleUpdateActivity = updatedActivity => {
+  this.setState({
+    activities: this.state.activities.map(activity =>
+      (activity.id !== updatedActivity.id) ? activity : updatedActivity
+    )
+  })
+}
+
   render(){
+    const value = {
+      activities: this.state.activities,
+      categories: this.state.categories,
+      addActivity: this.handleAddActivity,
+      updateActivity: this.handleUpdateActivity
+    }
     return (
+      <ApiContext.Provider value={value}>
       <>
       <nav>
         <NavBar />
       </nav>
-      <header>
-        <h1>N.E.T Lesson Planner</h1>
-      </header>
       <main className='App'>
-        <section className='description'>
-          <blockquote>
-            <p className='quote-body'>"If you fail to plan, you plan to fail."</p> <p className='quote-author'>- Benjiman Fraklin</p>
-          </blockquote>
-          <p>Welcome to N.E.T Lesson Planner. This app was designed to get you up and running
-          in the English Language Classroom. This will help you create lesson plan so you will never be cause out again in the classroom. 
-          This wesite let's you quickly generate lesson plans, using a vast list of activities that have been proven usedful in the Language
-          learning classroom.
-          </p>
-        </section>
-        <LandingButtons />
+        <Switch>
+          <Route exact path='/' component={ LandingPage } />
+          <Route exact path="/create" component={ CreateLesson } />
+          <Route exact path="/lesson" component={ LessonPlan } />
+          <Route exact Path="/read" component={ ReadActivities } />
+        </Switch>
       </main>
       </>
+      </ApiContext.Provider>
     );
   }
 }
-
-export default App;

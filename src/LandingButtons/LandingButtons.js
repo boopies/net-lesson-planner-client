@@ -1,16 +1,24 @@
 import React from 'react'
 import './LandingButtons.css'
-import { Link } from 'react-router-dom'
+import {withRouter} from 'react-router-dom';
 
-export default class LandingButtons extends React.Component{
+class LandingButtons extends React.Component{
+    handleNewLesson = () => {
+        this.props.history.push('/create')
+      };
+    
+    handleReadActivities= () => {
+        this.props.history.push('/read')
+      };
+
     render(){
         return (
         <section className='buttons-to-pages'>
-            <Link to='/create'><div className='buttons--to'>Create a Lesson Plan</div></Link>
-            <Link to='/read'><div className='buttons--to'>Read about the Activities</div></Link>
+            <button type='button' onClick={() => this.handleNewLesson()}>Create a Lesson Plan</button>
+            <button type='button' onClick={() => this.handleReadActivities()}>Read About the Activities</button>
         </section>
         )
     }
 }
 
-
+export default withRouter(LandingButtons)

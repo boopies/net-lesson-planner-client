@@ -1,0 +1,24 @@
+.create-lesson{
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+}
+
+.create-lesson>lable{
+    margin-top: 15px;
+}
+
+.create-lesson>input{
+    height: 15px;
+    width: 700px;
+}
+
+fieldset{
+    display: flex;
+    flex-direction: column;
+}
+
+fieldset>input{
+    height: 15px;
+    width: 300px;
+}
