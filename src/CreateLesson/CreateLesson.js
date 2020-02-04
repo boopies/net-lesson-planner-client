@@ -2,7 +2,6 @@ import React from 'react'
 import ApiContext from '../ApiContext'
 import './CreateLesson.css'
 import { getActivityForCategory } from '../ReadActivities/helpers'
-import uuid from 'react-uuid'
 
 export default class CreateLesson extends React.Component{
     constructor(props) {
@@ -182,7 +181,7 @@ export default class CreateLesson extends React.Component{
         return(
             <>
             {activityForCategory.map(activity =>
-            <option key={uuid()} value={activity.id}>
+            <option key={activity.name} value={activity.id}>
                 {activity.name}
             </option>
             )}   
@@ -197,7 +196,7 @@ export default class CreateLesson extends React.Component{
         return(
             <>
             {classLength.map(length =>
-            <option key={uuid()} value={length}>{length}</option>)}
+            <option key={length} value={length}>{length}</option>)}
             </>
         )
     }
@@ -208,7 +207,7 @@ export default class CreateLesson extends React.Component{
         return(
             <>
             {weekday.map(week =>
-            <option key={uuid()} value={week}>{week}</option>)}
+            <option key={week} value={week}>{week}</option>)}
             </>
         )
     }
@@ -223,18 +222,18 @@ export default class CreateLesson extends React.Component{
         return(
             <>
             {classType.map(classes =>
-            <option key={uuid()} value={classes}>{classes}</option>)}
+            <option key={classes} value={classes}>{classes}</option>)}
             </>
         )
     }
 
     renderClassPeriod(){
-        let period = [ 'Period 01', 'Period 02', 'Period 02',
-                        'Period 04', 'Period 05', 'Period 01', 'Period 07']
+        let period = [ 'Period 01', 'Period 02', 'Period 03',
+                        'Period 04', 'Period 05', 'Period 06', 'Period 07']
         return(
             <>
             {period.map(period =>
-            <option key={uuid()} id={period} value={period}>{period}</option>)}
+            <option key={period} value={period}>{period}</option>)}
             </>
         )
     }
