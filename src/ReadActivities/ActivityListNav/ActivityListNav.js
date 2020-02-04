@@ -6,41 +6,17 @@ import { countActivityForCategory } from '../helpers'
 import './ActivityListNav.css'
 
 export default class ActivityListNav extends React.Component {
-  constructor(){
-    super(); 
-    this.state = {
-          displayMenu: false,
-        };
-     this.showDropdownMenu = this.showDropdownMenu.bind(this);
-     this.hideDropdownMenu = this.hideDropdownMenu.bind(this);
-   };
-   
 
   static contextType = ApiContext;
-
-  showDropdownMenu(event) {
-    event.preventDefault();
-    this.setState({ displayMenu: true }, () => {
-    document.addEventListener('click', this.hideDropdownMenu);
-    });
-  }
-
-  hideDropdownMenu() {
-    this.setState({ displayMenu: false }, () => {
-      document.removeEventListener('click', this.hideDropdownMenu);
-    });
-  }
-
+  
   render() {
     const { categories=[], activities=[] } = this.context
     return (
-      <div className='ActivityListNav' style = {{background:"red",width:"200px"}}> 
-        <div className='ActivityListNav__dropdownbutton' onClick={this.showDropdownMenu}>
-        <span>Select a Category</span> 
+      <div className='ActivityListNav'> 
+        <div className='ActivityListNav'>
         </div>
-        { this.state.displayMenu ? (
-                <ul className='ActivityListNav__list'>
-                <li><NavLink to='/read' >All Categories</NavLink></li>
+                <ul className='ActivityListNav__category-nav'>
+                <li><NavLink exact to='/read' className='ActivityListNav__category-link'>All Categories</NavLink></li>
                   {categories.map(category => 
                     <li
                     key={category.id}
@@ -58,12 +34,6 @@ export default class ActivityListNav extends React.Component {
                     </li>
                   )}
                 </ul>
-                ):
-        (
-          null
-        )
-        }
-
       </div>
     )
   }

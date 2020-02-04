@@ -17,6 +17,7 @@
 .read-activity__categories{
     justify-self: flex-start;
     align-self: flex-start;
+    width: 310px;
 }
 
 .read-activity__activities{
