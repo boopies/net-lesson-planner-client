@@ -19,13 +19,13 @@ export default class App extends React.Component{
 
 componentDidMount() {
   Promise.all([
-    fetch (`http://localhost:9090/activities`, {
+    fetch (`https://my-json-server.typicode.com/boopies/demo/activities`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
       },
     }),
-    fetch (`http://localhost:9090/categories`, {
+    fetch (`https://my-json-server.typicode.com/boopies/demo/categories`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'

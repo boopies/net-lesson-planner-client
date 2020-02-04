@@ -25,7 +25,7 @@ export default class EditActivity extends Component {
 
   componentDidMount() {
     const { activityId } = this.props.match.params
-    fetch(`http://localhost:9090/activities/${activityId}`, {
+    fetch(`https://my-json-server.typicode.com/boopies/demo/activities/${activityId}`, {
       method: 'GET',
       }
     )

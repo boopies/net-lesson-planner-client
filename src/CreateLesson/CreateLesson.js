@@ -2,6 +2,7 @@ import React from 'react'
 import ApiContext from '../ApiContext'
 import './CreateLesson.css'
 import { getActivityForCategory } from '../ReadActivities/helpers'
+import uuid from 'react-uuid'
 
 export default class CreateLesson extends React.Component{
     constructor(props) {
@@ -181,7 +182,7 @@ export default class CreateLesson extends React.Component{
         return(
             <>
             {activityForCategory.map(activity =>
-            <option value={activity.id}>
+            <option key={uuid()} value={activity.id}>
                 {activity.name}
             </option>
             )}   
@@ -196,7 +197,7 @@ export default class CreateLesson extends React.Component{
         return(
             <>
             {classLength.map(length =>
-            <option value={length}>{length}</option>)}
+            <option key={uuid()} value={length}>{length}</option>)}
             </>
         )
     }
@@ -207,7 +208,7 @@ export default class CreateLesson extends React.Component{
         return(
             <>
             {weekday.map(week =>
-            <option value={week}>{week}</option>)}
+            <option key={uuid()} value={week}>{week}</option>)}
             </>
         )
     }
@@ -222,7 +223,7 @@ export default class CreateLesson extends React.Component{
         return(
             <>
             {classType.map(classes =>
-            <option value={classes}>{classes}</option>)}
+            <option key={uuid()} value={classes}>{classes}</option>)}
             </>
         )
     }
@@ -233,7 +234,7 @@ export default class CreateLesson extends React.Component{
         return(
             <>
             {period.map(period =>
-            <option id={period} value={period}>{period}</option>)}
+            <option key={uuid()} id={period} value={period}>{period}</option>)}
             </>
         )
     }
@@ -254,13 +255,15 @@ export default class CreateLesson extends React.Component{
                         type="text" 
                         placeholder="Lesson name"
                         onChange={e => this.updateName(e.target.value)}
+                        required
                         />
                 </div>
                 <div className="input--class--level">
                     <label htmlFor='title'>Grade: </label>
                     <select
                     id="classLevel"
-                    onChange={e => this.updateClassLevel(e.target.value)} >
+                    onChange={e => this.updateClassLevel(e.target.value)}
+                    required >
                         <option value=''>Select a year level</option>
                         {this.renderClassLevel()}
                         </select>
@@ -271,14 +274,16 @@ export default class CreateLesson extends React.Component{
                         id='date'
                         type="date" 
                         placeholder="2020/01/01"
-                        onChange={e => this.updateDate(e.target.value)} />
+                        onChange={e => this.updateDate(e.target.value)} 
+                        required
+                        />
                 </div>
 
                 <div className="input--class--day">
                     <label htmlFor='day-of-week'>Day: </label>
                     <select
                     id="day"
-                    onChange={e => this.updateDay(e.target.value)}>
+                    onChange={e => this.updateDay(e.target.value)} required>
                         <option value=''>Select a day</option>
                         {this.renderDayofWeek()}
                         </select>
@@ -288,7 +293,7 @@ export default class CreateLesson extends React.Component{
                 <div className='input--class--period'>
                 <label htmlFor='class--period'>Period: </label>
                     <select id="period"
-                    onChange={e => this.updatePeriod(e.target.value)} >
+                    onChange={e => this.updatePeriod(e.target.value)} required>
                         <option value=''>Select a Period</option>
                         {this.renderClassPeriod()}
                     </select>
@@ -300,7 +305,7 @@ export default class CreateLesson extends React.Component{
                         type='text' 
                         placeholder='Topic of lesson' 
                         onChange={e => this.updateTopic(e.target.value)}
-                        />
+                        required />
                 </div>
 
                 <div className='input--class-size'>    
@@ -312,14 +317,14 @@ export default class CreateLesson extends React.Component{
                         max="40" 
                         placeholder="10" 
                         onChange={e => this.updateClassSize(e.target.value)}
-                        />
+                        required />
                 </div>
 
                 <div className='input--class-length'>
                     <label>Class Length: </label>
                     <select 
                         id="duration"
-                        onChange={e => this.updateDuration(e.target.value)}>
+                        onChange={e => this.updateDuration(e.target.value)} required>
                         {this.renderDuration()}
                     </select>
                 </div>
@@ -333,7 +338,7 @@ export default class CreateLesson extends React.Component{
                         cols = "60"
                         defaultValue='The goal of the lesson is to' 
                         onChange={e => this.updateGoal(e.target.value)}
-                        />
+                        required />
                 </div>
 
                 <div className='input--class-objectives'>
@@ -344,7 +349,7 @@ export default class CreateLesson extends React.Component{
                             type='text' 
                             placeholder='First Objective'
                             onChange={e => this.updateObjectiveOne(e.target.value)}
-                            />
+                            required />
                         <label>Students should be able to: </label>
                             <input id='objectiveTwo'
                             type='text' 
@@ -367,9 +372,9 @@ export default class CreateLesson extends React.Component{
                         <textarea id = "materials"
                                 rows = "10"
                                 cols = "60"
-                                placeholder= "List all materials here. Seperate items by a comma an space." 
+                                placeholder= "List all materials here. Seperate items by a comma no space." 
                                 onChange={e => this.updateMaterials(e.target.value)}
-                                />
+                                required />
                     </fieldset> 
                 </div>
                 <div className='input--warmup-phase'>
@@ -378,7 +383,7 @@ export default class CreateLesson extends React.Component{
                         <label>Warm-up Activity: </label>
                         <select
                         id="warmupactivity"
-                        onChange={e => this.updateWarmup(e.target.value)}>
+                        onChange={e => this.updateWarmup(e.target.value)} required>
                         <option value=''>Choose an activity</option>
                         {this.renderOptions('1')}
                         </select>
@@ -391,7 +396,7 @@ export default class CreateLesson extends React.Component{
                         <label>Presentation Activity 01: </label>
                         <select
                         id="presentation01"
-                        onChange={e => this.updatePresentationOne(e.target.value)}>
+                        onChange={e => this.updatePresentationOne(e.target.value)} required>
                             <option>Choose an Activity</option>     
                             {this.renderOptions('2')}
                         </select>       
@@ -411,7 +416,7 @@ export default class CreateLesson extends React.Component{
                         <label>Practice Activity 01: </label>
                         <select
                         id="practice01"
-                        onChange={e => this.updatePracticeOne(e.target.value)}>
+                        onChange={e => this.updatePracticeOne(e.target.value)} required>
                             <option>Choose an Activity</option>     
                             {this.renderOptions('3')}
                         </select>
@@ -438,7 +443,7 @@ export default class CreateLesson extends React.Component{
                         <label>Production Activity 01: </label>
                         <select
                             id="production01"
-                            onChange={e => this.updateProductionOne(e.target.value)}>>
+                            onChange={e => this.updateProductionOne(e.target.value)} required>
                             <option>Choose an Activity</option>  
                             {this.renderOptions('4')}
                         </select>

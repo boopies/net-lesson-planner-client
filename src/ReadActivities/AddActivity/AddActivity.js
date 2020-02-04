@@ -113,7 +113,7 @@ updateGroups(groups){
         groups: e.target['groups'].value,
         duration: e.target['duration'].value,
     }
-    fetch(`http://localhost:9090/activities`, {
+    fetch(`https://my-json-server.typicode.com/boopies/demo/activities`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

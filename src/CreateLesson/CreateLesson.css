@@ -18,6 +18,13 @@ input, select{
     font-size: 20px;
 }
 
+input:required, select:required{
+    border: 1px solid red;
+    width: 320;
+    height: 30px;
+    font-size: 20px;
+}
+
 .input--class-goals{
     display: flex;
     flex-direction: column;
@@ -26,6 +33,10 @@ input, select{
 .create-lesson>textarea{
     width: 320px;
     height: 300px;
+}
+
+textarea:required{
+    border: 1px solid red;
 }
 
 fieldset{

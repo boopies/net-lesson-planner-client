@@ -2,6 +2,7 @@ import React from 'react';
 import ApiContext from '../../ApiContext'
 import './LessonPlan.css'
 import { findActivity } from '../../ReadActivities/helpers'
+import uuid from 'react-uuid'
 
 export default class LessonPlan extends React.Component{
 
@@ -27,7 +28,7 @@ export default class LessonPlan extends React.Component{
             {materialArray.map(material =>{
             return {material}.length === 0
             ? <></>
-            : <li>{material}</li>
+            : <li key={uuid()}>{material}</li>
             }
             )}
             </>
@@ -43,20 +44,20 @@ export default class LessonPlan extends React.Component{
         if (objTwo.length === 0 && objThree.length === 0){
             return (
             <>
-                <li>{objOne}</li>
+                <li key={uuid()}>{objOne}</li>
             </>)
         } else if (objTwo.length !== 0 && objThree.length === 0) {
                 return (
                 <>
-                    <li>{objOne}</li>
-                    <li>{objTwo}</li>
+                    <li key={uuid()}>{objOne}</li>
+                    <li key={uuid()}>{objTwo}</li>
                 </>)
         } else {
             return (
                 <>
-                    <li>{objOne}</li>
-                    <li>{objTwo}</li>
-                    <li>{objThree}</li>
+                    <li key={uuid()}>{objOne}</li>
+                    <li key={uuid()}>{objTwo}</li>
+                    <li key={uuid()}>{objThree}</li>
                 </>)
         }
     }
@@ -69,20 +70,20 @@ export default class LessonPlan extends React.Component{
     if (refTwo.length === 0 && refThree.length === 0){
         return (
         <>
-            <li>{refOne}</li>
+            <li key={uuid()}>{refOne}</li>
         </>)
     } else if (refTwo.length !== 0 && refThree.length === 0) {
             return (
             <>
-                <li>{refOne}</li>
-                <li>{refTwo}</li>
+                <li key={uuid()}>{refOne}</li>
+                <li key={uuid()}>{refTwo}</li>
             </>)
     } else {
         return (
             <>
-                <li>{refOne}</li>
-                <li>{refTwo}</li>
-                <li>{refThree}</li>
+                <li key={uuid()}>{refOne}</li>
+                <li key={uuid()}>{refTwo}</li>
+                <li key={uuid()}>{refThree}</li>
             </>)
     }
 }
@@ -98,13 +99,13 @@ export default class LessonPlan extends React.Component{
         return(
             <>
                <div>
-                    <div className='lesson_plan__title'><h3>Activity</h3></div>
-                    <div className='lesson_plan__title'>{activity.name}</div>
-                    <div className='lesson_plan__title'><h3>Duration</h3></div>
-                    <div className='lesson_plan__title'>{activity.duration}</div>
+                    <div key={uuid()} className='lesson_plan__title'><h3>Activity</h3></div>
+                    <div key={uuid()} className='lesson_plan__title'>{activity.name}</div>
+                    <div key={uuid()} className='lesson_plan__title'><h3>Duration</h3></div>
+                    <div key={uuid()} className='lesson_plan__title'>{activity.duration}</div>
                 </div>
                 <div>
-                    <div className="lesson_plan__how_to_play">
+                    <div key={uuid()} className="lesson_plan__how_to_play">
                         <p>groups:{' '}{activity.groups}</p>
                         <p>
                         {activity.content}</p>
