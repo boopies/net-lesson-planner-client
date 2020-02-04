@@ -1,11 +1,23 @@
 nav{
     position:fixed;
     list-style:none;
+    display: flex;
+    top: 0;
 }
 
-.nav-bar>a{
+.navbar__navigation a{
     margin-left: 50px;
-    font-size: 20px;
-    text-decoration: solid;
+    font-size: 25px;
+    letter-spacing: 2px;
+    text-decoration: none;
     color: black;
+}
+
+@media (max-width: 768px) {
+    .navbar__navigation{
+        display: none;
+    }
+    nav{
+        left: 0;
+    }
 }

@@ -6,12 +6,15 @@ import LandingPage from './LandingPage/LandingPage'
 import CreateLesson from './CreateLesson/CreateLesson'
 import LessonPlan from './CreateLesson/LessonPlan/LessonPlan'
 import ReadActivities from './ReadActivities/ReadActivities'
+import SideDraw from './NavBar/SideDraw/SideDraw'
+import BackDrop from './BackDrop/BackDrop'
 import ApiContext from './ApiContext'
 
 export default class App extends React.Component{
   state = {
     activities: [],
-    categories: []
+    categories: [],
+    sideDrawOpen: false
 }
 
 componentDidMount() {
@@ -48,6 +51,17 @@ componentDidMount() {
     })
 }
 
+sideMenuClickHandler = () => {
+  this.setState((prevState) => { 
+    return {sideDrawOpen: !prevState.sideDrawOpen};
+  });
+}
+
+backdropClickHandler = () => {
+  this.setState({sideDrawOpen: false});
+}
+
+
 handleAddActivity = newActivity => {
 this.setState({
   activities: [
@@ -66,6 +80,12 @@ handleUpdateActivity = updatedActivity => {
 }
 
   render(){
+    let backdrop;
+
+    if (this.state.sideDrawOpen){
+      backdrop = <BackDrop click={this.backdropClickHandler} />
+    }
+
     const value = {
       activities: this.state.activities,
       categories: this.state.categories,
@@ -74,11 +94,13 @@ handleUpdateActivity = updatedActivity => {
     }
     return (
       <ApiContext.Provider value={value}>
-      <>
-      <nav>
-        <NavBar />
+      <div style={{height:'100%'}} className="App">
+      <nav className='app__navbar'>
+        <NavBar sideClickHandler={this.sideMenuClickHandler} />
+        <SideDraw show={this.state.sideDrawOpen} />
+        { backdrop }
       </nav>
-      <main className='App'>
+      <main className='app__main'>
         <Switch>
           <Route exact path='/' component={ LandingPage } />
           <Route exact path="/create" component={ CreateLesson } />
@@ -86,7 +108,7 @@ handleUpdateActivity = updatedActivity => {
           <Route exact Path="/read" component={ ReadActivities } />
         </Switch>
       </main>
-      </>
+      </div>
       </ApiContext.Provider>
     );
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route, Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import ActivityListNav from './ActivityListNav/ActivityListNav'
 import ActivityPageNav from './ActivityPageNav/ActivityPageNav'
 import ActivityListMain from './ActivityListMain/ActivityListMain'
@@ -7,6 +7,7 @@ import ActivityPageMain from './ActivityPageMain/ActivityPageMain'
 import AddActivity from './AddActivity/AddActivity'
 import EditActivity from './EditActivity/EditActivity'
 import ApiContext from '../ApiContext'
+import './ReadActivities.css'
 
 export default class ReadActivities extends React.Component{
 
@@ -69,16 +70,21 @@ export default class ReadActivities extends React.Component{
     render() {
         
         return (
-                <div className="App">
-                    <header className="App__header">
-                        <h1>
-                            <Link to="/read">Activities</Link>{' '}
+                <div className="read-activity">
+                    <header className="read-activity__header">
+                        <h1 className="read-activity__heading">
+                            Read About The Activities
                         </h1>
                     </header>
-                    <main className="App__main">
-                    {this.renderNavRoutes()}
-                    
-                    {this.renderMainRoutes()}
+                    <main className="read-activity__main">
+                      <div className="read-activity__categories">
+                        <h2>Categories</h2>
+                      {this.renderNavRoutes()}
+                      </div>
+                      <div className="read-activity__activities">
+                      <h2>Activities</h2>
+                      {this.renderMainRoutes()}
+                      </div>
                     </main>
                 </div>
         );

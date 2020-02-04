@@ -1,0 +1,22 @@
+.landing-page___introduction{
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 25px;
+}
+
+.landing-page__quote{
+    text-align: center;
+}
+
+.landing-page__quote-body{
+    font-size: 25px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.landing-page__quote-author{
+    font-size: 15px;
+    font-style: normal;
+    font-weight: normal;
+}

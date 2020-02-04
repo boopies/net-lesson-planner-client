@@ -1,0 +1,38 @@
+.read-activity__heading a{
+    text-decoration: none;
+    color: black;
+}
+
+.read-activity__heading a:hover{
+    color: orange;
+    cursor: pointer;
+}
+
+.read-activity__main{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.read-activity__categories{
+    justify-self: flex-start;
+    align-self: flex-start;
+}
+
+.read-activity__activities{
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-start;
+    align-self: flex-start;
+    width: 360px;
+}
+
+@media (max-width: 768px){
+    .read-activity__main{
+        flex-direction: column;
+    }
+    .read-activity__categories{
+        justify-self: center;
+        align-self: center;
+    }
+}

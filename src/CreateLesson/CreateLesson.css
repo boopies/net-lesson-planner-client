@@ -1,16 +1,31 @@
 .create-lesson{
     display: flex;
     flex-direction: column;
-    width: 700px;
+    align-items: center;
 }
 
-.create-lesson>lable{
-    margin-top: 15px;
+.create-lesson>div{
+    display: flexbox;
+    flex-direction: column;
+    margin-top: 10px;
 }
 
-.create-lesson>input{
-    height: 15px;
-    width: 700px;
+
+input, select{
+    border: 1px solid grey;
+    width: 320;
+    height: 30px;
+    font-size: 20px;
+}
+
+.input--class-goals{
+    display: flex;
+    flex-direction: column;
+}
+
+.create-lesson>textarea{
+    width: 320px;
+    height: 300px;
 }
 
 fieldset{
@@ -18,7 +33,33 @@ fieldset{
     flex-direction: column;
 }
 
-fieldset>input{
-    height: 15px;
-    width: 300px;
+@media (max-width: 700px){
+    .create-lesson{
+        width: 320px;
+        padding-left: 20px;
+        font-size: 15px;   
+        text-align: center;
+    }
+
+    .create-lesson input{
+        width: 320px;
+        padding-left: 20px;
+        font-size: 20px;   
+    }
+
+    .create-lesson select{
+        width: 300px;
+        padding-left: 20px;
+        font-size: 15px;   
+    }
+
+    button{
+        width: 75%;
+        border: 1px solid black;
+    }
+
+    .cancel--button{
+        margin-bottom: 20px;
+    }
+
 }

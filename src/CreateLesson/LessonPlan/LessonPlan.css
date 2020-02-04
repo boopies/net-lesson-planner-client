@@ -1,22 +1,9 @@
-table {
-    border-collapse: collapse;
-    width: 700px;
-  }
-  
-  table, th, td {
-    border: 1px solid black;
-    padding: 2px;
-  }
 
-  .multi-column {
-    -moz-column-count: 2;
-    -moz-column-gap: 20px;
-    -moz-column-fill: auto;
-    -webkit-column-count: 2;
-    -webkit-column-gap: 20px;
-    -webkit-column-fill: auto;
-    column-count: 2;
-    column-gap: 20px;
-    column-fill: auto;
-    list-style-position: inside;
+ .lesson_plan__title, .lesson_plan__content, .lesson_plan__how_to_play{
+   border: 1px solid black;
+ }
+
+ #lesson_plan__full{
+   width: 85%;
+    margin-top: 50px;
  }

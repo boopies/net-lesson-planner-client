@@ -1,15 +1,21 @@
 import React from 'react'
 import './NavBar.css'
 import { Link } from 'react-router-dom'
+import Hamburger from './SideDraw/Hamburger'
 
 export default class NavBar extends React.Component{
     render(){
         return (
-            <div className="nav-bar">
-                <Link to='/'>Home</Link>
-                <Link to='/create'>Create</Link>
-                <Link to='/read'>Read</Link>
+            <>
+            <div>
+                <Hamburger click={this.props.sideClickHandler} />
             </div>
+            <div className="navbar__navigation">
+                <Link to='/'>HOME</Link>
+                <Link to='/create'>CREATE</Link>
+                <Link to='/read'>READ</Link>
+            </div>
+            </>
         )
     }
 }
