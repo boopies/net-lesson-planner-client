@@ -74,7 +74,7 @@ updateGroups(groups){
     e.preventDefault()
     const { activityId } = this.props.match.params
     const updatedActivity = this.state
-    fetch(`http://localhost:9090/activities/${activityId}`, {
+    fetch(`https://my-json-server.typicode.com/boopies/demo/activities/${activityId}`, {
       method: 'PATCH',
       body: JSON.stringify(updatedActivity),
       headers: {
