@@ -29,7 +29,7 @@ export default class ActivityListNav extends React.Component {
                         <span className='ActivityListNav__num-activitis'>
                           {countActivityForCategory(activities, category.id)} {' '}
                         </span>
-                        {category.name}
+                        {category.title}
                       </NavLink>
                     </li>
                   )}

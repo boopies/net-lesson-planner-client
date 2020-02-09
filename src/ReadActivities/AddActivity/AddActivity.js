@@ -3,6 +3,7 @@ import ApiContext from '../../ApiContext'
 import ValidationError from '../ValidationError/ValidationError'
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid'
+import TokenService from '../../services/token-service'
 
 export default class AddActivity extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export default class AddActivity extends Component {
             value: '',
             touched:false
           },
-          groups: {
+          grouping: {
             value: '',
             touched:false
           },
@@ -24,7 +25,7 @@ export default class AddActivity extends Component {
           value: '',
           touched:false
         },
-        categoryId: {
+        category_id: {
           value: '',
           touched:false
         },
@@ -62,7 +63,7 @@ validateContent(fieldValue) {
 }
 
 validateCategoryId(fieldValue) {
-  const categoryID = this.state.categoryId.value.trim();
+  const categoryID = this.state.category_id.value.trim();
   if (categoryID.length === 0) {
     return <div id="FSErrorMessage">You must select a category to add the new Activity to.</div>;
   }
@@ -76,7 +77,7 @@ validateDuration(fieldValue) {
   }
 
   validateGroups(fieldValue) {
-    const groups = this.state.groups.value.trim();
+    const groups = this.state.grouping.value.trim();
     if (groups.length === 0) {
       return <div id="GSErrorMessage">You must select the groups setup.</div>;
     }
@@ -90,16 +91,16 @@ updateContent(content){
   this.setState({content: {value: content, touched: true}});
 }
 
-updateCategoryId(categoryId){
-  this.setState({categoryId: {value: categoryId, touched: true}});
+updateCategoryId(category_id){
+  this.setState({categoryId: {value: category_id, touched: true}});
 }
 
 updateDuration(duration){
     this.setState({duration: {value: duration, touched: true}});
   }
 
-updateGroups(groups){
-    this.setState({groups: {value: groups, touched: true}});
+updateGroups(grouping){
+    this.setState({groups: {value: grouping, touched: true}});
   }
 
   handleSubmit = e => {
@@ -108,15 +109,16 @@ updateGroups(groups){
     const newActivity = {
         id: uniqueID,
         name: e.target['name'].value,
-        categoryId: e.target['categoryId'].value,
+        category_id: e.target['categoryId'].value,
         content: e.target['content'].value,
-        groups: e.target['groups'].value,
+        grouping: e.target['groups'].value,
         duration: e.target['duration'].value,
     }
     fetch(`https://my-json-server.typicode.com/boopies/demo/activities`, {
       method: 'POST',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify(newActivity),
     })
@@ -192,11 +194,11 @@ updateGroups(groups){
                 onChange={e => this.updateGroups(e.target.value)} >
               <option value=''>...</option>
               <option value='Whole Class'>Whole Class</option>
-              <option value='Single'>Single</option>
+              <option value='Individual'>Individual</option>
               <option value='Pairs'>Pairs</option>
               <option value='Groups'>Groups</option>
             </select>
-            {this.state.groups.touched && (<ValidationError message={this.validateGroups()}/>)}
+            {this.state.grouping.touched && (<ValidationError message={this.validateGroups()}/>)}
           </div>
           <div className='field'>
             <label htmlFor='Activity-Category-select'>
@@ -216,11 +218,11 @@ updateGroups(groups){
                 key={category.id} 
                 value={category.id}
                 aria-label='Category names for selection' >
-                  {category.name}
+                  {category.title}
                 </option>
               )}
             </select>
-            {this.state.categoryId.touched && (<ValidationError message={this.validateCategoryId()}/>)}
+            {this.state.category_id.touched && (<ValidationError message={this.validateCategoryId()}/>)}
           </div>
           <div className='field'>
             <label htmlFor='Activity-content-input'>
@@ -271,15 +273,15 @@ updateGroups(groups){
 AddActivity.defaultProps = {
   name: '',
   content:'',
-  categoryId:'',
-  groups:'',
+  category_id:'',
+  grouping:'',
   duration:''
 };
 
 AddActivity.propTypes ={
   name: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  categoryId: PropTypes.string.isRequired,
-  groups: PropTypes.string.isRequired,
+  category_id: PropTypes.string.isRequired,
+  grouping: PropTypes.string.isRequired,
   duration: PropTypes.string.isRequired
 }

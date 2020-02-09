@@ -100,15 +100,16 @@ export default class LessonPlan extends React.Component{
             <>
                <div>
                     <div key={uuid()} className='lesson_plan__title'><h3>Activity</h3></div>
-                    <div key={uuid()} className='lesson_plan__title'>{activity.name}</div>
+                    <div key={uuid()} className='lesson_plan__title'>{activity.title}</div>
                     <div key={uuid()} className='lesson_plan__title'><h3>Duration</h3></div>
                     <div key={uuid()} className='lesson_plan__title'>{activity.duration}</div>
                 </div>
                 <div>
                     <div key={uuid()} className="lesson_plan__how_to_play">
-                        <p>groups:{' '}{activity.groups}</p>
-                        <p>
-                        {activity.content}</p>
+                        <p>groups:{' '}{activity.grouping}</p>
+                        {activity.content.split(/\\n \\r|\\n|\n|\\n \\r/).map((para, i) =>
+                            <p key={i}>{para}</p>
+                        )}
                     </div>
                 </div>
             </>
@@ -117,8 +118,8 @@ export default class LessonPlan extends React.Component{
     }
 
     render(){
-        const lesson = this.props.location.state.state
-        return(
+        //const lesson = this.props.location.state.state
+ /*       return(
             <>
             <header>
                 <h1>{lesson.name}</h1>
@@ -201,6 +202,13 @@ export default class LessonPlan extends React.Component{
                 <button type='button' onClick={() => this.handleNewLesson()}>New Lesson</button>
                 <button type='button' onClick={() => this.handleGoHome()}>Go Home</button>
             </main>
+            </>
+        )*/
+        return(
+            <>
+            <header>
+                <h1>Test: {this.props.history.location.state.state.title}</h1>
+            </header>
             </>
         )
     }

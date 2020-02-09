@@ -9,23 +9,37 @@ import ReadActivities from './ReadActivities/ReadActivities'
 import SideDraw from './NavBar/SideDraw/SideDraw'
 import BackDrop from './BackDrop/BackDrop'
 import ApiContext from './ApiContext'
+import RegistrationForm from './RegistrationForm/RegistrationForm'
+import LoginForm from './LoginForm/LoginForm'
+import Savedlessons from './Savedlessons/Savedlessons'
+import PrivateRoute from './Utilities/PrivateRoute'
 
 export default class App extends React.Component{
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = {
     activities: [],
     categories: [],
+    user: [],
     sideDrawOpen: false
-}
+    }}
+
+onUserGet = (userinfo) => {
+      this.setState({ 
+        user: userinfo
+      });
+      console.log(this.state.user)
+    }
 
 componentDidMount() {
   Promise.all([
-    fetch (`https://my-json-server.typicode.com/boopies/demo/activities`, {
+    fetch (`http://localhost:8000/api/activities`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
       },
     }),
-    fetch (`https://my-json-server.typicode.com/boopies/demo/categories`, {
+    fetch (`http://localhost:8000/api/categories`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -37,7 +51,6 @@ componentDidMount() {
         return activitiesRes.json().then(e => Promise.reject(e))
       if (!categoriesRes.ok)
         return categoriesRes.json().then(e => Promise.reject(e))
-
       return Promise.all([
         activitiesRes.json(),
         categoriesRes.json(),
@@ -58,6 +71,10 @@ sideMenuClickHandler = () => {
 }
 
 backdropClickHandler = () => {
+  this.setState({sideDrawOpen: false});
+}
+
+sidedrawClose = () => {
   this.setState({sideDrawOpen: false});
 }
 
@@ -89,8 +106,11 @@ handleUpdateActivity = updatedActivity => {
     const value = {
       activities: this.state.activities,
       categories: this.state.categories,
+      user: this.state.username,
       addActivity: this.handleAddActivity,
-      updateActivity: this.handleUpdateActivity
+      updateActivity: this.handleUpdateActivity,
+      UserGet: this.onUserGet,
+      sidedrawClose: this.sidedrawClose
     }
     return (
       <ApiContext.Provider value={value}>
@@ -103,9 +123,12 @@ handleUpdateActivity = updatedActivity => {
       <main className='app__main'>
         <Switch>
           <Route exact path='/' component={ LandingPage } />
-          <Route exact path="/create" component={ CreateLesson } />
-          <Route exact path="/lesson" component={ LessonPlan } />
-          <Route exact Path="/read" component={ ReadActivities } />
+          <Route path='/create' component={ CreateLesson } />
+          <Route path='/lesson' component={ LessonPlan } />
+          <Route path='/read' component={ ReadActivities } />
+          <Route path='/register' component={ RegistrationForm } />
+          <Route path='/login' component={ LoginForm } />
+          <PrivateRoute path='/savedlessons' component={ Savedlessons } />
         </Switch>
       </main>
       </div>

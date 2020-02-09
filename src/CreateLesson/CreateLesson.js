@@ -181,8 +181,8 @@ export default class CreateLesson extends React.Component{
         return(
             <>
             {activityForCategory.map(activity =>
-            <option key={activity.name} value={activity.id}>
-                {activity.name}
+            <option key={activity.title} value={activity.id}>
+                {activity.title}
             </option>
             )}   
             </>

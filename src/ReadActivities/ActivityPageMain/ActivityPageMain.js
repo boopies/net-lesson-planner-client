@@ -23,12 +23,14 @@ export default class ActivityPageMain extends React.Component {
       <section className='ActivityPageMain'>
         <Activity
           id={activity.id}
-          name={activity.name}
+          title={activity.title}
           duration={activity.duration}
-          groups={activity.groups}
+          grouping={activity.grouping}
         />
+        
         <div className='ActivityPageMain__content'>
-          {activity.content.split(/\n \r|\n/).map((para, i) =>
+        <h3 className='ActivityPageMain__Prodesture'>Procedure</h3>
+          {activity.content.split(/\\n \\r|\\n|\n|\\n \\r/).map((para, i) =>
             <p key={i}>{para}</p>
           )}
         </div>

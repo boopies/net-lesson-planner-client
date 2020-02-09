@@ -6,12 +6,10 @@ import ActivityListMain from './ActivityListMain/ActivityListMain'
 import ActivityPageMain from './ActivityPageMain/ActivityPageMain'
 import AddActivity from './AddActivity/AddActivity'
 import EditActivity from './EditActivity/EditActivity'
-import ApiContext from '../ApiContext'
 import './ReadActivities.css'
+import PrivateRoute from '../Utilities/PrivateRoute'
 
 export default class ReadActivities extends React.Component{
-
-   static contextType = ApiContext;
 
    renderNavRoutes() {
     return (
@@ -55,11 +53,11 @@ export default class ReadActivities extends React.Component{
               path='/read/activity/:activityId'
               component={ActivityPageMain}
             />   
-            <Route
+            <PrivateRoute
               path='/read/add-activity'
               component={AddActivity}
             />
-            <Route
+            <PrivateRoute
               path='/read/edit-activity/:activityId'
               component={EditActivity}
             />

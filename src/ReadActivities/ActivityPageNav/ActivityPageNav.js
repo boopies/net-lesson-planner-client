@@ -19,12 +19,12 @@ export default class ActivityPageNav extends React.Component {
     const { activities, categories, } = this.context
     const { activityId } = this.props.match.params
     const activity = findActivity(activities, activityId) || {}
-    const category = findCategory(categories, activity.categoryId)
+    const category = findCategory(categories, activity.category_id)
     return (
       <div className='ActivityPageNav'>
         {category && (
           <h3 className='ActivityPageNav__category-name'>
-            {category.name}
+            {category.title}
           </h3>
         )}
         <button

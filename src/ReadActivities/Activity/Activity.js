@@ -7,19 +7,19 @@ import './Activity.css'
 export default class Activity extends React.Component {
   static contextType = ApiContext;
   render() {
-    const { name, duration, groups, id } = this.props
+    const { title, duration, grouping, id } = this.props
     return (
       <div className='activity'>
-        <h3 className='activity__title'>
+        <h2 className='activity__title'>
           <Link to={`/read/activity/${id}`}>
-            {name}
+            {title}
           </Link>
-        </h3>
+        </h2>
       <div className="activity__duration">
             <span>Length: {' '}</span> {duration}
       </div>
       <div className="activity__grouping">
-            <span>Groups: {' '}</span> {groups}
+            <span>Groups: {' '}</span> {grouping}
       </div>
       </div>
     )

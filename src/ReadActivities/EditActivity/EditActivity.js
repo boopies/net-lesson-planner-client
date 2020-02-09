@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 import ApiContext from '../../ApiContext'
 import PropTypes from 'prop-types';
+import TokenService from '../../services/token-service'
 
 export default class EditActivity extends Component {
   constructor(props) {
     super(props);
     this.state = {    
       id: '',
-      name: '',
+      title: '',
       duration: '',
-      groups: '',
-      categoryId: '',
+      grouping: '',
+      category_id: '',
       content: '',
     };
   }
@@ -25,7 +26,7 @@ export default class EditActivity extends Component {
 
   componentDidMount() {
     const { activityId } = this.props.match.params
-    fetch(`https://my-json-server.typicode.com/boopies/demo/activities/${activityId}`, {
+    fetch(`http://localhost:8000/api/activities/${activityId}`, {
       method: 'GET',
       }
     )
@@ -37,10 +38,10 @@ export default class EditActivity extends Component {
       .then(responseData => {
         this.setState({
           id: responseData.id,
-          name: responseData.name,
+          title: responseData.title,
           duration: responseData.duration,
-          groups: responseData.groups,
-          categoryId: responseData.categoryId,
+          grouping: responseData.grouping,
+          category_id: responseData.category_id,
           content: responseData.content,
         })
       })
@@ -66,19 +67,20 @@ updateDuration(duration){
     this.setState({duration: duration });
   }
 
-updateGroups(groups){
-    this.setState({groups: groups });
+updateGrouping(grouping){
+    this.setState({grouping: grouping });
   }
 
   handleSubmit = e => {
     e.preventDefault()
     const { activityId } = this.props.match.params
     const updatedActivity = this.state
-    fetch(`https://my-json-server.typicode.com/boopies/demo/activities/${activityId}`, {
+    fetch(`http://localhost:8000/api/activities/${activityId}`, {
       method: 'PATCH',
       body: JSON.stringify(updatedActivity),
       headers: {
         'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
     })
       .then(res => {
@@ -87,7 +89,7 @@ updateGroups(groups){
       })
       .then(() => {
         this.context.updateActivity(updatedActivity)
-        this.props.history.push('/read')
+        this.props.history.goBack()
       })
       .catch(error => {
         console.error(error)
@@ -96,11 +98,11 @@ updateGroups(groups){
   }
 
   render() {
-    const { name, duration, groups, categoryId, content} = this.state
+    const { title, duration, grouping, category_id, content} = this.state
     const { categories=[] } = this.context
     return (
       <section className='AddActivity'>
-        <h2>Edit Activity: <i>{name}</i></h2>
+        <h2>Edit Activity: <i>{title}</i></h2>
         <form onSubmit={this.handleSubmit}>
           <div className='field'>
             <label 
@@ -115,29 +117,29 @@ updateGroups(groups){
                 aria-describedby='FSErrorMessage'
                 value = {duration}
                 onChange={e => this.updateDuration(e.target.value)} >
-              <option value='5 min'>5 min</option>
-              <option value='10 min'>10 min</option>
-              <option value='15 min'>15 min</option>
-              <option value='20 min'>20 min</option>
-              <option value='25 min'>25 min</option>
-              <option value='30 min'>30 min</option>
+              <option value='5min'>5 min</option>
+              <option value='10min'>10 min</option>
+              <option value='15min'>15 min</option>
+              <option value='20min'>20 min</option>
+              <option value='25min'>25 min</option>
+              <option value='30min'>30 min</option>
             </select>
           </div>
           <div className='field'>
             <label 
-            htmlFor='newActivityGroups'>
+            htmlFor='newActivityGrouping'>
               Groups
             </label>
             <select 
-                id='new-activity-groups' 
-                name='groups'
+                id='new-activity-grouping' 
+                name='grouping'
                 aria-label='Duration of the Activity' 
                 aria-required='true'
                 aria-describedby='FSErrorMessage'
-                value = {groups}
-                onChange={e => this.updateGroups(e.target.value)} >
+                value = {grouping}
+                onChange={e => this.updateGrouping(e.target.value)} >
               <option value='Whole Class'>Whole Class</option>
-              <option value='Single'>Single</option>
+              <option value='Individual'>Individual</option>
               <option value='Pairs'>Pairs</option>
               <option value='Groups'>Groups</option>
             </select>
@@ -153,14 +155,14 @@ updateGroups(groups){
                 aria-label='category selection to add activity' 
                 aria-required='true'
                 aria-describedby='FSErrorMessage'
-                value = { categoryId }
+                value = { category_id }
                 onChange={e => this.updateCategoryId(e.target.value)} >
               {categories.map(category =>
                 <option 
                 key={category.id} 
                 value={category.id}
                 aria-label='category names for selection' >
-                  {category.name}
+                  {category.title}
                 </option>
               )}
             </select>
@@ -207,15 +209,15 @@ updateGroups(groups){
 EditActivity.defaultProps = {
   name: '',
   content:'',
-  categoryId:'',
-  groups:'',
+  category_id:'',
+  grouping:'',
   duration:''
 };
 
 EditActivity.propTypes ={
   name: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  categoryId: PropTypes.string.isRequired,
-  groups: PropTypes.string.isRequired,
+  category_id: PropTypes.string.isRequired,
+  grouping: PropTypes.string.isRequired,
   duration: PropTypes.string.isRequired
 }
