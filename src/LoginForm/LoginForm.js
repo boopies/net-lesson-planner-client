@@ -4,13 +4,6 @@ import AuthApiService from '../services/auth-api-service'
 import ApiContext from '../ApiContext'
 
 export default class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: []
-    };
-  }
-
   static defaultProps = {
     location: {},
     history: {
@@ -28,68 +21,45 @@ export default class LoginForm extends Component {
 
   state = { error: null }
 
-  handleSubmitBasicAuth = ev => {
-    ev.preventDefault()
-    const { user_name, password } = ev.target
-    TokenService.saveAuthToken(
-      TokenService.makeBasicAuthToken(user_name.value, password.value)
-    )
-    user_name.value = ''
-    password.value = ''
-    this.handleLoginSuccess()
-  }
 
   handleSubmitJwtAuth = ev => {
-     ev.preventDefault()
-     this.setState({ error: null })
-     const { user_name, password } = ev.target
-     AuthApiService.postLogin({
-       user_name: user_name.value,
-       password: password.value,
-     })
-       .then(res => {
-         user_name.value = ''
-         password.value = ''
-         TokenService.saveAuthToken(res.authToken)
+    ev.preventDefault()
+    this.setState({ error: null })
+    const { username, password } = ev.target
+    let user = username.value
+    console.log(user)
+    AuthApiService.postLogin({
+      username: username.value,
+      password: password.value,
+    })
+      .then(res => {
+        username.value = ''
+        password.value = ''
+        TokenService.saveAuthToken(res.authToken)
+      })
+      .then(this.getUserData(user))
+      .then(this.handleLoginSuccess())
+      .catch(res => {
+        this.setState({ error: res.error })
+      })
+  }
 
-       })
-       .then(
-        fetch(`http://localhost:8000/api/users/${user_name}`, {
+  getUserData = user => {
+      fetch(`http://localhost:8000/api/users/${user}`, {
           method: 'GET',
           headers: {
             'content-type': 'application/json',
           },
-          body: JSON.stringify(user_name),
         })
-          .then(user => {
-            this.setState(user)
-            this.context.UserGet(user)
-          }))
-       .then(this.handleLoginSuccess())
-       .catch(res => {
-       this.setState({ error: res.error })
-     })
- }
-
-    handleGetUserInfo = e => {
-      e.preventDefault()
-      const { user_name } = e.target
-      fetch(`http://localhost:8000/api/users/${user_name}`, {
-        method: 'GET',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(user_name),
-      })
-        .then(user => {
-          this.setState(user)
-          this.context.UserGet(user)
-        })
-    .catch(res => {
-    this.setState({ error: res.error })
-  })
-}
-   
+          .then(currentUserRes =>
+            (!currentUserRes.ok)
+              ? currentUserRes.json().then(e => Promise.reject(e))
+              : currentUserRes.json()
+          )
+          .then((currentUser) => {
+              this.context.UserGet({currentUser})
+            })
+  }
 
   render() {
     const { error } = this.state
@@ -108,14 +78,14 @@ export default class LoginForm extends Component {
               <div role='alert'>
                 {error && <p className='red'>{error}</p>}
               </div>
-              <div className='user_name'>
-                <label htmlFor='LoginForm__user_name'>
-                  User name
+              <div className='username'>
+                <label htmlFor='LoginForm__username'>
+                  Username
                 </label>
                 <input
                   required
-                  name='user_name'
-                  id='LoginForm__user_name'>
+                  name='username'
+                  id='LoginForm__username'>
                 </input>
               </div>
               <div className='password'>

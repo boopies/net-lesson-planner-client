@@ -4,6 +4,9 @@ export const findCategory = (categories=[], categoryId) =>
 export const findActivity = (activities=[], activityId) =>
   activities.find(activity => activity.id === parseInt(activityId))
 
+export const findAuthor = (users=[], authorId) =>
+  users.find(author => author.id === parseInt(authorId))
+
 export const getActivityForCategory = (activities=[], categoryId) => (
   (!categoryId)
     ? activities
@@ -11,4 +14,4 @@ export const getActivityForCategory = (activities=[], categoryId) => (
 )
 
 export const countActivityForCategory = (activities=[], categoryId) =>
-  activities.filter(activity => activity.category_id === parseInt(categoryId)).length
+  activities.filter(activity => activity.category_id === parseInt(categoryId)).length - 1

@@ -1,0 +1,9 @@
+
+ .lesson_plan__title, .lesson_plan__content, .lesson_plan__how_to_play{
+   border: 1px solid black;
+ }
+
+ #lesson_plan__full{
+   width: 85%;
+    margin-top: 50px;
+ }

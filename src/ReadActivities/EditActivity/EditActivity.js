@@ -13,6 +13,7 @@ export default class EditActivity extends Component {
       grouping: '',
       category_id: '',
       content: '',
+      user_id: '',
     };
   }
 
@@ -43,6 +44,7 @@ export default class EditActivity extends Component {
           grouping: responseData.grouping,
           category_id: responseData.category_id,
           content: responseData.content,
+          user_id: responseData.user_id,
         })
       })
       .catch(error => {

@@ -7,32 +7,31 @@ export default class CreateLesson extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            date:'',
-            day: '',
-            classLevel: '',
-            period: '',
-            topic: '',
-            goal: '',
-            classSize: '',
-            objectiveOne:'',
-            objectiveTwo:'',
-            objectiveThree:'',
-            duration: '',
-            materials:'',
-            warmup:'',
-            presentationOne:'',
-            presentationTwo:'',
-            practiceOne: '',
-            practiceTwo: '',
-            practiceThree: '',
-            productionOne:'',
-            productionTwo:'',
-            cooldown:'',
-            reflectionOne:'',
-            reflectionTwo:'',
-            reflectionThree:'',
-
+            title: '',
+            date: '',
+            day: '',
+            duration: '',
+            classlevel: '',
+            period: '',
+            topic: '',
+            goal: '',
+            class_size: '',
+            objective_one: '',
+            objective_two: '',
+            objective_three: '',
+            materials: '',
+            warmup_id: 1,
+            presentation_one_id: 2,
+            presentation_two_id: 2,
+            practice_one_id: 3,
+            practice_two_id: 3,
+            practice_three_id: 3,
+            product_one_id: 4,
+            product_two_id: 4,
+            cooldown_id: 5,
+            reflection_one: '',
+            reflection_two: '',
+            reflection_three: '', 
             };
             this.handleSubmitForm = this.handleSubmitForm.bind(this);
     }
@@ -50,16 +49,16 @@ export default class CreateLesson extends React.Component{
     }
     
     validateName(fieldValue) {
-      const name = this.state.name.value.trim();
-      if (name.length === 0) {
+      const title = this.state.title.value.trim();
+      if (title.length === 0) {
         return 'Name is required';
-      } else if (name.length < 2) {
+      } else if (title.length < 2) {
         return <div id="ANErrorMessage">New Notes's name must be 3 characters long.</div>;
       }
     }
     
     updateName(name){
-      this.setState({name: name});
+      this.setState({title: name});
     }
 
     updateDate(date){
@@ -75,11 +74,11 @@ export default class CreateLesson extends React.Component{
       }
 
     updateClassLevel(classLevel){
-        this.setState({classLevel: classLevel});
+        this.setState({classlevel: classLevel});
       }
 
       updateClassSize(classSize){
-        this.setState({classSize: classSize});
+        this.setState({class_size: classSize});
       }
 
     updateDuration(duration){
@@ -95,15 +94,15 @@ export default class CreateLesson extends React.Component{
     }
 
       updateObjectiveOne(objectiveOne){
-        this.setState({objectiveOne: objectiveOne});
+        this.setState({objective_one: objectiveOne});
       }
 
       updateObjectiveTwo(objectiveTwo){
-        this.setState({objectiveTwo: objectiveTwo});
+        this.setState({objective_two: objectiveTwo});
       }
 
       updateObjectiveThree(objectiveThree){
-        this.setState({objectiveThree: objectiveThree});
+        this.setState({objective_three: objectiveThree});
       }
 
       updateMaterials(materials){
@@ -112,50 +111,50 @@ export default class CreateLesson extends React.Component{
 
 
       updateReflectionOne(reflectionOne){
-        this.setState({reflectionOne: reflectionOne});
+        this.setState({reflection_one: reflectionOne});
       }
 
       updateReflectionTwo(reflectionTwo){
-        this.setState({reflectionTwo: reflectionTwo});
+        this.setState({reflection_two: reflectionTwo});
       }
 
       updateReflectionThree(reflectionThree){
-        this.setState({reflectionThree: reflectionThree});
+        this.setState({reflection_three: reflectionThree});
       }
 
       updateWarmup(warmup){
-        this.setState({warmup: warmup});
+        this.setState({warmup_id: warmup});
       }
 
       updatePresentationOne(presentation01){
-        this.setState({presentationOne: presentation01});
+        this.setState({presentation_one_id: presentation01});
       }
 
       updatePresentationTwo(presentation02){
-        this.setState({presentationTwo: presentation02});
+        this.setState({presentation_two_id: presentation02});
       }
 
       updatePracticeOne(practice01){
-        this.setState({practiceOne: practice01});
+        this.setState({practice_one_id: practice01});
       }
 
       updatePracticeTwo(practice02){
-        this.setState({practiceTwo: practice02});
+        this.setState({practice_two_id: practice02});
       }
 
       updatePracticeThree(practice03){
-        this.setState({practiceThree: practice03});
+        this.setState({practice_three_id: practice03});
       }
       updateProductionOne(production01){
-        this.setState({productionOne: production01});
+        this.setState({product_one_id: production01});
       }
 
       updateProductionTwo(production02){
-        this.setState({productionTwo: production02});
+        this.setState({product_two_id: production02});
       }
 
       updateCooldown(cooldown){
-        this.setState({cooldown: cooldown});
+        this.setState({cooldown_id: cooldown});
       }
 
     handleResetForm = () => { 
@@ -181,7 +180,7 @@ export default class CreateLesson extends React.Component{
         return(
             <>
             {activityForCategory.map(activity =>
-            <option key={activity.title} value={activity.id}>
+            <option key={activity.id} value={activity.id}>
                 {activity.title}
             </option>
             )}   
@@ -383,7 +382,6 @@ export default class CreateLesson extends React.Component{
                         <select
                         id="warmupactivity"
                         onChange={e => this.updateWarmup(e.target.value)} required>
-                        <option value=''>Choose an activity</option>
                         {this.renderOptions('1')}
                         </select>
                     </fieldset>
@@ -395,15 +393,13 @@ export default class CreateLesson extends React.Component{
                         <label>Presentation Activity 01: </label>
                         <select
                         id="presentation01"
-                        onChange={e => this.updatePresentationOne(e.target.value)} required>
-                            <option>Choose an Activity</option>     
+                        onChange={e => this.updatePresentationOne(e.target.value)} required> 
                             {this.renderOptions('2')}
                         </select>       
                         <label>Presentation Activity 02: </label>
                         <select
                         id="presentation02"
                         onChange={e => this.updatePresentationTwo(e.target.value)}>
-                        <option>Optional Activity</option>     
                         {this.renderOptions('2')}
                         </select>                 
                     </fieldset>
@@ -416,21 +412,18 @@ export default class CreateLesson extends React.Component{
                         <select
                         id="practice01"
                         onChange={e => this.updatePracticeOne(e.target.value)} required>
-                            <option>Choose an Activity</option>     
                             {this.renderOptions('3')}
                         </select>
-                        <label>Practice Activity 02: </label>
+                        <label>Practice Activity 02:8 </label>
                         <select
                            id="practice02"
                         onChange={e => this.updatePracticeTwo(e.target.value)}>
-                            <option>Optional Activity</option>     
                             {this.renderOptions('3')}
                         </select>
                         <label>Practice Activity 03: </label>
                         <select
                             id="practice03"
-                            onChange={e => this.updatePracticeThree(e.target.value)}>
-                            <option>Optional Activity</option>                       
+                            onChange={e => this.updatePracticeThree(e.target.value)}>                  
                             {this.renderOptions('3')}
                         </select>          
                     </fieldset>
@@ -443,14 +436,12 @@ export default class CreateLesson extends React.Component{
                         <select
                             id="production01"
                             onChange={e => this.updateProductionOne(e.target.value)} required>
-                            <option>Choose an Activity</option>  
                             {this.renderOptions('4')}
                         </select>
                         <label>Production Activity 02: </label>
                         <select
                             id="production02"
                         onChange={e => this.updateProductionTwo(e.target.value)}>
-                            <option>Optional Activity</option>  
                             {this.renderOptions('4')}
                         </select>                    
                     </fieldset>
@@ -463,7 +454,6 @@ export default class CreateLesson extends React.Component{
                         <select
                         id="cooldown"
                         onChange={e => this.updateCooldown(e.target.value)}>
-                            <option>Choose an Activity</option>  
                             {this.renderOptions('5')}
                         </select>              
                     </fieldset>

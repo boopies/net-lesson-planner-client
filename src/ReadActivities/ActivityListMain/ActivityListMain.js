@@ -38,20 +38,28 @@ export default class ActivityListMain extends React.Component {
       <section className='activity-list-main'>
         <ul>
           {activityForCategory.map(activity => {
-            return activity.id > 5 ?
+
+
+
+
+            return activity.id > 9 ?
             <li key={activity.id}>
               <Activity
                 id={activity.id}
                 title={activity.title}
                 duration={activity.duration}
                 grouping={activity.grouping}
+                authorId={activity.user_id}
               />
             </li>
-          : <li key={activity.id}>
+          : activity.id > 5 ?
+          <li key={activity.id}>
           <div className='activity'>
           <h2 className='activity__title'>{activity.title}
           </h2>
           <p>This is a blank activity for you to write in yourself</p></div></li>
+          :
+          <></>
           })}
         </ul>
           <div className='activity-list-main__button'>

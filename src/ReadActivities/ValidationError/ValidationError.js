@@ -12,7 +12,7 @@ function ValidationError(props) {
 }
 
 ValidationError.propTypes = {
-  message: PropTypes.string
+  message: PropTypes.object
 }
 
 export default ValidationError

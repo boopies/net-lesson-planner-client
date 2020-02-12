@@ -13,6 +13,7 @@ import RegistrationForm from './RegistrationForm/RegistrationForm'
 import LoginForm from './LoginForm/LoginForm'
 import Savedlessons from './Savedlessons/Savedlessons'
 import PrivateRoute from './Utilities/PrivateRoute'
+import SavedLessonPlan from './Savedlessons/SavedLessonPlan/SavedLessonPlan'
 
 export default class App extends React.Component{
   constructor(props) {
@@ -20,15 +21,16 @@ export default class App extends React.Component{
     this.state = {
     activities: [],
     categories: [],
-    user: [],
+    users: [],
+    savedlessons: [],
+    currentUser: [],
     sideDrawOpen: false
     }}
 
-onUserGet = (userinfo) => {
-      this.setState({ 
-        user: userinfo
-      });
-      console.log(this.state.user)
+   
+onUserGet = (currentUser) => {
+      this.setState( 
+         { currentUser } );
     }
 
 componentDidMount() {
@@ -44,20 +46,38 @@ componentDidMount() {
       headers: {
         'content-type': 'application/json'
       },
-    })
+    }),
+    fetch (`http://localhost:8000/api/users`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      },
+    }),
+    fetch (`http://localhost:8000/api/savedlessons`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      },
+    }),
   ])
-    .then(([activitiesRes, categoriesRes]) => {
+    .then(([activitiesRes, categoriesRes, usersRes, savedlessonsRes,]) => {
       if (!activitiesRes.ok)
         return activitiesRes.json().then(e => Promise.reject(e))
       if (!categoriesRes.ok)
         return categoriesRes.json().then(e => Promise.reject(e))
+      if (!usersRes.ok)
+        return usersRes.json().then(e => Promise.reject(e))
+      if (!savedlessonsRes.ok)
+        return savedlessonsRes.json().then(e => Promise.reject(e))
       return Promise.all([
         activitiesRes.json(),
         categoriesRes.json(),
+        usersRes.json(),
+        savedlessonsRes.json(),
       ])
     })
-    .then(([activities, categories]) => {
-      this.setState({ activities, categories })
+    .then(([activities, categories, users, savedlessons]) => {
+      this.setState({ activities, categories, users, savedlessons })
     })
     .catch(error => {
       console.error({ error })
@@ -88,6 +108,15 @@ this.setState({
 })
 }
 
+handleAddSavedLesson = newSavedLesson => {
+  this.setState({
+    savedlessons: [
+          ...this.state.savedlessons,
+          newSavedLesson
+      ]
+  })
+  }
+
 handleUpdateActivity = updatedActivity => {
   this.setState({
     activities: this.state.activities.map(activity =>
@@ -106,11 +135,14 @@ handleUpdateActivity = updatedActivity => {
     const value = {
       activities: this.state.activities,
       categories: this.state.categories,
-      user: this.state.username,
+      users: this.state.users,
+      savedlessons: this.state.savedlessons,
       addActivity: this.handleAddActivity,
       updateActivity: this.handleUpdateActivity,
+      addSavedLesson: this.handleAddSavedLesson,
+      currentUser: this.state.currentUser,
       UserGet: this.onUserGet,
-      sidedrawClose: this.sidedrawClose
+      sidedrawClose: this.sidedrawClose,
     }
     return (
       <ApiContext.Provider value={value}>
@@ -129,6 +161,7 @@ handleUpdateActivity = updatedActivity => {
           <Route path='/register' component={ RegistrationForm } />
           <Route path='/login' component={ LoginForm } />
           <PrivateRoute path='/savedlessons' component={ Savedlessons } />
+          <PrivateRoute path='/savedlessonplan' component={ SavedLessonPlan } />
         </Switch>
       </main>
       </div>

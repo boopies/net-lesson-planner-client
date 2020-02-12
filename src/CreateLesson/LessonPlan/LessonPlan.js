@@ -3,10 +3,68 @@ import ApiContext from '../../ApiContext'
 import './LessonPlan.css'
 import { findActivity } from '../../ReadActivities/helpers'
 import uuid from 'react-uuid'
+import TokenService from '../../services/token-service'
 
 export default class LessonPlan extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            };
+    }
 
     static contextType = ApiContext;
+
+    handleSaveLesson = () => {
+        const lesson = this.props.location.state.state
+        const newLesson = {
+                    title: `${lesson.title}`,
+                    date: `${lesson.date}`,
+                    day: `${lesson.day}`,
+                    duration: `${lesson.duration}`,
+                    classlevel: `${lesson.classlevel}`,
+                    period: `${lesson.period}`,
+                    topic: `${lesson.topic}`,
+                    goal: `${lesson.goal}`,
+                    class_size: parseInt(`${lesson.class_size}`),
+                    objective_one: `${lesson.objective_one}`,
+                    objective_two: `${lesson.objective_two}`,
+                    objective_three: `${lesson.objective_three}`,
+                    materials: `${lesson.materials}`,
+                    warmup_id: parseInt(`${lesson.warmup_id}`),
+                    presentation_one_id: parseInt(`${lesson.presentation_one_id}`),
+                    presentation_two_id: parseInt(`${lesson.presentation_two_id}`),
+                    practice_one_id: parseInt(`${lesson.practice_one_id}`),
+                    practice_two_id: parseInt(`${lesson.practice_two_id}`),
+                    practice_three_id: parseInt(`${lesson.practice_three_id}`),
+                    product_one_id: parseInt(`${lesson.product_one_id}`),
+                    product_two_id: parseInt(`${lesson.product_two_id}`),
+                    cooldown_id: parseInt(`${lesson.cooldown_id}`),
+                    reflection_one: `${lesson.reflection_one}`,
+                    reflection_two: `${lesson.reflection_two}`,
+                    reflection_three: `${lesson.reflection_three}` 
+        }
+        console.log(newLesson)
+        fetch(`http://localhost:8000/api/savedlessons`, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            'authorization': `bearer ${TokenService.getAuthToken()}`,
+          },
+          body: JSON.stringify(newLesson),
+        })
+          .then(res => {
+            if (!res.ok)
+              return res.json().then(e => Promise.reject(e))
+            return res.json()
+          })
+          .then(newLesson => {
+            this.context.addSavedLesson(newLesson)
+            this.props.history.push(`/savedlessons`)
+          })
+          .catch(error => {
+            console.error({ error })
+          })
+      }
 
     handlePrintLesson = () =>{
         window.print();
@@ -35,11 +93,10 @@ export default class LessonPlan extends React.Component{
         )
     }
 
-
     renderObjectives(){
-            const objOne = this.props.location.state.state.objectiveOne
-            const objTwo = this.props.location.state.state.objectiveTwo
-            const objThree = this.props.location.state.state.objectiveThree
+            const objOne = this.props.location.state.state.objective_one
+            const objTwo = this.props.location.state.state.objective_two
+            const objThree = this.props.location.state.state.objective_three
 
         if (objTwo.length === 0 && objThree.length === 0){
             return (
@@ -63,9 +120,9 @@ export default class LessonPlan extends React.Component{
     }
 
     renderReflection(){
-        const refOne = this.props.location.state.state.reflectionOne
-        const refTwo = this.props.location.state.state.reflectionTwo
-        const refThree = this.props.location.state.state.reflectionThree
+        const refOne = this.props.location.state.state.reflection_one
+        const refTwo = this.props.location.state.state.reflection_two
+        const refThree = this.props.location.state.state.reflection_three
 
     if (refTwo.length === 0 && refThree.length === 0){
         return (
@@ -92,7 +149,7 @@ export default class LessonPlan extends React.Component{
         const { activities=[] } = this.context
         const activity = findActivity(activities, actId) || { content: '' }
 
-        if(actId.length === 0){
+        if(actId < 6){
             return <>
             </>
         } else{
@@ -101,12 +158,13 @@ export default class LessonPlan extends React.Component{
                <div>
                     <div key={uuid()} className='lesson_plan__title'><h3>Activity</h3></div>
                     <div key={uuid()} className='lesson_plan__title'>{activity.title}</div>
-                    <div key={uuid()} className='lesson_plan__title'><h3>Duration</h3></div>
+                    <div key={uuid()} className='lesson_plan__title'><h3>Activity Length</h3></div>
                     <div key={uuid()} className='lesson_plan__title'>{activity.duration}</div>
                 </div>
                 <div>
                     <div key={uuid()} className="lesson_plan__how_to_play">
-                        <p>groups:{' '}{activity.grouping}</p>
+                        <p>Groups:{' '}{activity.grouping}</p>
+                        <p><b>Directions:</b> {' '}</p>
                         {activity.content.split(/\\n \\r|\\n|\n|\\n \\r/).map((para, i) =>
                             <p key={i}>{para}</p>
                         )}
@@ -118,11 +176,11 @@ export default class LessonPlan extends React.Component{
     }
 
     render(){
-        //const lesson = this.props.location.state.state
- /*       return(
+    const lesson = this.props.location.state.state
+      return(
             <>
             <header>
-                <h1>{lesson.name}</h1>
+                <h1>{lesson.title}</h1>
             </header>
             <main>
                 <section id="lesson_plan__full">
@@ -136,11 +194,11 @@ export default class LessonPlan extends React.Component{
                     </div>
                     <div className='lesson_plan class'>
                         <div className='lesson_plan__title'><h3>Class</h3></div>
-                        <div className='lesson_plan__content'><p>{lesson.classLevel}</p></div>
+                        <div className='lesson_plan__content'><p>{lesson.classlevel}</p></div>
                     </div>
                     <div className='lesson_plan class_size'>
                         <div className='lesson_plan__title'><h3>Class Size</h3></div>
-                        <div className='lesson_plan__content'><p>{lesson.classSize} {' '} Students</p></div>
+                        <div className='lesson_plan__content'><p>{lesson.class_size} {' '} Students</p></div>
                     </div>
                     <div className='lesson_plan time'>
                         <div className='lesson_plan__title'><h3>Class Length</h3></div>
@@ -173,23 +231,28 @@ export default class LessonPlan extends React.Component{
                         <div className='lesson_plan__title'><h2>Lesson</h2></div>              
                     </div>
                     <div className='Warm-up'>
-                        {this.renderActivities(lesson.warmup)}
+                        <h3>Warm-up Phase</h3>
+                        {this.renderActivities(lesson.warmup_id)}
                     </div>
                     <div className='Presentation'>
-                        {this.renderActivities(lesson.presentationOne)}
-                        {this.renderActivities(lesson.presentationTwo)}
+                         <h3>Presentation Phase</h3>
+                        {this.renderActivities(lesson.presentation_one_id)}
+                        {this.renderActivities(lesson.presentation_two_id)}
                     </div>
                     <div className='Practice'>
-                        {this.renderActivities(lesson.practiceOne)}
-                        {this.renderActivities(lesson.practiceTwo)}
-                        {this.renderActivities(lesson.practiceThree)}
+                        <h3>Practice Phase</h3>
+                        {this.renderActivities(lesson.practice_one_id)}
+                        {this.renderActivities(lesson.practice_two_id)}
+                        {this.renderActivities(lesson.practice_three_id)}
                     </div>
                     <div className='Producion'>
-                        {this.renderActivities(lesson.productionOne)}
-                        {this.renderActivities(lesson.productionTwo)}
+                        <h3>Production Phase</h3>
+                        {this.renderActivities(lesson.product_one_id)}
+                        {this.renderActivities(lesson.product_two_id)}
                     </div>
                     <div className='Cooldown'>
-                    {this.renderActivities(lesson.cooldown)}
+                        <h3>Cooldown Phase</h3>
+                    {this.renderActivities(lesson.cooldown_id)}
                     </div>
                     <div className='lesson_plan class'>
                         <div className='lesson_plan__title'><h3>Reflection Questions</h3></div>
@@ -199,16 +262,10 @@ export default class LessonPlan extends React.Component{
                     </div>
                 </section>
                 <button type='button' onClick={() => this.handlePrintLesson('printableArea')}>Print</button>
+                <button type='button' onClick={() => this.handleSaveLesson()}>Save Lesson</button>
                 <button type='button' onClick={() => this.handleNewLesson()}>New Lesson</button>
                 <button type='button' onClick={() => this.handleGoHome()}>Go Home</button>
             </main>
-            </>
-        )*/
-        return(
-            <>
-            <header>
-                <h1>Test: {this.props.history.location.state.state.title}</h1>
-            </header>
             </>
         )
     }

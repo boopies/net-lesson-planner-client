@@ -11,7 +11,7 @@ export default class LandingPage extends React.Component{
             </header>
             <section className='landing-page___description'>
               <blockquote className='landing-page__quote'>
-                <p className='landing-page__quote-body'>"If you fail to plan, you plan to fail."</p> <p className='landing-page__quote-author'>- Benjiman Fraklin</p>
+                <p className='landing-page__quote-body'>"If you fail to plan, you plan to fail."</p> <p className='landing-page__quote-author'>- Benjamin Franklin</p>
               </blockquote>
               <p className='landing-page___introduction'>Welcome to N.E.T Lesson Planner. This app was designed to get you up and running
               in the English Language Classroom. This will help you create lesson plan so you will never be cause out again in the classroom. 

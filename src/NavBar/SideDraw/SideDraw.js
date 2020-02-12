@@ -8,16 +8,15 @@ class SideDraw extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    username: '',
     sideDrawOpen: false
     }}
-
-  static contextType = ApiContext;
 
   handleLogoutClick = () => {
     TokenService.clearAuthToken();
     this.context.sidedrawClose();
       }
+
+      static contextType = ApiContext;
   
     renderLogoutLink() {
       return (
@@ -57,7 +56,7 @@ render(){
 
         <nav className={drawClasses} >
             {TokenService.hasAuthToken()
-                    ? <h3>Welcome back Friend!</h3>
+                    ? <h3>Welcome back!</h3>
                     : <h3> Hello, Friend!</h3>}
             <Link to='/'>HOME</Link>
             <Link to='/create'>CREATE</Link>

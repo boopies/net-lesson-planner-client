@@ -2,14 +2,13 @@ import React, { Component } from 'react'
 import ApiContext from '../../ApiContext'
 import ValidationError from '../ValidationError/ValidationError'
 import PropTypes from 'prop-types';
-import uuid from 'react-uuid'
 import TokenService from '../../services/token-service'
 
 export default class AddActivity extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        name: {
+        title: {
           value: '',
           touched:false
         },
@@ -44,11 +43,11 @@ export default class AddActivity extends Component {
     this.props.history.goBack();
 }
 
-validateName(fieldValue) {
-  const name = this.state.name.value.trim();
-  if (name.length === 0) {
-    return 'Name is required';
-  } else if (name.length < 2) {
+validateTitle(fieldValue) {
+  const title = this.state.title.value.trim();
+  if (title.length === 0) {
+    return 'Title is required';
+  } else if (title.length < 2) {
     return <div id="ANErrorMessage">New activity's name must be 3 characters long.</div>;
   }
 }
@@ -76,15 +75,15 @@ validateDuration(fieldValue) {
     }
   }
 
-  validateGroups(fieldValue) {
-    const groups = this.state.grouping.value.trim();
-    if (groups.length === 0) {
+  validateGrouping(fieldValue) {
+    const grouping = this.state.grouping.value.trim();
+    if (grouping.length === 0) {
       return <div id="GSErrorMessage">You must select the groups setup.</div>;
     }
   }
 
-updateName(name){
-  this.setState({name: {value: name, touched: true}});
+updateTitle(title){
+  this.setState({title: {value: title, touched: true}});
 }
 
 updateContent(content){
@@ -92,29 +91,27 @@ updateContent(content){
 }
 
 updateCategoryId(category_id){
-  this.setState({categoryId: {value: category_id, touched: true}});
+  this.setState({category_id: {value: category_id, touched: true}});
 }
 
 updateDuration(duration){
     this.setState({duration: {value: duration, touched: true}});
   }
 
-updateGroups(grouping){
-    this.setState({groups: {value: grouping, touched: true}});
+updateGrouping(grouping){
+    this.setState({grouping: {value: grouping, touched: true}});
   }
 
   handleSubmit = e => {
     e.preventDefault()
-    let uniqueID = uuid()
     const newActivity = {
-        id: uniqueID,
-        name: e.target['name'].value,
+        title: e.target['title'].value,
         category_id: e.target['categoryId'].value,
         content: e.target['content'].value,
-        grouping: e.target['groups'].value,
+        grouping: e.target['grouping'].value,
         duration: e.target['duration'].value,
     }
-    fetch(`https://my-json-server.typicode.com/boopies/demo/activities`, {
+    fetch(`http://localhost:8000/api/activities`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -150,13 +147,13 @@ updateGroups(grouping){
             <input
             type='text' 
             id='new-activity-name-input' 
-            name='name'
+            name='title'
             placeholder="Activity Name"
             aria-label="Name of the new activity" 
             aria-required="true"
             aria-describedby="NNErrorMessage"
-            onChange={e => this.updateName(e.target.value)}/>
-            {this.state.name.touched && (<ValidationError message={this.validateName()}/>)}
+            onChange={e => this.updateTitle(e.target.value)}/>
+            {this.state.title.touched && (<ValidationError message={this.validateTitle()}/>)}
           </div>
           <div className='field'>
             <label 
@@ -187,18 +184,18 @@ updateGroups(grouping){
             </label>
             <select 
                 id='new-activity-groups' 
-                name='groups'
+                name='grouping'
                 aria-label='Duration of the Activity' 
                 aria-required='true'
                 aria-describedby='FSErrorMessage'
-                onChange={e => this.updateGroups(e.target.value)} >
+                onChange={e => this.updateGrouping(e.target.value)} >
               <option value=''>...</option>
               <option value='Whole Class'>Whole Class</option>
               <option value='Individual'>Individual</option>
               <option value='Pairs'>Pairs</option>
               <option value='Groups'>Groups</option>
             </select>
-            {this.state.grouping.touched && (<ValidationError message={this.validateGroups()}/>)}
+            {this.state.grouping.touched && (<ValidationError message={this.validateGrouping()}/>)}
           </div>
           <div className='field'>
             <label htmlFor='Activity-Category-select'>
@@ -255,11 +252,11 @@ updateGroups(grouping){
               className='button'
               aria-label='submit button to create the new Activity'
               aria-describedby='buttonError'
-              disabled={this.validateName()||
+              disabled={this.validateTitle()||
                 this.validateContent()||
                 this.validateCategoryId()||
                 this.validateDuration()||
-                this.validateGroups()}>
+                this.validateGrouping()}>
               Submit
             </button>
           </div>
@@ -271,7 +268,7 @@ updateGroups(grouping){
 }
 
 AddActivity.defaultProps = {
-  name: '',
+  title: '',
   content:'',
   category_id:'',
   grouping:'',
@@ -279,7 +276,7 @@ AddActivity.defaultProps = {
 };
 
 AddActivity.propTypes ={
-  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   category_id: PropTypes.string.isRequired,
   grouping: PropTypes.string.isRequired,

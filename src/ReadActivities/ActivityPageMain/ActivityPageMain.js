@@ -26,6 +26,7 @@ export default class ActivityPageMain extends React.Component {
           title={activity.title}
           duration={activity.duration}
           grouping={activity.grouping}
+          authorId={activity.user_id}
         />
         
         <div className='ActivityPageMain__content'>

@@ -17,16 +17,16 @@ export default class RegistrationForm extends React.Component {
 
   handleSubmit = ev => {
     ev.preventDefault()
-    const { email, user_name, password } = ev.target
+    const { email, username, password } = ev.target
     this.setState({ error: null })
     AuthApiService.postUser({
-      user_name: user_name.value,
+      username: username.value,
       password: password.value,
       email: email.value,
     })
       .then(user => {
         email.value = ''
-        user_name.value = ''
+        username.value = ''
         password.value = ''
         this.handleRegistrationSuccess()
       })
@@ -53,15 +53,15 @@ export default class RegistrationForm extends React.Component {
                 {error && <p className='red'>{error}</p>}
               </div>
 
-              <div className='user_name'>
-                <label htmlFor='RegistrationForm__user_name'>
+              <div className='username'>
+                <label htmlFor='RegistrationForm__username'>
                   User name
                 </label>
                 <input
-                  name='user_name'
+                  name='username'
                   type='text'
                   required
-                  id='RegistrationForm__user_name'>
+                  id='RegistrationForm__username'>
                 </input>
               </div>
 
