@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import LandingPage from './LandingPage'
-import LandingButtons from '../LandingButtons/LandingButtons'
 import {BrowserRouter} from "react-router-dom";
 
 

@@ -1,4 +1,4 @@
 export default {
-  API_ENDPOINT: 'http://localhost:8000/api',
+  API_ENDPOINT: 'https://secret-hollows-53640.herokuapp.com/',
   TOKEN_KEY: 'net-auth-token',
 }
