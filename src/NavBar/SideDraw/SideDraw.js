@@ -55,15 +55,12 @@ render(){
         drawClasses = 'nav-side-draw open';
     }
 
-    const user = JSON.parse(localStorage.getItem('currentUser'))
-    const currentUser = user.username
     return(
 
         <nav className={drawClasses} >
             {TokenService.hasAuthToken()
-                    ? <h3>Welcome back!
-                    <br /> {currentUser}</h3>
-                    : <h3> Hello, Friend!</h3>}
+                    ? <h3>Welcome back!</h3>
+                    : <h3>Hello, Friend!</h3>}
             <Link to='/'>HOME</Link>
             <Link to='/create'>CREATE</Link>
             <Link to='/read'>READ</Link>
