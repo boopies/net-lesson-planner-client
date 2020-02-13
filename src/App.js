@@ -183,7 +183,6 @@ handleUpdateActivity = updatedActivity => {
       setTokenTrue: this.setTokenTrue,
       setTokenFalse: this.setTokenFalse,
     }
-    console.log(this.state.hasToken)
     return (
       <ApiContext.Provider value={value}>
       <div style={{height:'100%'}} className="App">
