@@ -13,5 +13,9 @@ export const getActivityForCategory = (activities=[], categoryId) => (
     : activities.filter(activity => activity.category_id === parseInt(categoryId))
 )
 
+export const removedBlankActivities = (activities=[]) => 
+  activities.filter(activity => activity.id > 5)
+
+
 export const countActivityForCategory = (activities=[], categoryId) =>
   activities.filter(activity => activity.category_id === parseInt(categoryId)).length - 1

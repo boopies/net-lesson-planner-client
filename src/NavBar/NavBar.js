@@ -1,56 +1,62 @@
 import React from 'react'
 import './NavBar.css'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import TokenService from '../services/token-service'
 import Hamburger from './SideDraw/Hamburger'
+import ApiContext from '../ApiContext'
 
-export default class NavBar extends React.Component{
-  handleLogoutClick = () => {
-    TokenService.clearAuthToken()
-      }
-  
+export default class NavBar extends React.Component {
+  static contextType = ApiContext;
+
+    handleLogoutClick = () => {
+        TokenService.clearAuthToken()
+        this.context.setTokenFalse()
+    }
+
     renderLogoutLink() {
-      return (
-        <>
-          <Link
-            onClick={this.handleLogoutClick}
-            to='/'>
-            LOGOUT
-          </Link>
-        </>
-      )
-    }
-  
-    renderLoginLink() {
-      return (
-        <>
-          <Link
-            to='/register'>
-            REGISTER
-          </Link>
-          <Link
-            to='/login'>
-            LOG IN
-          </Link>
-        </>
-      )
+        return (
+        <> 
+            <Link 
+              onClick = {this.handleLogoutClick}
+              to = '/' 
+              className={this.context.hasToken? '' : 'hidden'}
+              > 
+                LOGOUT 
+            </Link>
+        </>)
     }
 
-    render(){
+    renderLoginLink() {
         return (
             <>
-            <div>
-                <Hamburger click={this.props.sideClickHandler} />
-            </div>
-            <div className="navbar__navigation">
+              <Link 
+              to = '/register'
+              className={this.context.hasToken? 'hidden' : ''}> 
+                REGISTER 
+              </Link>
+              <Link
+                to='/login'
+                className={this.context.hasToken? 'hidden' : ''}>
+                LOG IN 
+              </Link>
+            </>
+        )
+    }
+
+    render() {
+        return (
+            <> 
+              <div>
+                <Hamburger click={this.props.sideClickHandler}/>
+              </div>
+              <div className="navbar__navigation">
                 <Link to='/'>HOME</Link>
                 <Link to='/create'>CREATE</Link>
                 <Link to='/read'>READ</Link>
                 <Link to='/savedlessons'>SAVEDLESSONS</Link>
-                {TokenService.hasAuthToken()
-                    ? this.renderLogoutLink()
-                    : this.renderLoginLink()}
-            </div>
+                    {this.renderLogoutLink()}
+                    {this.renderLoginLink()} 
+              </div>
             </>
         )
     }

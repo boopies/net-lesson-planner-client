@@ -13,6 +13,10 @@ nav{
     color: black;
 }
 
+.hidden {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .navbar__navigation{
         display: none;

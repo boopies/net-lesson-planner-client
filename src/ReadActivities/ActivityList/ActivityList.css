@@ -1,0 +1,28 @@
+.activity-list__button{
+    align-self: center;
+}
+
+.activity-list{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+}
+
+.activity-list ul{
+    margin-top: 0;
+    list-style: none;
+    margin-bottom: 50px;
+}
+
+#page-numbers {
+    list-style: none;
+    display: flex;
+  }
+  
+  #page-numbers > li {
+    margin-right: 0.3em;
+    color: blue;
+    user-select: none;
+    cursor: pointer;
+  }
+  

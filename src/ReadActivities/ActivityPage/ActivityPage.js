@@ -1,10 +1,10 @@
 import React from 'react'
-import Activity from '../Activity/Activity'
+import ActivityItem from '../ActivityItem/ActivityItem'
 import ApiContext from '../../ApiContext'
 import { findActivity } from '../helpers'
 import PropTypes from 'prop-types'
 
-export default class ActivityPageMain extends React.Component {
+export default class ActivityPage extends React.Component {
   static defaultProps = {
     match: {
       params: {}
@@ -20,17 +20,18 @@ export default class ActivityPageMain extends React.Component {
     const { activityId } = this.props.match.params
     const activity = findActivity(activities, activityId) || { content: '' }
     return (
-      <section className='ActivityPageMain'>
-        <Activity
+      <section className='ActivityPage'>
+        <ActivityItem
           id={activity.id}
           title={activity.title}
           duration={activity.duration}
           grouping={activity.grouping}
           authorId={activity.user_id}
+          categoryId={activity.category_id}
         />
         
-        <div className='ActivityPageMain__content'>
-        <h3 className='ActivityPageMain__Prodesture'>Procedure</h3>
+        <div className='ActivityPage__content'>
+        <h3 className='ActivityPage__Prodesture'>Procedure</h3>
           {activity.content.split(/\\n \\r|\\n|\n|\\n \\r/).map((para, i) =>
             <p key={i}>{para}</p>
           )}
@@ -40,7 +41,7 @@ export default class ActivityPageMain extends React.Component {
         tag='button'
         role='link'
         onClick={() => this.props.history.push(`/read/edit-activity/${activity.id}`)}
-        className='ActivityPageNav__back-button'
+        className='ActivityPage__back-button'
       >
         edit
       </button>
@@ -49,7 +50,7 @@ export default class ActivityPageMain extends React.Component {
         tag='button'
         role='link'
         onClick={() => this.props.history.goBack()}
-        className='ActivityPageNav__back-button'
+        className='ActivityPage__back-button'
       >
         Back
       </button>
@@ -59,6 +60,6 @@ export default class ActivityPageMain extends React.Component {
   }
 }
 
-ActivityPageMain.propTypes = {
+ActivityPage.propTypes = {
   match: PropTypes.object
 }

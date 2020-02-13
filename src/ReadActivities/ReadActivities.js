@@ -1,57 +1,72 @@
 import React from 'react'
 import {Route} from 'react-router-dom';
-import ActivityListNav from './ActivityListNav/ActivityListNav'
-import ActivityPageNav from './ActivityPageNav/ActivityPageNav'
-import ActivityListMain from './ActivityListMain/ActivityListMain'
-import ActivityPageMain from './ActivityPageMain/ActivityPageMain'
+import ActivityList from './ActivityList/ActivityList'
+import ActivityPage from './ActivityPage/ActivityPage'
 import AddActivity from './AddActivity/AddActivity'
 import EditActivity from './EditActivity/EditActivity'
 import './ReadActivities.css'
 import PrivateRoute from '../Utilities/PrivateRoute'
+import ApiContext from '../ApiContext'
 
 export default class ReadActivities extends React.Component{
-
-   renderNavRoutes() {
-    return (
-      <>
-        {['/read', '/read/category/:categoryId'].map(path =>
-          <Route
-            exact
-            key={path}
-            path={path}
-            component={ActivityListNav}
-          />
-        )}
-        <Route
-          path='/read/activity/:activityId'
-          component={ActivityPageNav}
-        />
-        <Route
-          path='/read/add-activity'
-          component={ActivityPageNav}
-        />
-        <Route
-          path='/read/edit-activity/:activityId'
-          component={ActivityPageNav}
-        />
-      </>
-    )
+  static defaultProps = {
+    match: {
+      params: {}
+    }
   }
 
+  static contextType = ApiContext
+
+  handleClick(event) {
+    this.setState({
+      currentPage: Number(event)
+    });
+  }
+
+  renderFilterButtons(){
+    const {categories =[]} = this.context
+    return(
+       <> <h4>filter activities</h4>
+          <label 
+            htmlFor="filter_uploaded"
+            key="all_activities">
+             <input 
+              type="radio" 
+              value="" 
+              id="filter_activities" 
+              name="filter" 
+              onChange = {e => this.context.handleCategoryFilter(e.target.value)}
+               />
+               All Categories
+           </label>
+       {categories.map(category =>
+         <label htmlFor="filter_uploaded"
+           key={category.title}>
+             <input 
+               type="radio" 
+               value={category.id} 
+               id="filter_uploaded" 
+               name="filter" 
+               onChange = {e => this.context.handleCategoryFilter(e.target.value)}
+               />
+           {category.title}
+           </label>
+       )}
+       </>
+    )
+  }
+ 
     renderMainRoutes() {
         return (
           <>
-            {['/read', '/read/category/:categoryId'].map(path =>
-              <Route
+            <Route
                 exact
-                key={path}
-                path={path}
-                component={ActivityListMain}
+                path='/read'
+                component={ActivityList}
               />
-            )}
             <Route
               path='/read/activity/:activityId'
-              component={ActivityPageMain}
+              component={ActivityPage}
             />   
             <PrivateRoute
               path='/read/add-activity'
@@ -66,7 +81,6 @@ export default class ReadActivities extends React.Component{
       }
 
     render() {
-        
         return (
                 <div className="read-activity">
                     <header className="read-activity__header">
@@ -75,13 +89,12 @@ export default class ReadActivities extends React.Component{
                         </h1>
                     </header>
                     <main className="read-activity__main">
-                      <div className="read-activity__categories">
-                        <h2>Categories</h2>
-                      {this.renderNavRoutes()}
-                      </div>
                       <div className="read-activity__activities">
                       <h2>Activities</h2>
-                      {this.renderMainRoutes()}
+                      <div>
+                        {this.renderFilterButtons()}
+                      </div>
+                      <div>{this.renderMainRoutes()}</div>
                       </div>
                     </main>
                 </div>

@@ -24,10 +24,7 @@ export default class Savedlessons extends React.Component {
     }
 
     handleCreateLessonForm = () => {
-        this
-            .props
-            .history
-            .push('/create')
+        this.props.history.push('/create')
     };
 
     updateState(savedlesson) {
@@ -65,10 +62,7 @@ export default class Savedlessons extends React.Component {
     }
 
     handleClickGoBack = () => {
-        this
-            .props
-            .history
-            .push('/')
+        this.props.history.push('/')
     };
 
     renderMyLessonPlans() {

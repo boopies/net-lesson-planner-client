@@ -11,19 +11,20 @@ class SideDraw extends React.Component {
     sideDrawOpen: false
     }}
 
+    static contextType = ApiContext;
+
   handleLogoutClick = () => {
     TokenService.clearAuthToken();
-    this.context.sidedrawClose();
+    this.context.setTokenFalse()
       }
 
-      static contextType = ApiContext;
-  
     renderLogoutLink() {
       return (
-        <>
+        <> 
           <Link
             onClick={this.handleLogoutClick}
-            to='/'>
+            to='/'
+            className={this.context.hasToken? '' : 'hidden'}>
             LOGOUT
           </Link>
         </>
@@ -32,13 +33,15 @@ class SideDraw extends React.Component {
   
     renderLoginLink() {
       return (
-        <>
+        <> 
           <Link
-            to='/register'>
+            to='/register'
+            className={this.context.hasToken? 'hidden' : ''}>
             REGISTER
           </Link>
           <Link
-            to='/login'>
+            to='/login'
+            className={this.context.hasToken? 'hidden' : ''}>
             LOG IN
           </Link>
         </>
@@ -52,11 +55,14 @@ render(){
         drawClasses = 'nav-side-draw open';
     }
 
+    const user = JSON.parse(localStorage.getItem('currentUser'))
+    const currentUser = user.username
     return(
 
         <nav className={drawClasses} >
             {TokenService.hasAuthToken()
-                    ? <h3>Welcome back!</h3>
+                    ? <h3>Welcome back!
+                    <br /> {currentUser}</h3>
                     : <h3> Hello, Friend!</h3>}
             <Link to='/'>HOME</Link>
             <Link to='/create'>CREATE</Link>
@@ -64,7 +70,8 @@ render(){
             <Link to='/savedlessons'>SAVEDLESSONS</Link>
             {TokenService.hasAuthToken()
                     ? this.renderLogoutLink()
-                    : this.renderLoginLink()}
+                    : this.renderLoginLink()
+                      }
         </nav>
     )
 }

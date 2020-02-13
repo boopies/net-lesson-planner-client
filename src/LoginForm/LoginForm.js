@@ -27,12 +27,10 @@ export default class LoginForm extends Component {
         ev.preventDefault()
         this.setState({error: null})
         const {username, password} = ev.target
-        let user = username
-            .value
-            console
-            .log(user)
-        AuthApiService
-            .postLogin({username: username.value, password: password.value})
+        let user = username.value
+        AuthApiService.postLogin(
+                {username: username.value, 
+                password: password.value})
             .then(res => {
                 username.value = ''
                 password.value = ''
@@ -40,6 +38,7 @@ export default class LoginForm extends Component {
             })
             .then(this.getUserData(user))
             .then(this.handleLoginSuccess())
+            .then(this.context.setTokenTrue())
             .catch(res => {
                 this.setState({error: res.error})
             })

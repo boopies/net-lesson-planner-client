@@ -13,6 +13,7 @@ import RegistrationForm from './RegistrationForm/RegistrationForm'
 import LoginForm from './LoginForm/LoginForm'
 import Savedlessons from './Savedlessons/Savedlessons'
 import PrivateRoute from './Utilities/PrivateRoute'
+import TokenService from './services/token-service'
 import SavedLessonPlan from './Savedlessons/SavedLessonPlan/SavedLessonPlan'
 
 export default class App extends React.Component{
@@ -24,7 +25,11 @@ export default class App extends React.Component{
     users: [],
     savedlessons: [],
     currentUser: [],
-    sideDrawOpen: false
+    currentPage: 1,
+    activitiesPerPage: 5,
+    category: '',
+    sideDrawOpen: false,
+    hasToken: false,
     }}
 
    
@@ -33,6 +38,30 @@ onUserGet = () => {
      this.setState({currentUser})
     }
 
+handleCategoryFilter = (category) =>{
+      this.setState({
+              category: category,
+              currentPage: 1})
+    }
+
+ handleClick = (event) => {
+      this.setState({ currentPage: event});
+    }
+
+checkToken = () =>{
+  TokenService.hasAuthToken()
+        ? this.setState({hasToken: true})
+        : this.setState({hasToken: false})
+}
+
+setTokenTrue = () => {
+  this.setState({hasToken: true})
+}
+
+setTokenFalse =() =>{
+  this.setState({hasToken: false})
+}
+    
 componentDidMount() {
   Promise.all([
     fetch (`http://localhost:8000/api/activities`, {
@@ -80,6 +109,7 @@ componentDidMount() {
       this.setState({ activities, categories, users, savedlessons })
     })
     .then(this.onUserGet())
+    .then(this.checkToken())
     .catch(error => {
       console.error({ error })
     })
@@ -137,13 +167,22 @@ handleUpdateActivity = updatedActivity => {
       activities: this.state.activities,
       categories: this.state.categories,
       users: this.state.users,
+      hasToken: this.state.hasToken,
       currentUser: this.state.currentUser,
       savedlessons: this.state.savedlessons,
       addActivity: this.handleAddActivity,
       updateActivity: this.handleUpdateActivity,
       addSavedLesson: this.handleAddSavedLesson,
       sidedrawClose: this.sidedrawClose,
+      currentPage: this.state.currentPage,
+      activitiesPerPage: this.state.activitiesPerPage,
+      category: this.state.category,
+      handleClick: this.handleClick,
+      handleCategoryFilter: this.handleCategoryFilter,
+      setTokenTrue: this.setTokenTrue,
+      setTokenFalse: this.setTokenFalse,
     }
+    console.log(this.state.hasToken)
     return (
       <ApiContext.Provider value={value}>
       <div style={{height:'100%'}} className="App">
