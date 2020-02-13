@@ -78,7 +78,7 @@ updateGrouping(grouping){
     e.preventDefault()
     const { activityId } = this.props.match.params
     const updatedActivity = this.state
-    fetch(`http://localhost:8000/api/activities/${activityId}`, {
+    fetch(`${config.API_ENDPOINT}/activities/${activityId}`, {
       method: 'PATCH',
       body: JSON.stringify(updatedActivity),
       headers: {
