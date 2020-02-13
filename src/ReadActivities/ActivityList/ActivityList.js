@@ -31,6 +31,39 @@ export default class ActivityList extends React.Component {
     this.props.history.push('/read/add-activity')
   };
 
+  renderFilterButtons(){
+    const {categories =[]} = this.context
+    return(
+       <> <h4>filter activities</h4>
+          <label 
+            htmlFor="filter_uploaded"
+            key="all_activities">
+             <input 
+              type="radio" 
+              value="" 
+              id="filter_activities" 
+              name="filter" 
+              onChange = {e => this.context.handleCategoryFilter(e.target.value)}
+               />
+               All Categories
+           </label>
+       {categories.map(category =>
+         <label htmlFor="filter_uploaded"
+           key={category.title}>
+             <input 
+               type="radio" 
+               value={category.id} 
+               id="filter_uploaded" 
+               name="filter" 
+               onChange = {e => this.context.handleCategoryFilter(e.target.value)}
+               />
+           {category.title}
+           </label>
+       )}
+       </>
+    )
+  }
+
  renderActivities(){
   const {activities = [], category, currentPage, activitiesPerPage} = this.context;
   const removedBlank = removedBlankActivities(activities)
@@ -107,6 +140,9 @@ export default class ActivityList extends React.Component {
   render() {
     return (
       <section className='activity-list'>
+      <div>
+        {this.renderFilterButtons()}
+      </div>
         <ul>
         {this.renderActivities()}
         </ul>

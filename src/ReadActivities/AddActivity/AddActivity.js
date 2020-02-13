@@ -3,6 +3,7 @@ import ApiContext from '../../ApiContext'
 import ValidationError from '../ValidationError/ValidationError'
 import PropTypes from 'prop-types';
 import TokenService from '../../services/token-service'
+import config from '../../config'
 
 export default class AddActivity extends Component {
   constructor(props) {
@@ -111,7 +112,7 @@ updateGrouping(grouping){
         grouping: e.target['grouping'].value,
         duration: e.target['duration'].value,
     }
-    fetch(`http://localhost:8000/api/activities`, {
+    fetch(`${config.API_ENDPOINT}/activities`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

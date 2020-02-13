@@ -15,6 +15,7 @@ import Savedlessons from './Savedlessons/Savedlessons'
 import PrivateRoute from './Utilities/PrivateRoute'
 import TokenService from './services/token-service'
 import SavedLessonPlan from './Savedlessons/SavedLessonPlan/SavedLessonPlan'
+import config from './config'
 
 export default class App extends React.Component{
   constructor(props) {
@@ -64,25 +65,25 @@ setTokenFalse =() =>{
     
 componentDidMount() {
   Promise.all([
-    fetch (`http://localhost:8000/api/activities`, {
+    fetch (`${config.API_ENDPOINT}/activities`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
       },
     }),
-    fetch (`http://localhost:8000/api/categories`, {
+    fetch (`${config.API_ENDPOINT}/categories`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
       },
     }),
-    fetch (`http://localhost:8000/api/users`, {
+    fetch (`${config.API_ENDPOINT}/users`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
       },
     }),
-    fetch (`http://localhost:8000/api/savedlessons`, {
+    fetch (`${config.API_ENDPOINT}/savedlessons`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'

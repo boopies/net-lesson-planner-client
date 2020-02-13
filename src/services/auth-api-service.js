@@ -29,20 +29,6 @@ const AuthApiService = {
           : res.json()
       )
   },
-  getUser(username) {
-    return fetch(`${config.API_ENDPOINT}/users/${username}`, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({username}),
-    })
-      .then(res =>
-        (!res.ok)
-          ? res.json().then(e => Promise.reject(e))
-          : res.json()
-      )
-  },
 }
 
 export default AuthApiService

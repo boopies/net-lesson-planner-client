@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ApiContext from '../../ApiContext'
 import PropTypes from 'prop-types';
 import TokenService from '../../services/token-service'
+import config from '../../config'
 
 export default class EditActivity extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ export default class EditActivity extends Component {
 
   componentDidMount() {
     const { activityId } = this.props.match.params
-    fetch(`http://localhost:8000/api/activities/${activityId}`, {
+    fetch(`${config.API_ENDPOINT}/activities/${activityId}`, {
       method: 'GET',
       }
     )

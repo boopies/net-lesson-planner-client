@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import TokenService from '../services/token-service'
 import AuthApiService from '../services/auth-api-service'
 import ApiContext from '../ApiContext'
+import config from '../config'
 
 export default class LoginForm extends Component {
     static defaultProps = {
@@ -45,7 +46,7 @@ export default class LoginForm extends Component {
         }
 
     getUserData = user => {
-        fetch(`http://localhost:8000/api/users/${user}`, {
+        fetch(`${config.API_ENDPOINT}/users/${user}`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json'

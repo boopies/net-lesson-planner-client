@@ -4,6 +4,7 @@ import './LessonPlan.css'
 import { findActivity } from '../../ReadActivities/helpers'
 import uuid from 'react-uuid'
 import TokenService from '../../services/token-service'
+import config from '../../config'
 
 export default class LessonPlan extends React.Component{
     constructor(props) {
@@ -44,7 +45,7 @@ export default class LessonPlan extends React.Component{
                     reflection_three: `${lesson.reflection_three}` 
         }
         console.log(newLesson)
-        fetch(`http://localhost:8000/api/savedlessons`, {
+        fetch(`${config.API_ENDPOINT}/savedlessons`, {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
