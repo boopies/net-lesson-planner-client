@@ -21,7 +21,7 @@ export default class SavedLessonPlan extends React.Component{
       };
 
       renderMaterialsList(){
-        const materialString = this.props.location.state.state.state[0].materials
+        const materialString = this.props.location.state.state.lesson[0].materials
         const materialArray = materialString.split(/[\s,]+/);
         return (
             <>
@@ -36,9 +36,9 @@ export default class SavedLessonPlan extends React.Component{
     }
 
       renderObjectives(){
-        const objOne = this.props.location.state.state.state[0].objective_one
-        const objTwo = this.props.location.state.state.state[0].objective_two
-        const objThree = this.props.location.state.state.state[0].objective_three
+        const objOne = this.props.location.state.state.lesson[0].objective_one
+        const objTwo = this.props.location.state.state.lesson[0].objective_two
+        const objThree = this.props.location.state.state.lesson[0].objective_three
 
     if (objTwo.length === 0 && objThree.length === 0){
         return (
@@ -61,9 +61,9 @@ export default class SavedLessonPlan extends React.Component{
     }}
 
       renderReflection(){
-        const refOne = this.props.location.state.state.state[0].reflection_one
-        const refTwo = this.props.location.state.state.state[0].reflection_two
-        const refThree = this.props.location.state.state.state[0].reflection_three
+        const refOne = this.props.location.state.state.lesson[0].reflection_one
+        const refTwo = this.props.location.state.state.lesson[0].reflection_two
+        const refThree = this.props.location.state.state.lesson[0].reflection_three
 
     if (refTwo.length === 0 && refThree.length === 0){
         return (
@@ -92,6 +92,7 @@ export default class SavedLessonPlan extends React.Component{
 
         if(parseInt(actId) < 6){
             return <>
+            <div>No activity</div>
             </>
         } else{
         return(
@@ -119,8 +120,7 @@ export default class SavedLessonPlan extends React.Component{
 
 
     render(){
-    const savedlesson = this.props.location.state.state.state[0]
-    console.log(savedlesson)
+    const savedlesson = this.props.location.state.state.lesson[0]
       return(
             <>
             <header>
@@ -203,11 +203,6 @@ export default class SavedLessonPlan extends React.Component{
                     <h3>Cooldown Phase</h3>
                     {this.renderActivities(savedlesson.cooldown_id)}
                     </div>            
-                    </div>
-                    <div className='lesson_plan class'>
-                        <div className='lesson_plan__title'><h3>Reflection Questions</h3></div>
-                        <div className='lesson_plan__content'>                       <ul>
-                        </ul></div>
                     </div>
                     <div className='lesson_plan class'>
                         <div className='lesson_plan__title'><h3>Reflection Questions</h3></div>

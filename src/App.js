@@ -28,9 +28,9 @@ export default class App extends React.Component{
     }}
 
    
-onUserGet = (currentUser) => {
-      this.setState( 
-         { currentUser } );
+onUserGet = () => {
+     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+     this.setState({currentUser})
     }
 
 componentDidMount() {
@@ -79,6 +79,7 @@ componentDidMount() {
     .then(([activities, categories, users, savedlessons]) => {
       this.setState({ activities, categories, users, savedlessons })
     })
+    .then(this.onUserGet())
     .catch(error => {
       console.error({ error })
     })
@@ -136,12 +137,11 @@ handleUpdateActivity = updatedActivity => {
       activities: this.state.activities,
       categories: this.state.categories,
       users: this.state.users,
+      currentUser: this.state.currentUser,
       savedlessons: this.state.savedlessons,
       addActivity: this.handleAddActivity,
       updateActivity: this.handleUpdateActivity,
       addSavedLesson: this.handleAddSavedLesson,
-      currentUser: this.state.currentUser,
-      UserGet: this.onUserGet,
       sidedrawClose: this.sidedrawClose,
     }
     return (

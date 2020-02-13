@@ -8,6 +8,5 @@ export default React.createContext({
   currentUser: [],
   addActivity: () => {},
   updateActivity: () =>{},
-  UserGet: () => {},
   sidedrawClose: () => {},
 })

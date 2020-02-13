@@ -262,7 +262,9 @@ export default class LessonPlan extends React.Component{
                     </div>
                 </section>
                 <button type='button' onClick={() => this.handlePrintLesson('printableArea')}>Print</button>
-                <button type='button' onClick={() => this.handleSaveLesson()}>Save Lesson</button>
+                {TokenService.hasAuthToken()
+                    ? <button type='button' onClick={() => this.handleSaveLesson()}>Save Lesson</button>
+                    : <> </>}
                 <button type='button' onClick={() => this.handleNewLesson()}>New Lesson</button>
                 <button type='button' onClick={() => this.handleGoHome()}>Go Home</button>
             </main>
