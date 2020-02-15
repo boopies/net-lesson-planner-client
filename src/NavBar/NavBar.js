@@ -10,7 +10,9 @@ export default class NavBar extends React.Component {
 
     handleLogoutClick = () => {
         TokenService.clearAuthToken()
+        localStorage.clear();
         this.context.setTokenFalse()
+        this.forceUpdate()
     }
 
     renderLogoutLink() {
@@ -44,12 +46,15 @@ export default class NavBar extends React.Component {
     }
 
     render() {
+      const user = this.context.currentUser
         return (
             <> 
               <div>
                 <Hamburger click={this.props.sideClickHandler}/>
               </div>
               <div className="navbar__navigation">
+                  <div className={this.context.hasToken? '' : 'hidden'}>Welcome back {user.username}!</div>
+                   <div className={this.context.hasToken? 'hidden' : ''}>Welcome, Friend!</div>
                 <Link to='/'>HOME</Link>
                 <Link to='/create'>CREATE</Link>
                 <Link to='/read'>READ</Link>

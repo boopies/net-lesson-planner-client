@@ -23,8 +23,7 @@ class SideDraw extends React.Component {
         <> 
           <Link
             onClick={this.handleLogoutClick}
-            to='/'
-            className={this.context.hasToken? '' : 'hidden'}>
+            to='/'>
             LOGOUT
           </Link>
         </>
@@ -35,13 +34,11 @@ class SideDraw extends React.Component {
       return (
         <> 
           <Link
-            to='/register'
-            className={this.context.hasToken? 'hidden' : ''}>
+            to='/register'>
             REGISTER
           </Link>
           <Link
-            to='/login'
-            className={this.context.hasToken? 'hidden' : ''}>
+            to='/login'>
             LOG IN
           </Link>
         </>
@@ -55,20 +52,20 @@ render(){
         drawClasses = 'nav-side-draw open';
     }
 
+    const user = this.context.currentUser
+
     return(
 
         <nav className={drawClasses} >
-            {TokenService.hasAuthToken()
-                    ? <h3>Welcome back!</h3>
-                    : <h3>Hello, Friend!</h3>}
+            <h2 className={this.context.hasToken? '' : 'hidden'}>Hello {user.username}!</h2>
+            <h2 className={this.context.hasToken? 'hidden' : ''}>Welcome, Friend!</h2>
             <Link to='/'>HOME</Link>
             <Link to='/create'>CREATE</Link>
             <Link to='/read'>READ</Link>
             <Link to='/savedlessons'>SAVEDLESSONS</Link>
             {TokenService.hasAuthToken()
                     ? this.renderLogoutLink()
-                    : this.renderLoginLink()
-                      }
+                    : this.renderLoginLink()}
         </nav>
     )
 }

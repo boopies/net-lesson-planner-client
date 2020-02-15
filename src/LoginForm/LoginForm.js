@@ -15,9 +15,8 @@ export default class LoginForm extends Component {
     static contextType = ApiContext;
 
     handleLoginSuccess = () => {
-        const {location, history} = this.props
-        const destination = (location.state || {}).from || '/'
-        history.push(destination)
+      this.context.setTokenTrue()
+      this.props.history.push('/');
     }
 
     state = {
@@ -29,7 +28,24 @@ export default class LoginForm extends Component {
         this.setState({error: null})
         const {username, password} = ev.target
         let user = username.value
-        AuthApiService.postLogin(
+        fetch(`${config.API_ENDPOINT}/users/${user}`, {
+          method: 'GET',
+          headers: {
+              'content-type': 'application/json'
+          }
+      })
+          .then(
+              currentUserRes => (!currentUserRes.ok)
+                  ? currentUserRes.json().then(e => Promise.reject(e))
+                  : currentUserRes.json()
+          )
+          .then((currentUser) => {
+              localStorage.setItem('currentUser', JSON.stringify(currentUser));
+          })
+          .catch(res => {
+            this.setState({error: res.error})
+        })
+        .then(AuthApiService.postLogin(
                 {username: username.value, 
                 password: password.value})
             .then(res => {
@@ -37,30 +53,11 @@ export default class LoginForm extends Component {
                 password.value = ''
                 TokenService.saveAuthToken(res.authToken)
             })
-            .then(this.getUserData(user))
             .then(this.handleLoginSuccess())
-            .then(this.context.setTokenTrue())
             .catch(res => {
                 this.setState({error: res.error})
-            })
+            }))
         }
-
-    getUserData = user => {
-        fetch(`${config.API_ENDPOINT}/users/${user}`, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json'
-            }
-        })
-            .then(
-                currentUserRes => (!currentUserRes.ok)
-                    ? currentUserRes.json().then(e => Promise.reject(e))
-                    : currentUserRes.json()
-            )
-            .then((currentUser) => {
-                localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            })
-    }
 
     render() {
         const {error} = this.state

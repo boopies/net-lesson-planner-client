@@ -60,7 +60,6 @@ export default class RegistrationForm extends React.Component {
                 <input
                   name='username'
                   type='text'
-                  required
                   id='RegistrationForm__username'>
                 </input>
               </div>
@@ -72,7 +71,6 @@ export default class RegistrationForm extends React.Component {
                 <input
                   name='email'
                   type='email'
-                  required
                   id='RegistrationForm__email'>
                 </input>
               </div>
@@ -84,7 +82,6 @@ export default class RegistrationForm extends React.Component {
                 <input
                   name='password'
                   type='password'
-                  required
                   id='RegistrationForm__password'>
                 </input>
               </div>

@@ -36,7 +36,9 @@ export default class App extends React.Component{
    
 onUserGet = () => {
      const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-     this.setState({currentUser})
+     if(!currentUser){
+     }
+      else {this.setState({currentUser})}
     }
 
 handleCategoryFilter = (category) =>{
@@ -45,8 +47,8 @@ handleCategoryFilter = (category) =>{
               currentPage: 1})
     }
 
- handleClick = (event) => {
-      this.setState({ currentPage: event});
+ handleClick = (navigate) => {
+      this.setState({ currentPage: navigate});
     }
 
 checkToken = () =>{
