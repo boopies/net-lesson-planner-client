@@ -1,8 +1,12 @@
 import React from 'react'
 import './LandingPage.css'
 import LandingButtons from './LandingButtons/LandingButtons'
+import ApiContext from '../ApiContext'
 
 export default class LandingPage extends React.Component{
+
+    static contextType = ApiContext;
+
     render(){
         return (
             <>

@@ -14,8 +14,11 @@ class SideDraw extends React.Component {
     static contextType = ApiContext;
 
   handleLogoutClick = () => {
-    TokenService.clearAuthToken();
+    TokenService.clearAuthToken()
+    localStorage.clear();
     this.context.setTokenFalse()
+    this.forceUpdate()
+    this.context.removeCurrentUser();
       }
 
     renderLogoutLink() {
@@ -23,7 +26,8 @@ class SideDraw extends React.Component {
         <> 
           <Link
             onClick={this.handleLogoutClick}
-            to='/'>
+            to='/'
+            className={this.context.hasToken? '' : 'hidden'}>
             LOGOUT
           </Link>
         </>
@@ -34,11 +38,13 @@ class SideDraw extends React.Component {
       return (
         <> 
           <Link
-            to='/register'>
+            to='/register'
+            className={this.context.hasToken? 'hidden' : ''}>
             REGISTER
           </Link>
           <Link
-            to='/login'>
+            to='/login'
+            className={this.context.hasToken? 'hidden' : ''}>
             LOG IN
           </Link>
         </>
@@ -51,14 +57,8 @@ render(){
     if (this.props.show) {
         drawClasses = 'nav-side-draw open';
     }
-
-    const user = this.context.currentUser
-
     return(
-
         <nav className={drawClasses} >
-            <h2 className={this.context.hasToken? '' : 'hidden'}>Hello {user.username}!</h2>
-            <h2 className={this.context.hasToken? 'hidden' : ''}>Welcome, Friend!</h2>
             <Link to='/'>HOME</Link>
             <Link to='/create'>CREATE</Link>
             <Link to='/read'>READ</Link>

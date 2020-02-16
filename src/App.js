@@ -25,7 +25,7 @@ export default class App extends React.Component{
     categories: [],
     users: [],
     savedlessons: [],
-    currentUser: [],
+    currentUser: {id: 0, username: 'Visitor'},
     currentPage: 1,
     activitiesPerPage: 5,
     category: '',
@@ -37,9 +37,17 @@ export default class App extends React.Component{
 onUserGet = () => {
      const currentUser = JSON.parse(localStorage.getItem('currentUser'))
      if(!currentUser){
+      this.setState({currentUser: {id: 0, username: 'Visitor'}})
      }
-      else {this.setState({currentUser})}
+      else {
+      this.setState({currentUser})
+      }
     }
+
+removeCurrentUser = () => {
+  this.setState({currentUser: {id: 0, username: 'Visitor'}})
+
+}
 
 handleCategoryFilter = (category) =>{
       this.setState({
@@ -64,7 +72,7 @@ setTokenTrue = () => {
 setTokenFalse =() =>{
   this.setState({hasToken: false})
 }
-    
+
 componentDidMount() {
   Promise.all([
     fetch (`${config.API_ENDPOINT}/activities`, {
@@ -184,13 +192,14 @@ handleUpdateActivity = updatedActivity => {
       handleCategoryFilter: this.handleCategoryFilter,
       setTokenTrue: this.setTokenTrue,
       setTokenFalse: this.setTokenFalse,
+      removeCurrentUser: this.removeCurrentUser
     }
     return (
       <ApiContext.Provider value={value}>
       <div style={{height:'100%'}} className="App">
       <nav className='app__navbar'>
-        <NavBar sideClickHandler={this.sideMenuClickHandler} />
-        <SideDraw show={this.state.sideDrawOpen} />
+        <NavBar sideClickHandler={this.sideMenuClickHandler} user={this.state.currentUser} />
+        <SideDraw show={this.state.sideDrawOpen} user={this.state.currentUser} />
         { backdrop }
       </nav>
       <main className='app__main'>

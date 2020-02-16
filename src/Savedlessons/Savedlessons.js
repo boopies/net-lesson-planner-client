@@ -66,9 +66,8 @@ export default class Savedlessons extends React.Component {
     };
 
     renderMyLessonPlans() {
-        const { savedlessons = [] } = this.context
-        const user = JSON.parse(localStorage.getItem('currentUser'))
-        const userId = user.id
+        const { savedlessons = [], currentUser=[] } = this.context
+        const userId = currentUser.id
         const mylesson = getUserSavedlesson(savedlessons, userId)
         return (
             <> 

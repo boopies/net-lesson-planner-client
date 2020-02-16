@@ -17,4 +17,5 @@ export default React.createContext({
   handleCategoryFilter: () => {},
   setTokenTrue: () => {},
   setTokenFalse: () => {},
+  removeCurrentUser: () => {},
 })
