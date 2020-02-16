@@ -44,7 +44,6 @@ export default class LessonPlan extends React.Component{
                     reflection_two: `${lesson.reflection_two}`,
                     reflection_three: `${lesson.reflection_three}` 
         }
-        console.log(newLesson)
         fetch(`${config.API_ENDPOINT}/savedlessons`, {
           method: 'POST',
           headers: {

@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import TokenService from '../services/token-service'
 import AuthApiService from '../services/auth-api-service'
 import ApiContext from '../ApiContext'
 import config from '../config'
@@ -15,8 +14,9 @@ export default class LoginForm extends Component {
     static contextType = ApiContext;
 
     handleLoginSuccess = () => {
-      this.context.setTokenTrue()
-      this.props.history.push('/');
+        const { location, history } = this.props
+        const destination = (location.state || {}).from || '/'
+        history.push(destination)
     }
 
     state = {
@@ -51,9 +51,8 @@ export default class LoginForm extends Component {
             .then(res => {
                 username.value = ''
                 password.value = ''
-                TokenService.saveAuthToken(res.authToken)
+                this.handleLoginSuccess()
             })
-            .then(this.handleLoginSuccess())
             .catch(res => {
                 this.setState({error: res.error})
             }))

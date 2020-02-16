@@ -53,7 +53,7 @@ export default class NavBar extends React.Component {
                 <Hamburger click={this.props.sideClickHandler}/>
               </div>
               <div className="navbar__navigation">
-                  <div className={this.context.hasToken? '' : 'hidden'}>Welcome back {user.username}!</div>
+                  <div className={this.context.hasToken? '' : 'hidden'}>Hello {user.username}!</div>
                    <div className={this.context.hasToken? 'hidden' : ''}>Welcome, Friend!</div>
                 <Link to='/'>HOME</Link>
                 <Link to='/create'>CREATE</Link>
