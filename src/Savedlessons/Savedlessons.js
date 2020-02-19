@@ -2,6 +2,8 @@ import React from 'react';
 import ApiContext from '../ApiContext';
 import './Savedlessons.css'
 import {findSavedlesson, getUserSavedlesson} from './lessonhelper'
+import config from '../config'
+import TokenService from '../services/token-service'
 
 export default class Savedlessons extends React.Component {
     constructor(props) {
@@ -17,10 +19,8 @@ export default class Savedlessons extends React.Component {
     
     handleSubmitForm = e => {
         e.preventDefault()
-        let state = this.state
-        this.props.history.push(
-          {pathname: '/savedlessonplan', 
-          state: {state}})
+        const lessonId = this.state.lesson[0].id
+        this.props.history.push(`/savedlessonplan/${lessonId}`)
     }
 
     handleCreateLessonForm = () => {
@@ -37,6 +37,31 @@ export default class Savedlessons extends React.Component {
         }
     }
 
+    onDeleteLesson = () => {
+      this.props.history.push('/savedlessons')
+  };
+
+    handleDeleteLesson = e =>{
+      e.preventDefault()
+      const savedId = this.state.lesson[0].id
+      fetch(`${config.API_ENDPOINT}/savedlessons/${savedId}`, {
+        method: 'DELETE',
+        headers: {
+          'content-type': 'application/json',
+          'authorization': `bearer ${TokenService.getAuthToken()}`,
+        },
+      })
+        .then(res => {
+          if (!res.ok)
+            return res.json().then(e => Promise.reject(e))
+        })
+        .then(() => {
+          this.context.deleteSavedLesson(savedId)
+          this.onDeleteLesson()
+        })
+        .catch(error => console.error({ error }))
+    }
+
     renderButtons() {
         return (
           <> 
@@ -45,6 +70,16 @@ export default class Savedlessons extends React.Component {
               disabled = { this.state.button} > 
                 Get Lesson
               </button> 
+              <button 
+              type = 'button' 
+              disabled = { this.state.button}
+              className = 'activity-list-main__add-activity-button' 
+              onClick={e =>
+                      window.confirm("Are you sure you wish to delete this item?") &&
+                      this.handleDeleteLesson(e)
+                  }> 
+                Delete Saved Lesson
+              </button>
             <button 
               type = 'button' 
               className = 'activity-list-main__add-activity-button' 
@@ -77,7 +112,6 @@ export default class Savedlessons extends React.Component {
                 value={lesson.id}>
                   {lesson.title}
                 </option>)} 
-
             </>
     )
   }

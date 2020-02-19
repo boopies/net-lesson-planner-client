@@ -3,8 +3,41 @@ import ApiContext from '../../ApiContext'
 import './SavedLessonPlan.css'
 import { findActivity } from '../../ReadActivities/helpers'
 import uuid from 'react-uuid'
+import config from '../../config'
+import TokenService from '../../services/token-service'
 
 export default class SavedLessonPlan extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+                    id: '',
+                    title: '',
+                    date: '',
+                    day: '',
+                    duration: '',
+                    classlevel: '',
+                    period: '',
+                    topic: '',
+                    goal: 'The goal of the lesson is to ',
+                    class_size: '',
+                    objective_one: '',
+                    objective_two: '',
+                    objective_three: '',
+                    materials: '',
+                    warmup_id: '',
+                    presentation_one_id: '',
+                    presentation_two_id: '',
+                    practice_one_id: '',
+                    practice_two_id: '',
+                    practice_three_id: '',
+                    product_one_id: '',
+                    product_two_id: '',
+                    cooldown_id: '',
+                    reflection_one: '',
+                    reflection_two: '',
+                    reflection_three: '', 
+                    };
+    }
 
     static contextType = ApiContext;
 
@@ -12,17 +45,68 @@ export default class SavedLessonPlan extends React.Component{
         window.print();
     }
 
+    componentDidMount() {
+        const { savedId } = this.props.match.params
+        fetch(`${config.API_ENDPOINT}/savedlessons/${savedId}`, {
+          method: 'GET',
+          headers: {
+            'content-type': 'application/json',
+            'authorization': `bearer ${TokenService.getAuthToken()}`,}
+          }
+        )
+          .then(res => {
+            if (!res.ok)
+              return res.json().then(error => Promise.reject(error))
+            return res.json()
+          })
+          .then(responseData => {
+            this.setState({
+                id: parseInt(responseData.id),
+                title: responseData.title,
+                date: responseData.date,
+                day: responseData.day,
+                duration: responseData.duration,
+                classlevel: responseData.classlevel,
+                period: responseData.period,
+                topic: responseData.topic,
+                goal: responseData.goal,
+                class_size: parseInt(responseData.class_size),
+                objective_one: responseData.objective_one,
+                objective_two: responseData.objective_two,
+                objective_three: responseData.objective_three,
+                materials: responseData.materials,
+                warmup_id: parseInt(responseData.warmup_id),
+                presentation_one_id: parseInt(responseData.presentation_one_id),
+                presentation_two_id: parseInt(responseData.presentation_two_id),
+                practice_one_id: parseInt(responseData.practice_one_id),
+                practice_two_id: parseInt(responseData.practice_two_id),
+                practice_three_id: parseInt(responseData.practice_three_id),
+                product_one_id: parseInt(responseData.product_one_id),
+                product_two_id: parseInt(responseData.product_two_id),
+                cooldown_id: parseInt(responseData.cooldown_id),
+                reflection_one: responseData.reflection_one,
+                reflection_two: responseData.reflection_two,
+                reflection_three: responseData.reflection_three,
+            })
+          })
+          .catch(error => {
+            console.error(error)
+            this.setState({ error })
+          })
+      }
+
     handleNewLesson = () => {
         this.props.history.push('/create')
       };
     
     handleGoHome = () => {
         this.props.history.push('/savedlessons')
+        window.location.reload()
       };
 
       renderMaterialsList(){
-        const materialString = this.props.location.state.state.lesson[0].materials
-        const materialArray = materialString.split(/[\s,]+/);
+        const materialString = this.state.materials
+        const materialArray = materialString.split(/[,]+/);
         return (
             <>
             {materialArray.map(material =>{
@@ -36,9 +120,9 @@ export default class SavedLessonPlan extends React.Component{
     }
 
       renderObjectives(){
-        const objOne = this.props.location.state.state.lesson[0].objective_one
-        const objTwo = this.props.location.state.state.lesson[0].objective_two
-        const objThree = this.props.location.state.state.lesson[0].objective_three
+        const objOne = this.state.objective_one
+        const objTwo = this.state.objective_two
+        const objThree = this.state.objective_three
 
     if (objTwo.length === 0 && objThree.length === 0){
         return (
@@ -61,9 +145,9 @@ export default class SavedLessonPlan extends React.Component{
     }}
 
       renderReflection(){
-        const refOne = this.props.location.state.state.lesson[0].reflection_one
-        const refTwo = this.props.location.state.state.lesson[0].reflection_two
-        const refThree = this.props.location.state.state.lesson[0].reflection_three
+        const refOne = this.state.reflection_one
+        const refTwo = this.state.reflection_two
+        const refThree = this.state.reflection_three
 
     if (refTwo.length === 0 && refThree.length === 0){
         return (
@@ -117,10 +201,78 @@ export default class SavedLessonPlan extends React.Component{
         }
     }
 
+    handleEditLesson = e => {
+        e.preventDefault()
+        const { savedId } = this.props.match.params
+        this.props.history.push(`/editlessonplan/${savedId}`)
+    }
 
+
+    onDeleteLesson = () => {
+        this.props.history.push('/savedlessons')
+    };
+  
+      handleDeleteLesson = e =>{
+        e.preventDefault()
+        const { savedId } = this.props.match.params
+        fetch(`${config.API_ENDPOINT}/savedlessons/${savedId}`, {
+          method: 'DELETE',
+          headers: {
+            'content-type': 'application/json',
+            'authorization': `bearer ${TokenService.getAuthToken()}`,
+          },
+        })
+          .then(res => {
+            if (!res.ok)
+              return res.json().then(e => Promise.reject(e))
+          })
+          .then(() => {
+            this.context.deleteSavedLesson(savedId)
+            this.onDeleteLesson()
+          })
+          .catch(error => {
+            console.error({ error })
+          })
+      }
+
+      renderButtons(){
+        return (
+            <>
+                <button 
+                    type='button'               
+                    onClick={e =>
+                        window.confirm("Are you sure you wish to delete this item?") &&
+                        this.handleDeleteLesson(e)
+                    }>Delete
+                </button>
+                <button
+                    type='button'
+                    onClick={e =>
+                    this.handleEditLesson(e)
+                    }>
+                    Edit
+                    </button>
+                <button 
+                    type='button' 
+                    onClick={() => this.handlePrintLesson('printableArea')}>
+                    Print
+                </button>
+                <button 
+                    type='button' 
+                    onClick={() => this.handleNewLesson()}>
+                    New Lesson
+                </button>
+                <button 
+                    type='button' 
+                    onClick={() => this.handleGoHome()}>
+                    Go Back
+                </button>
+            </>
+        )
+      }
 
     render(){
-    const savedlesson = this.props.location.state.state.lesson[0]
+    const savedlesson = this.state
       return(
             <>
             <header>
@@ -212,9 +364,9 @@ export default class SavedLessonPlan extends React.Component{
                         </ul></div>
                     </div>
                 </section>
-                <button type='button' onClick={() => this.handlePrintLesson('printableArea')}>Print</button>
-                <button type='button' onClick={() => this.handleNewLesson()}>New Lesson</button>
-                <button type='button' onClick={() => this.handleGoHome()}>Go Back</button>
+                <div className="saved-lessons__buttons">
+                {this.renderButtons()}
+                </div>
             </main>
             </>
         )

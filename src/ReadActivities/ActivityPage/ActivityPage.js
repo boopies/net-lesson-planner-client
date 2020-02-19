@@ -16,7 +16,7 @@ export default class ActivityPage extends React.Component {
   static contextType = ApiContext
 
   render() {
-    const { activities=[] } = this.context
+    const { activities=[], currentUser } = this.context
     const { activityId } = this.props.match.params
     const activity = findActivity(activities, activityId) || { content: '' }
     return (
@@ -37,23 +37,21 @@ export default class ActivityPage extends React.Component {
           )}
         </div>
         <div>
-        <button
-        tag='button'
-        role='link'
-        onClick={() => this.props.history.push(`/read/edit-activity/${activity.id}`)}
-        className='ActivityPage__back-button'
-      >
-        edit
-      </button>
-        
-        <button
-        tag='button'
-        role='link'
-        onClick={() => this.props.history.goBack()}
-        className='ActivityPage__back-button'
-      >
-        Back
-      </button>
+          <button
+              tag='button'
+              role='link'
+              className={(activity.user_id === currentUser.id? '' : 'hidden')}
+              onClick={() => this.props.history.push(`/read/edit-activity/${activity.id}`)}>
+              Edit
+          </button>
+          
+          <button
+              tag='button'
+              role='link'
+              onClick={() => this.props.history.goBack()}
+              className='ActivityPage__back-button'>
+              Back
+        </button>
       </div>
       </section>
     )

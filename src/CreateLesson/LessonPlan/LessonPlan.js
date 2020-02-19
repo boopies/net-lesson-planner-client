@@ -10,13 +10,69 @@ export default class LessonPlan extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            };
+                    title: '',
+                    date: '',
+                    day: '',
+                    duration: '',
+                    classlevel: '',
+                    period: '',
+                    topic: '',
+                    goal: 'The goal of the lesson is to ',
+                    class_size: '',
+                    objective_one: '',
+                    objective_two: '',
+                    objective_three: '',
+                    materials: '',
+                    warmup_id: 1,
+                    presentation_one_id: 2,
+                    presentation_two_id: 2,
+                    practice_one_id: 3,
+                    practice_two_id: 3,
+                    practice_three_id: 3,
+                    product_one_id: 4,
+                    product_two_id: 4,
+                    cooldown_id: 5,
+                    reflection_one: '',
+                    reflection_two: '',
+                    reflection_three: '', 
+                    };
     }
 
     static contextType = ApiContext;
 
+    componentDidMount() {
+        const lesson = this.props.location.state
+          this.setState({
+                    title: lesson.title,
+                    date: lesson.date,
+                    day: lesson.day,
+                    duration: lesson.duration,
+                    classlevel: lesson.classlevel,
+                    period: lesson.period,
+                    topic: lesson.topic,
+                    goal: lesson.goal,
+                    class_size: parseInt(lesson.class_size),
+                    objective_one: lesson.objective_one,
+                    objective_two: lesson.objective_two,
+                    objective_three: lesson.objective_three,
+                    materials: lesson.materials,
+                    warmup_id: parseInt(lesson.warmup_id),
+                    presentation_one_id: parseInt(lesson.presentation_one_id),
+                    presentation_two_id: parseInt(lesson.presentation_two_id),
+                    practice_one_id: parseInt(lesson.practice_one_id),
+                    practice_two_id: parseInt(lesson.practice_two_id),
+                    practice_three_id: parseInt(lesson.practice_three_id),
+                    product_one_id: parseInt(lesson.product_one_id),
+                    product_two_id: parseInt(lesson.product_two_id),
+                    cooldown_id: parseInt(lesson.cooldown_id),
+                    reflection_one: lesson.reflection_one,
+                    reflection_two: lesson.reflection_two,
+                    reflection_three: lesson.reflection_three, 
+          })
+      }
+
     handleSaveLesson = () => {
-        const lesson = this.props.location.state.state
+        const lesson = this.state
         const newLesson = {
                     title: `${lesson.title}`,
                     date: `${lesson.date}`,
@@ -78,9 +134,17 @@ export default class LessonPlan extends React.Component{
         this.props.history.push('/')
       };
 
+    handleEdit = () => {
+        const state = this.state
+        this.props.history.push({
+            pathname: '/edit',
+            state,
+        })
+      };
+
     renderMaterialsList(){
-        const materialString = this.props.location.state.state.materials
-        const materialArray = materialString.split(/[\s,]+/);
+        const materialString = this.state.materials
+        const materialArray = materialString.split(/[,]+/);
         return (
             <>
             {materialArray.map(material =>{
@@ -94,9 +158,9 @@ export default class LessonPlan extends React.Component{
     }
 
     renderObjectives(){
-            const objOne = this.props.location.state.state.objective_one
-            const objTwo = this.props.location.state.state.objective_two
-            const objThree = this.props.location.state.state.objective_three
+            const objOne = this.state.objective_one
+            const objTwo = this.state.objective_two
+            const objThree = this.state.objective_three
 
         if (objTwo.length === 0 && objThree.length === 0){
             return (
@@ -120,9 +184,9 @@ export default class LessonPlan extends React.Component{
     }
 
     renderReflection(){
-        const refOne = this.props.location.state.state.reflection_one
-        const refTwo = this.props.location.state.state.reflection_two
-        const refThree = this.props.location.state.state.reflection_three
+        const refOne = this.state.reflection_one
+        const refTwo = this.state.reflection_two
+        const refThree = this.state.reflection_three
 
     if (refTwo.length === 0 && refThree.length === 0){
         return (
@@ -175,8 +239,22 @@ export default class LessonPlan extends React.Component{
         }
     }
 
+    renderButtons(){
+        return(
+        <>
+            <button type='button' onClick={() => this.handlePrintLesson('printableArea')}>Print</button>
+            <button type='button' onClick={() => this.handleEdit()}>Modify Lesson</button>
+            {TokenService.hasAuthToken()
+                ? <button type='button' onClick={() => this.handleSaveLesson()}>Save Lesson</button>
+                : <> </>}
+            <button type='button' onClick={() => this.handleNewLesson()}>New Lesson</button>
+            <button type='button' onClick={() => this.handleGoHome()}>Go Home</button>
+        </>
+        )
+    }
+
     render(){
-    const lesson = this.props.location.state.state
+    const lesson = this.state
       return(
             <>
             <header>
@@ -261,12 +339,9 @@ export default class LessonPlan extends React.Component{
                         </ul></div>
                     </div>
                 </section>
-                <button type='button' onClick={() => this.handlePrintLesson('printableArea')}>Print</button>
-                {TokenService.hasAuthToken()
-                    ? <button type='button' onClick={() => this.handleSaveLesson()}>Save Lesson</button>
-                    : <> </>}
-                <button type='button' onClick={() => this.handleNewLesson()}>New Lesson</button>
-                <button type='button' onClick={() => this.handleGoHome()}>Go Home</button>
+                <div className='Lesson-Plan__Buttons'>
+                    {this.renderButtons()}
+                </div>
             </main>
             </>
         )

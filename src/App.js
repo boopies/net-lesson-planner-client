@@ -11,10 +11,12 @@ import BackDrop from './BackDrop/BackDrop'
 import ApiContext from './ApiContext'
 import RegistrationForm from './RegistrationForm/RegistrationForm'
 import LoginForm from './LoginForm/LoginForm'
+import EditLesson from './CreateLesson/EditLesson/EditLesson'
 import Savedlessons from './Savedlessons/Savedlessons'
 import PrivateRoute from './Utilities/PrivateRoute'
 import TokenService from './services/token-service'
 import SavedLessonPlan from './Savedlessons/SavedLessonPlan/SavedLessonPlan'
+import EditSavedPlan from './Savedlessons/EditSavedPlan/EditSavedPlan'
 import config from './config'
 
 export default class App extends React.Component{
@@ -159,10 +161,24 @@ handleAddSavedLesson = newSavedLesson => {
   })
   }
 
+handleDeleteSavedLesson = savedId =>{
+  this.setState({
+    savedlessons: this.state.savedlessons.filter(savelesson => savelesson.id !== parseInt(savedId))
+  })
+}
+
 handleUpdateActivity = updatedActivity => {
   this.setState({
     activities: this.state.activities.map(activity =>
       (activity.id !== updatedActivity.id) ? activity : updatedActivity
+    )
+  })
+}
+
+handleUpdateLesson = updatedLesson => {
+  this.setState({
+    savedlessons: this.state.savedlessons.map(lesson =>
+      (lesson.id !== updatedLesson.id) ? lesson : updatedLesson
     )
   })
 }
@@ -183,6 +199,7 @@ handleUpdateActivity = updatedActivity => {
       savedlessons: this.state.savedlessons,
       addActivity: this.handleAddActivity,
       updateActivity: this.handleUpdateActivity,
+      updateLesson: this.handleUpdateLesson,
       addSavedLesson: this.handleAddSavedLesson,
       sidedrawClose: this.sidedrawClose,
       currentPage: this.state.currentPage,
@@ -192,29 +209,32 @@ handleUpdateActivity = updatedActivity => {
       handleCategoryFilter: this.handleCategoryFilter,
       setTokenTrue: this.setTokenTrue,
       setTokenFalse: this.setTokenFalse,
-      removeCurrentUser: this.removeCurrentUser
+      removeCurrentUser: this.removeCurrentUser,
+      deleteSavedLesson: this.handleDeleteSavedLesson,
     }
     return (
       <ApiContext.Provider value={value}>
-      <div style={{height:'100%'}} className="App">
-      <nav className='app__navbar'>
-        <NavBar sideClickHandler={this.sideMenuClickHandler} user={this.state.currentUser} />
-        <SideDraw show={this.state.sideDrawOpen} user={this.state.currentUser} />
-        { backdrop }
-      </nav>
-      <main className='app__main'>
-        <Switch>
-          <Route exact path='/' component={ LandingPage } />
-          <Route path='/create' component={ CreateLesson } />
-          <Route path='/lesson' component={ LessonPlan } />
-          <Route path='/read' component={ ReadActivities } />
-          <Route path='/register' component={ RegistrationForm } />
-          <Route path='/login' component={ LoginForm } />
-          <PrivateRoute path='/savedlessons' component={ Savedlessons } />
-          <PrivateRoute path='/savedlessonplan' component={ SavedLessonPlan } />
-        </Switch>
-      </main>
-      </div>
+        <div style={{height:'100%'}} className="App">
+          <nav className='app__navbar'>
+            <NavBar sideClickHandler={this.sideMenuClickHandler} user={this.state.currentUser} />
+            <SideDraw show={this.state.sideDrawOpen} user={this.state.currentUser} />
+            { backdrop }
+          </nav>
+          <main className='app__main'>
+            <Switch>
+              <Route exact path='/' component={ LandingPage } />
+              <Route path='/create' component={ CreateLesson } />
+              <Route path='/lesson' component={ LessonPlan } />
+              <Route path='/read' component={ ReadActivities } />
+              <Route path='/register' component={ RegistrationForm } />
+              <Route path='/login' component={ LoginForm } />
+              <Route path='/edit' component={ EditLesson } />
+              <PrivateRoute path='/savedlessons' component={ Savedlessons } />
+              <PrivateRoute path='/savedlessonplan/:savedId' component={ SavedLessonPlan } />
+              <PrivateRoute path='/editlessonplan/:savedId' component={ EditSavedPlan } />
+            </Switch>
+          </main>
+        </div>
       </ApiContext.Provider>
     );
   }

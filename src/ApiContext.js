@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default React.createContext({
+const ApiContext = React.createContext({
   activities: [],
   categories: [],
   savedlessons: [],
@@ -9,6 +9,7 @@ export default React.createContext({
   currentUser: [],
   addActivity: () => {},
   updateActivity: () =>{},
+  updateLesson: () => {},
   sidedrawClose: () => {},
   currentPage: '',
   activitiesPerPage: '',
@@ -18,4 +19,8 @@ export default React.createContext({
   setTokenTrue: () => {},
   setTokenFalse: () => {},
   removeCurrentUser: () => {},
+  deleteSavedLesson: () => {},
+  addSavedLesson: () => {},
 })
+
+export default ApiContext

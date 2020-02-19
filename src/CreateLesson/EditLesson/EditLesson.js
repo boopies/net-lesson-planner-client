@@ -1,12 +1,11 @@
 import React from 'react'
-import ApiContext from '../ApiContext'
-import './CreateLesson.css'
-import { getActivityForCategory, findActivity } from '../ReadActivities/helpers'
+import ApiContext from '../../ApiContext'
+import { getActivityForCategory, findActivity } from '../../ReadActivities/helpers'
 import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 
-export default class CreateLesson extends React.Component{
+export default class EditLesson extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -47,10 +46,41 @@ export default class CreateLesson extends React.Component{
       
       static contextType = ApiContext;
     
-      goBack = () => {
+      handleClickCancel = () => {
         this.props.history.goBack();
     }
     
+    componentDidMount() {
+      const edit = this.props.location.state
+        this.setState({
+                  title: edit.title,
+                  date: edit.date,
+                  day: edit.day,
+                  duration: edit.duration,
+                  classlevel: edit.classlevel,
+                  period: edit.period,
+                  topic: edit.topic,
+                  goal: edit.goal,
+                  class_size: parseInt(edit.class_size),
+                  objective_one: edit.objective_one,
+                  objective_two: edit.objective_two,
+                  objective_three: edit.objective_three,
+                  materials: edit.materials,
+                  warmup_id: parseInt(edit.warmup_id),
+                  presentation_one_id: parseInt(edit.presentation_one_id),
+                  presentation_two_id: parseInt(edit.presentation_two_id),
+                  practice_one_id: parseInt(edit.practice_one_id),
+                  practice_two_id: parseInt(edit.practice_two_id),
+                  practice_three_id: parseInt(edit.practice_three_id),
+                  product_one_id: parseInt(edit.product_one_id),
+                  product_two_id: parseInt(edit.product_two_id),
+                  cooldown_id: parseInt(edit.cooldown_id),
+                  reflection_one: edit.reflection_one,
+                  reflection_two: edit.reflection_two,
+                  reflection_three: edit.reflection_three, 
+        })
+    }
+
     renderTooltipinfo(actId){
       const {activities = []} = this.context
       const activity = findActivity(activities, actId)
@@ -176,14 +206,6 @@ export default class CreateLesson extends React.Component{
         this.setState({cooldown_id: cooldown});
       }
 
-    handleResetForm = () => { 
-        document.getElementById('create-lesson-form').reset();
-      }
-
-    handleClickCancel = () => {
-        this.props.history.push('/')
-      };
-
     handleSubmitForm = e => {
         e.preventDefault()
         const state = this.state 
@@ -259,10 +281,18 @@ export default class CreateLesson extends React.Component{
     }
 
     render(){
+      const {  title, date, day, duration, classlevel,
+               period, topic, goal, class_size,
+               objective_one, objective_two, objective_three,
+               materials, warmup_id, presentation_one_id,
+               presentation_two_id, practice_one_id,
+               practice_two_id, practice_three_id, product_one_id,
+               product_two_id, cooldown_id, reflection_one,
+               reflection_two, reflection_three } = this.state
         return (
             <>
             <header>
-                <h1>Create a Lesson Plan</h1>
+                <h1>Modify Lesson Plan</h1>
             </header>
             <section>
                 <form className='create-lesson' id="create-lesson-form"
@@ -272,7 +302,7 @@ export default class CreateLesson extends React.Component{
                         <input 
                         id='title'
                         type="text" 
-                        placeholder="Lesson name"
+                        value={title}
                         onChange={e => this.updateName(e.target.value)}
                         required
                         />
@@ -282,7 +312,8 @@ export default class CreateLesson extends React.Component{
                     <select
                     id="classLevel"
                     onChange={e => this.updateClassLevel(e.target.value)}
-                    required >
+                    required 
+                    value={classlevel}>
                         <option value=''>Select a year level</option>
                         {this.renderClassLevel()}
                         </select>
@@ -293,6 +324,7 @@ export default class CreateLesson extends React.Component{
                         id='date'
                         type="date" 
                         placeholder="2020/01/01"
+                        value={date}
                         onChange={e => this.updateDate(e.target.value)} 
                         required
                         />
@@ -302,6 +334,7 @@ export default class CreateLesson extends React.Component{
                     <label htmlFor='day-of-week'>Day: </label>
                     <select
                     id="day"
+                    value={day}
                     onChange={e => this.updateDay(e.target.value)} required>
                         <option value=''>Select a day</option>
                         {this.renderDayofWeek()}
@@ -312,6 +345,7 @@ export default class CreateLesson extends React.Component{
                 <div className='input--class--period'>
                 <label htmlFor='class--period'>Period: </label>
                     <select id="period"
+                    value={period}
                     onChange={e => this.updatePeriod(e.target.value)} required>
                         <option value=''>Select a Period</option>
                         {this.renderClassPeriod()}
@@ -323,6 +357,7 @@ export default class CreateLesson extends React.Component{
                         <input id='topic'
                         type='text' 
                         placeholder='Topic of lesson' 
+                        value={topic}
                         onChange={e => this.updateTopic(e.target.value)}
                         required />
                 </div>
@@ -335,6 +370,7 @@ export default class CreateLesson extends React.Component{
                         min="1" 
                         max="40" 
                         placeholder="10" 
+                        value={class_size}
                         onChange={e => this.updateClassSize(e.target.value)}
                         required />
                 </div>
@@ -343,6 +379,7 @@ export default class CreateLesson extends React.Component{
                     <label>Class Length: </label>
                     <select 
                         id="duration"
+                        value={duration}
                         onChange={e => this.updateDuration(e.target.value)} required>
                         {this.renderDuration()}
                     </select>
@@ -355,7 +392,7 @@ export default class CreateLesson extends React.Component{
                         id='goal' 
                         rows = "3"
                         cols = "60"
-                        defaultValue='The goal of the lesson is to' 
+                        value={goal}
                         onChange={e => this.updateGoal(e.target.value)}
                         required />
                 </div>
@@ -367,12 +404,14 @@ export default class CreateLesson extends React.Component{
                             <input id='objectiveOne'
                             type='text' 
                             placeholder='First Objective'
+                            value={objective_one}
                             onChange={e => this.updateObjectiveOne(e.target.value)}
                             required />
                         <label>Students should be able to: </label>
                             <input id='objectiveTwo'
                             type='text' 
                             placeholder='Second Objective' 
+                            value={objective_two}
                             onChange={e => this.updateObjectiveTwo(e.target.value)}
                             />
                         <label>Students should be able to:: </label>
@@ -380,6 +419,7 @@ export default class CreateLesson extends React.Component{
                             id='objectiveThree'
                             type='text' 
                             placeholder='Third Objective' 
+                            value={objective_three}
                             onChange={e => this.updateObjectiveThree(e.target.value)}
                             />
                     </fieldset> 
@@ -391,6 +431,7 @@ export default class CreateLesson extends React.Component{
                         <textarea id = "materials"
                                 rows = "10"
                                 cols = "60"
+                                value={materials}
                                 placeholder= "List all materials here. Seperate items by a comma no space." 
                                 onChange={e => this.updateMaterials(e.target.value)}
                                 required />
@@ -402,6 +443,7 @@ export default class CreateLesson extends React.Component{
                         <label>Warm-up Activity: </label>
                         <select
                         id="warmupactivity"
+                        value={warmup_id}
                         onChange={e => this.updateWarmup(e.target.value)} required>
                         {this.renderOptions('1')}
                         </select>
@@ -415,6 +457,7 @@ export default class CreateLesson extends React.Component{
                         <label>Presentation Activity 01: </label>
                         <select
                         id="presentation01"
+                        value={presentation_one_id}
                         onChange={e => this.updatePresentationOne(e.target.value)} required> 
                             {this.renderOptions('2')}
                         </select>
@@ -422,6 +465,7 @@ export default class CreateLesson extends React.Component{
                         <label>Presentation Activity 02: </label>
                         <select
                         id="presentation02"
+                        value={presentation_two_id}
                         onChange={e => this.updatePresentationTwo(e.target.value)}>
                         {this.renderOptions('2')}
                         </select>
@@ -435,6 +479,7 @@ export default class CreateLesson extends React.Component{
                         <label>Practice Activity 01: </label>
                         <select
                         id="practice01"
+                        value={practice_one_id}
                         onChange={e => this.updatePracticeOne(e.target.value)} required>
                             {this.renderOptions('3')}
                         </select>
@@ -442,6 +487,7 @@ export default class CreateLesson extends React.Component{
                         <label>Practice Activity 02:</label>
                         <select
                            id="practice02"
+                           value={practice_two_id}
                         onChange={e => this.updatePracticeTwo(e.target.value)}>
                             {this.renderOptions('3')}
                         </select>
@@ -449,6 +495,7 @@ export default class CreateLesson extends React.Component{
                         <label>Practice Activity 03: </label>
                         <select
                             id="practice03"
+                            value={practice_three_id}
                             onChange={e => this.updatePracticeThree(e.target.value)}>                  
                             {this.renderOptions('3')}
                         </select>  
@@ -462,6 +509,7 @@ export default class CreateLesson extends React.Component{
                         <label>Production Activity 01: </label>
                         <select
                             id="production01"
+                            value={product_one_id}
                             onChange={e => this.updateProductionOne(e.target.value)} required>
                             {this.renderOptions('4')}
                         </select>
@@ -469,7 +517,8 @@ export default class CreateLesson extends React.Component{
                         <label>Production Activity 02: </label>
                         <select
                             id="production02"
-                        onChange={e => this.updateProductionTwo(e.target.value)}>
+                            value={product_two_id}
+                            onChange={e => this.updateProductionTwo(e.target.value)}>
                             {this.renderOptions('4')}
                         </select>
                         <div>{this.renderTooltipinfo(this.state.product_two_id)}</div>                      
@@ -482,6 +531,7 @@ export default class CreateLesson extends React.Component{
                         <label>Cool Down Activity 01: </label>
                         <select
                         id="cooldown"
+                        value={cooldown_id}
                         onChange={e => this.updateCooldown(e.target.value)}>
                             {this.renderOptions('5')}
                         </select> 
@@ -497,6 +547,7 @@ export default class CreateLesson extends React.Component{
                             id='reflectionOne'
                             type='text' 
                             placeholder='First reflection question'
+                            value={reflection_one}
                             onChange={e => this.updateReflectionOne(e.target.value)}
                             required
                             />
@@ -505,20 +556,25 @@ export default class CreateLesson extends React.Component{
                             id='reflectionTwo'
                             type='text' 
                             placeholder='Second reflection question' 
+                            value={reflection_two}
                             onChange={e => this.updateReflectionTwo(e.target.value)}
                             />
                         <label>Reflection Question 01: </label>
                             <input 
                             id='reflectionThree'
                             type='text' 
-                            placeholder='Third reflection question' 
+                            placeholder='Third reflection question'
+                            value={reflection_three}
                             onChange={e => this.updateReflectionThree(e.target.value)}
                             />
                     </fieldset> 
                     </div>
                     <button type='submit'>Submit</button>
-                    <button type='reset' onClick={() => this.handleResetForm()}>Reset</button>
-                    <button className="cancel--button" type='button' onClick={() => this.handleClickCancel()}>Cancel</button>
+                    <button 
+                      className="cancel--button" 
+                      type='button' 
+                      onClick={() => this.handleClickCancel()}>
+                      Cancel</button>
                 </form>
             </section>
             </>
