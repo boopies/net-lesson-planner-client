@@ -5,6 +5,11 @@ import { findActivity } from '../../ReadActivities/helpers'
 import uuid from 'react-uuid'
 import TokenService from '../../services/token-service'
 import config from '../../config'
+import PrintIcon from '@material-ui/icons/Print';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import SaveOutlinedIcon from '@material-ui/icons/SaveOutlined';
+import PhotoFilterIcon from '@material-ui/icons/PhotoFilter';
+import HomeIcon from '@material-ui/icons/Home';
 
 export default class LessonPlan extends React.Component{
     constructor(props) {
@@ -242,13 +247,43 @@ export default class LessonPlan extends React.Component{
     renderButtons(){
         return(
         <>
-            <button type='button' onClick={() => this.handlePrintLesson('printableArea')}>Print</button>
-            <button type='button' onClick={() => this.handleEdit()}>Modify Lesson</button>
+            <button 
+                type='button' 
+                onClick={() => this.handlePrintLesson('printableArea')}>
+                <PrintIcon fontSize="large" />
+                {' '}
+                Print
+            </button>
+            <button 
+                type='button' 
+                onClick={() => this.handleEdit()}>
+                <EditOutlinedIcon fontSize="large" />
+                {' '}
+                Modify Lesson
+            </button>
             {TokenService.hasAuthToken()
-                ? <button type='button' onClick={() => this.handleSaveLesson()}>Save Lesson</button>
+                ?   <button 
+                        type='button' 
+                        onClick={() => this.handleSaveLesson()}>
+                        <SaveOutlinedIcon fontSize="large" />
+                        {' '}
+                        Save Lesson
+                    </button>
                 : <> </>}
-            <button type='button' onClick={() => this.handleNewLesson()}>New Lesson</button>
-            <button type='button' onClick={() => this.handleGoHome()}>Go Home</button>
+            <button 
+                type='button' 
+                onClick={() => this.handleNewLesson()}>
+                <PhotoFilterIcon fontSize="large" />
+                {' '}
+                New Lesson
+            </button>
+            <button 
+                type='button' 
+                onClick={() => this.handleGoHome()}>
+                <HomeIcon fontSize="large" />
+                {' '}
+                Go Home
+            </button>
         </>
         )
     }

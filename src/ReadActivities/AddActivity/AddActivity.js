@@ -4,6 +4,7 @@ import ValidationError from '../ValidationError/ValidationError'
 import PropTypes from 'prop-types';
 import TokenService from '../../services/token-service'
 import config from '../../config'
+import './AddActivity.css'
 
 export default class AddActivity extends Component {
   constructor(props) {
@@ -138,30 +139,34 @@ updateGrouping(grouping){
     const { categories=[] } = this.context
     return (
       <section className='AddActivity'>
-        <h2>Create a Activity</h2>
-        <form onSubmit={this.handleSubmit}>
-          <div className='field'>
-            <label 
-            htmlFor='newActivityName'>
-              Name
-            </label>
-            <input
-            type='text' 
-            id='new-activity-name-input' 
-            name='title'
-            placeholder="Activity Name"
-            aria-label="Name of the new activity" 
-            aria-required="true"
-            aria-describedby="NNErrorMessage"
-            onChange={e => this.updateTitle(e.target.value)}/>
-            {this.state.title.touched && (<ValidationError message={this.validateTitle()}/>)}
-          </div>
-          <div className='field'>
+        <form 
+          className='AddActivityForm'
+          onSubmit={this.handleSubmit}>
+            <h2 className='add-activity__title'>
+            Create an Activity</h2>
+              <div className='add-activity-input__title'>
+                <label 
+                htmlFor='newActivityName'>
+                  Title
+                </label>
+                <input
+                type='text' 
+                id='new-activity-name-input' 
+                name='title'
+                placeholder="Activity Name"
+                aria-label="Name of the new activity" 
+                aria-required="true"
+                aria-describedby="NNErrorMessage"
+                onChange={e => this.updateTitle(e.target.value)}/>
+                {this.state.title.touched && (<ValidationError message={this.validateTitle()}/>)}
+              </div>
+          <div className='add-activity-input__duration'>
             <label 
             htmlFor='newActivityDurattion'>
               Duration
             </label>
             <select 
+                className="add-activity_select"
                 id='new-activity-duration' 
                 name='duration'
                 aria-label='Duration of the Activity' 
@@ -178,12 +183,13 @@ updateGrouping(grouping){
             </select>
             {this.state.duration.touched && (<ValidationError message={this.validateDuration()}/>)}
           </div>
-          <div className='field'>
+          <div className='add-activity-input__groups'>
             <label 
             htmlFor='newActivityGroups'>
               Groups
             </label>
-            <select 
+            <select
+                className="add-activity_select"
                 id='new-activity-groups' 
                 name='grouping'
                 aria-label='Duration of the Activity' 
@@ -198,11 +204,12 @@ updateGrouping(grouping){
             </select>
             {this.state.grouping.touched && (<ValidationError message={this.validateGrouping()}/>)}
           </div>
-          <div className='field'>
+          <div className='add-activity-input__category'>
             <label htmlFor='Activity-Category-select'>
               Category
             </label>
             <select 
+                className="add-activity_select"
                 id='new-Activity-Category' 
                 name='categoryId'
                 autoComplete='off'
@@ -222,7 +229,7 @@ updateGrouping(grouping){
             </select>
             {this.state.category_id.touched && (<ValidationError message={this.validateCategoryId()}/>)}
           </div>
-          <div className='field'>
+          <div className='add-activity-input__content'>
             <label htmlFor='Activity-content-input'>
              Content
             </label>
@@ -230,9 +237,9 @@ updateGrouping(grouping){
                 type='text'
                 cols='50'
                 rows='10'
-                id='new-activity-contents' 
+                className='new-activity-contents' 
                 name='content'
-                placeholder='Contents of Activity' 
+                placeholder='Instructions of how to do the activity.' 
                 autoComplete='off'
                 aria-label='Contents of the Activity.' 
                 aria-required='true'
@@ -240,17 +247,10 @@ updateGrouping(grouping){
                 onChange={e => this.updateContent(e.target.value)}/>
                 {this.state.content.touched && (<ValidationError message={this.validateContent()}/>)}
           </div>
-          <div className='buttons'>
-          <button 
-              type='button' 
-              className='button'
-              aria-label='Button to Cancel creating new Activity'
-              onClick={() => this.goBack()}>
-              Cancel
-            </button>
+          <div className='addactivitybuttons'>
             <button 
-            type='submit'
-              className='button'
+              type='submit'
+              className='addActivity-submit__button'
               aria-label='submit button to create the new Activity'
               aria-describedby='buttonError'
               disabled={this.validateTitle()||
@@ -259,6 +259,13 @@ updateGrouping(grouping){
                 this.validateDuration()||
                 this.validateGrouping()}>
               Submit
+            </button>
+            <button 
+              className='addActivity-cancel__button' 
+              type='button'
+              aria-label='Button to Cancel creating new Activity'
+              onClick={() => this.goBack()}>
+              Cancel
             </button>
           </div>
           <div id='buttonError'>submit button will activate when form is filled out correctuly.</div>

@@ -3,6 +3,7 @@ import ActivityItem from '../ActivityItem/ActivityItem'
 import ApiContext from '../../ApiContext'
 import { findActivity } from '../helpers'
 import PropTypes from 'prop-types'
+import './ActivityPage.css'
 
 export default class ActivityPage extends React.Component {
   static defaultProps = {
@@ -20,7 +21,7 @@ export default class ActivityPage extends React.Component {
     const { activityId } = this.props.match.params
     const activity = findActivity(activities, activityId) || { content: '' }
     return (
-      <section className='ActivityPage'>
+      <section className='read_ActivityPage'>
         <ActivityItem
           id={activity.id}
           title={activity.title}
@@ -31,16 +32,16 @@ export default class ActivityPage extends React.Component {
         />
         
         <div className='ActivityPage__content'>
-        <h3 className='ActivityPage__Prodesture'>Procedure</h3>
-          {activity.content.split(/\\n \\r|\\n|\n|\\n \\r/).map((para, i) =>
-            <p key={i}>{para}</p>
-          )}
+          <h3 className='ActivityPage__Prodesture'>Procedure</h3>
+            {activity.content.split(/\\n \\r|\\n|\n|\\n \\r/).map((para, i) =>
+              <p key={i}>{para}</p>
+            )}
         </div>
-        <div>
+        <div className='activities-content__buttons'>
           <button
               tag='button'
               role='link'
-              className={(activity.user_id === currentUser.id? '' : 'hidden')}
+              className={(activity.user_id === currentUser.id? 'ActivityPage__edit-button' : 'ActivityPage__edit-button hidden')}
               onClick={() => this.props.history.push(`/read/edit-activity/${activity.id}`)}>
               Edit
           </button>

@@ -3,6 +3,7 @@ import ApiContext from '../../ApiContext'
 import PropTypes from 'prop-types';
 import TokenService from '../../services/token-service'
 import config from '../../config'
+import './EditActivity.css'
 
 export default class EditActivity extends Component {
   constructor(props) {
@@ -103,17 +104,23 @@ updateGrouping(grouping){
   render() {
     const { title, duration, grouping, category_id, content} = this.state
     const { categories=[] } = this.context
+    const { activityId } = this.props.match.params
     return (
       <section className='AddActivity'>
-        <h2>Edit Activity: <i>{title}</i></h2>
-        <form onSubmit={this.handleSubmit}>
-          <div className='field'>
+        <form 
+          onSubmit=
+          {e =>window.confirm("Are you sure you want to edit this activity?") &&
+               this.handleSubmit(e)}
+          className='EditActivityForm'>
+                  <h2 className='edit-activity__title'>Edit Activity: <i>{title}</i></h2>
+          <div className='edit-activity-input__duration'>
             <label 
-            htmlFor='newActivityDurattion'>
+            htmlFor='EditActivityDurattion'>
               Duration
             </label>
             <select 
-                id='new-activity-duration' 
+                id='edit-a"ctivity-duration' 
+                className='edit-activity_select'
                 name='duration'
                 aria-label='Duration of the Activity' 
                 aria-required='true'
@@ -128,13 +135,14 @@ updateGrouping(grouping){
               <option value='30min'>30 min</option>
             </select>
           </div>
-          <div className='field'>
+          <div className='edit-activity-input__groups'>
             <label 
-            htmlFor='newActivityGrouping'>
+            htmlFor='EditActivityGrouping'>
               Groups
             </label>
             <select 
                 id='new-activity-grouping' 
+                className='edit-activity_select'
                 name='grouping'
                 aria-label='Duration of the Activity' 
                 aria-required='true'
@@ -147,12 +155,13 @@ updateGrouping(grouping){
               <option value='Groups'>Groups</option>
             </select>
           </div>
-          <div className='field'>
-            <label htmlFor='activity-category-select'>
+          <div className='edit-activity-input__category'>
+            <label htmlFor='edit-activity-category-select'>
               Category
             </label>
             <select 
                 id='new-activity-category' 
+                className='edit-activity_select'
                 name='categoryId'
                 autoComplete='off'
                 aria-label='category selection to add activity' 
@@ -170,16 +179,17 @@ updateGrouping(grouping){
               )}
             </select>
           </div>
-          <div className='field'>
-            <label htmlFor='activity-content-input'>
+          <div className='edit-activity-input__content'>
+            <label htmlFor='edit-activity-content-input'>
              Content
             </label>
             <textarea
                 type='text'
                 cols='50'
                 rows='10'
-                id='new-activity-contents' 
+                id='edit-activity-contents' 
                 name='content'
+                className='edit-activity-contents'
                 placeholder='Contents of activity' 
                 autoComplete='off'
                 aria-label='Contents of the activity.' 
@@ -188,19 +198,19 @@ updateGrouping(grouping){
                 aria-describedby='NCErrorMessage'
                 onChange={e => this.updateContent(e.target.value)}/>
           </div>
-          <div className='buttons'>
-          <button 
-              type='button' 
-              className='button'
-              aria-label='Button to Cancel creating new activity'
-              onClick={() => this.goBack()}>
-              Cancel
-            </button>
+          <div className='editactivitybuttons'>
             <button 
-            type='submit'
-              className='button'
+              type='submit'
+              className='editActivity-submit__button'
               aria-label='submit button to create the new activity'>
               Submit
+            </button>
+            <button 
+              type='button' 
+              className='editActivity-cancel__button'
+              aria-label='Button to Cancel creating new activity'
+              onClick={() => this.props.history.push(`/read/activity/${activityId}`)}>
+              Cancel
             </button>
           </div>
         </form>

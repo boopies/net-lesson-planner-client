@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import AuthApiService from '../services/auth-api-service'
 import ApiContext from '../ApiContext'
 import config from '../config'
+import './LoginForm.css'
 
 export default class LoginForm extends Component {
     static defaultProps = {
@@ -64,7 +65,7 @@ export default class LoginForm extends Component {
     render() {
         const {error} = this.state
         return (
-            <div className="NET_Login__form">
+            <>
                 <header className="login__header">
                     <h1 className="login__heading">
                         Log In
@@ -75,30 +76,33 @@ export default class LoginForm extends Component {
                         <div role='alert'>
                             {error && <p className='red'>{error}</p>}
                         </div>
-                        <div className='username'>
-                            <label htmlFor='LoginForm__username'>
+                        <div className='loginform__username'>
+                            <label className='loginform__user-title'>
                                 Username
                             </label>
-                            <input required="required" 
+                            <input 
+                            required
+                            className='loginform__user-input' 
                             name='username' 
                             id='LoginForm__username' />
                         </div>
-                        <div className='password'>
-                            <label htmlFor='LoginForm__password'>
+                        <div className='loginform__password'>
+                            <label className='loginform__user-title'>
                                 Password
                             </label>
                             <input
-                                required="required"
+                                required
+                                className='loginform__user-input'
                                 name='password'
                                 type='password'
                                 id='LoginForm__password' />
                         </div>
-                        <button type='submit'>
+                        <button className='login__button' type='submit'>
                             Login
                         </button>
                     </form>
                 </main>
-            </div>
+            </>
         )
     }
 }

@@ -1,5 +1,11 @@
 body{
-    height: 100%;    
+    background-color:#2C0155;
+    background-blend-mode: multiply;
+    background-clip: border-box;
+    /*background-image: url(../src/images/background-planner.jpg);*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .App{

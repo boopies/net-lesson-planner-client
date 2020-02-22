@@ -1,5 +1,6 @@
 import React from 'react'
 import AuthApiService from '../services/auth-api-service'
+import './RegistrationForm.css'
 
 export default class RegistrationForm extends React.Component {
   static defaultProps = {
@@ -38,7 +39,7 @@ export default class RegistrationForm extends React.Component {
   render() {
     const { error } = this.state
     return (
-      <div className="NET_registration__form">
+      <>
         <header className="registration__header">
             <h1 className="registration__heading">
                 Register
@@ -53,45 +54,50 @@ export default class RegistrationForm extends React.Component {
                 {error && <p className='red'>{error}</p>}
               </div>
 
-              <div className='username'>
+              <div className='registration_username'>
                 <label htmlFor='RegistrationForm__username'>
-                  User name
+                  Username
                 </label>
                 <input
+                className='registrationform__user-input'
                   name='username'
                   type='text'
                   id='RegistrationForm__username'>
                 </input>
               </div>
 
-              <div className='email'>
+              <div className='registration_email'>
                 <label htmlFor='RegistrationForm__email'>
                   email
                 </label>
                 <input
+                  className='registrationform__user-input'
                   name='email'
                   type='email'
                   id='RegistrationForm__email'>
                 </input>
               </div>
 
-              <div className='password'>
+              <div className='registration_password'>
                 <label htmlFor='RegistrationForm__password'>
                   Password
                 </label>
                 <input
+                  className='registrationform__user-input'
                   name='password'
                   type='password'
                   id='RegistrationForm__password'>
                 </input>
               </div>
 
-              <button type='submit'>
+              <button 
+                className='registration__button'
+                type='submit'>
                 Register
               </button>
             </form>
           </main>
-        </div>
+        </>
     )
   }
 }

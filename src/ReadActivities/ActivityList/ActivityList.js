@@ -9,6 +9,7 @@ export default class ActivityList extends React.Component {
   constructor() {
     super();
     this.state = {
+                  filterCategory: ''
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -27,40 +28,80 @@ export default class ActivityList extends React.Component {
     });
   }
 
+  handleFilter(filter){
+    this.setState({
+      filterCategory: filter})
+  }
+
   handleAddActivitiesForm= () => {
     this.props.history.push('/read/add-activity')
   };
 
+  renderSelectionCategory(){
+    const { filterCategory } = this.state
+    switch(parseInt(filterCategory)){
+    default:
+        return (<h2 className='read-activity__activities_h2'>
+        All Activities</h2>)
+    case 1:
+        return(
+        <h2 className='read-activity__activities_h2'>
+        Warmup Activities</h2>
+        )  
+    case 2: 
+        return(
+            <h2 className='read-activity__activities_h2'>
+            Presentation Activities</h2>)  
+    case 3:
+        return(
+            <h2 className='read-activity__activities_h2'>
+            Practice Activities</h2>)  
+    case 4:
+        return(
+          <h2 className='read-activity__activities_h2'>
+          Production Activities</h2>)  
+    case 5:
+        return(
+          <h2 className='read-activity__activities_h2'>
+          Cooldown Activities</h2>)  
+  }
+  }
+
   renderFilterButtons(){
     const {categories =[]} = this.context
     return(
-       <> <h4>filter activities</h4>
+       <div className='activitlist_filters__all'>
           <label 
-            htmlFor="filter_uploaded"
+            htmlFor="filter_activities"
+            className='activitlist_filters_options'
             key="all_activities">
              <input 
               type="radio" 
-              value="" 
+              value=""
+              className='all-radio option-input radio'
               id="filter_activities" 
               name="filter" 
-              onChange = {e => this.context.handleCategoryFilter(e.target.value)}
+              onChange = {e => {this.context.handleCategoryFilter(e.target.value);
+                                this.handleFilter(e.target.value)}}
                />
-               All Categories
            </label>
-       {categories.map(category =>
-         <label htmlFor="filter_uploaded"
+       {categories.map((category, i)=>
+         <label 
+          htmlFor="filter_activities"
+            className='activitlist_filters_options'
            key={category.title}>
              <input 
                type="radio" 
+               className={category.title + ' option-input radio'}
                value={category.id} 
-               id="filter_uploaded" 
+               id="filter_uploaded"
                name="filter" 
-               onChange = {e => this.context.handleCategoryFilter(e.target.value)}
+               onChange = {e => {this.context.handleCategoryFilter(e.target.value);
+                                this.handleFilter(e.target.value)}}
                />
-           {category.title}
            </label>
        )}
-       </>
+       </div>
     )
   }
 
@@ -86,15 +127,15 @@ export default class ActivityList extends React.Component {
         />
       </li>
     :
-    <li key={activity.title}>
-    <div className='activity'>
-    <h2 className='activity__title'>{activity.title}
-    </h2>
-    <p>This is a blank activity for you to write in yourself
-    if you have an activity on the list</p></div></li>
+        <li key={activity.title}>
+        <div className={'act' + activity.category_id + ' activity__card blank__card'}>
+        <h2 className='activity-card__title'>{activity.title}
+        </h2>
+        <p className='activity-card__body'>This is a blank activity for you to write in yourself
+        if you have an activity not on the list.</p></div></li>
 
-      })
-    }
+        })
+      }
     </>)
   }
 
@@ -106,6 +147,7 @@ export default class ActivityList extends React.Component {
     for (let i = 1; i <= Math.ceil(activityForCategory.length / activitiesPerPage); i++) {
       pageNumbers.push(i);
     }
+    const current = parseInt(this.context.currentPage)
     return (
       <>
       {pageNumbers.map(number => {
@@ -114,6 +156,7 @@ export default class ActivityList extends React.Component {
         key= {number}
         id={number}
         value={number}
+        className={current === number? 'page-numbers active' : 'page-numbers'}
         onClick={e => this.context.handleClick(e.target.value)}
       >
         {number}
@@ -140,18 +183,20 @@ export default class ActivityList extends React.Component {
   render() {
     return (
       <section className='activity-list'>
-      <div>
-        {this.renderFilterButtons()}
-      </div>
-        <ul>
-        {this.renderActivities()}
-        </ul>
-        <ul id="page-numbers">
-        {this.renderPageNumbers()}
-        </ul>
+                {this.renderSelectionCategory()}
+            <div className='acivities__filter-buttons'>
+              <div className='acivities__filter-title'>Filter</div>
+              {this.renderFilterButtons()}
+            </div>
+            <ul id="activities__list">
+              {this.renderActivities()}
+            </ul>
+            <ul id="page-numbers">
+              {this.renderPageNumbers()}
+            </ul>
           <div className='activity-list__button'>
-          <p>Please upload your own activities to share.</p>
-          {this.renderAddActivity()}
+            <p>Share your activities.</p>
+            {this.renderAddActivity()}
         </div>
       </section>
     )

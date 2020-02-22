@@ -1,0 +1,66 @@
+.LoginForm{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 5px 5px 0px 5px black;
+    width: 100%;
+}
+
+.LoginForm label{
+    font-size: 20px; 
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.LoginForm input{
+    font-size: 20px; 
+    font-weight: bold;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.loginform__user-input{
+    margin-bottom:25px;
+    width: 200px;
+}
+
+.loginform__username, .loginform__password{
+    display: flex;
+    flex-direction: column;
+}
+
+.login__button{
+    color: rgba(27,94,32 ,1);
+    border: 2px solid rgba(27,94,32 ,1);
+    align-self: center;
+    font-size: 20px;
+    font-family: Roboto;
+    font-weight: bold;
+    padding: 5px;
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0px rgba(27,94,32 ,1);
+}
+
+.login__button:hover{
+    background-color: rgba(27,94,32 ,1);
+    color: white;
+    font-weight: bolder;
+}
+
+.login__main{
+    width: 100%;
+}
+
+.login__heading{
+    font-family: Roboto;
+    font-size: 3em;
+    margin-bottom: 50px;
+    text-decoration-line: overline underline;
+    text-underline-position: under;
+    color: white;
+    text-shadow: 5px 5px 5px rgb(71, 71, 71);
+}

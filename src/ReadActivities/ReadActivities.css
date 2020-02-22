@@ -1,39 +1,39 @@
-.read-activity__heading a{
-    text-decoration: none;
-    color: black;
-}
-
-.read-activity__heading a:hover{
-    color: orange;
-    cursor: pointer;
+.read-activity__heading{
+    font-family: Roboto;
+    font-size: 3em;
+    margin-bottom: 50px;
+    text-decoration-line: overline underline;
+    text-underline-position: under;
+    color: white;
+    text-shadow: 5px 5px 5px rgb(71, 71, 71);
 }
 
 .read-activity__main{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-
-.read-activity__categories{
-    justify-self: flex-start;
-    align-self: flex-start;
-    width: 310px;
+    width: 700px;
 }
 
 .read-activity__activities{
-    display: flex;
-    flex-direction: column;
-    justify-self: flex-start;
-    align-self: flex-start;
-    width: 360px;
+    background-color: white;
+    width: 85%;
+    border-radius: 15px;
+    box-shadow: 10px 10px 0px black;
+}
+
+.read-activity__activities_h2{
+    text-align: center;
+}
+
+.read-activity__main{
+    margin-bottom: 20px;
 }
 
 @media (max-width: 768px){
-    .read-activity__main{
-        flex-direction: column;
+    .read-activity__activities{
+        width: 90%;
     }
-    .read-activity__categories{
-        justify-self: center;
-        align-self: center;
+    .read-activity__main{
+        padding:0;
+        margin: 0;
+        width: 100vw;
     }
 }

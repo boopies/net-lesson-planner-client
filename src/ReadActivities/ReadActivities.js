@@ -43,19 +43,18 @@ export default class ReadActivities extends React.Component{
 
     render() {
         return (
-                <div className="read-activity">
+                <>
                     <header className="read-activity__header">
                         <h1 className="read-activity__heading">
-                            Read About The Activities
+                            Read About the Activities
                         </h1>
                     </header>
                     <main className="read-activity__main">
                       <div className="read-activity__activities">
-                      <h2>Activities</h2>
-                      <div>{this.renderMainRoutes()}</div>
-                      </div>
+                          <div>{this.renderMainRoutes()}</div>
+                        </div>
                     </main>
-                </div>
+                </>
         );
     }
 }

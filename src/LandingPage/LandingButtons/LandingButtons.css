@@ -1,15 +1,34 @@
 
-button{
-    font-size: 15px;
-    margin-left: 20px;
-    margin-top: 10px;
-    padding: 10px;
-    width: 200px;
+.landing-button_create, .landing-button_read{
+    font-size: 20px;
+    font-family: Roboto;
+    font-weight: bold;
+    padding: 5px;
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0px rgba(255,255,255 ,.5);
 }
 
-button:hover{
-    cursor: pointer;
-    background-color: green;
+.landing-button_create{
+    color: rgba(25,118,210 ,1);
+    border: 2px solid rgba(25,118,210 ,1);
+}
+
+.landing-button_read{
+    margin-left: 20px;
+    color: rgba(123,31,162 ,1);
+    border: 2px solid rgba(123,31,162 ,1);
+}
+
+.landing-button_create:hover{
+    background-color: rgba(25,118,210 ,1);
+    color: white;
+}
+
+.landing-button_read:hover{
+    background-color: rgba(123,31,162 ,1);
+    color: white;
 }
 
 .buttons-to-pages{
@@ -18,8 +37,22 @@ button:hover{
     justify-content: center;
 }
 
+
+
 @media (max-width: 768px) {
     .buttons-to-pages{
         flex-direction: column;
+    }
+
+    .landing-button_create{
+        color: rgba(25,118,210 ,1);
+        border: 2px solid rgba(25,118,210 ,1);
+    }
+    
+    .landing-button_read{
+        margin-top: 20px;
+        margin-left: 0px;
+        color: rgba(123,31,162 ,1);
+        border: 2px solid rgba(123,31,162 ,1);
     }
 }

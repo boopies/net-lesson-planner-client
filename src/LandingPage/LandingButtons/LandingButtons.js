@@ -14,8 +14,18 @@ class LandingButtons extends React.Component{
     render(){
         return (
         <section className='buttons-to-pages'>
-            <button type='button' onClick={() => this.handleNewLesson()}>Create a Lesson Plan</button>
-            <button type='button' onClick={() => this.handleReadActivities()}>Read About the Activities</button>
+            <button
+              className="landing-button_create"
+              type='button' 
+              onClick={() => this.handleNewLesson()}>
+              Create a Lesson Plan</button>
+              
+            <button 
+              className="landing-button_read"
+              color="primary"
+              type='button' 
+              onClick={() => this.handleReadActivities()}>
+              Read the Activities</button>
         </section>
         )
     }

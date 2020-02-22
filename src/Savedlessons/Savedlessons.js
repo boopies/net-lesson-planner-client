@@ -67,13 +67,14 @@ export default class Savedlessons extends React.Component {
           <> 
             <button 
               type = 'submit' 
+              className = 'savedlesson__get-activity-button' 
               disabled = { this.state.button} > 
                 Get Lesson
               </button> 
               <button 
               type = 'button' 
               disabled = { this.state.button}
-              className = 'activity-list-main__add-activity-button' 
+              className = 'savedlesson__delete-activity-button' 
               onClick={e =>
                       window.confirm("Are you sure you wish to delete this item?") &&
                       this.handleDeleteLesson(e)
@@ -82,12 +83,12 @@ export default class Savedlessons extends React.Component {
               </button>
             <button 
               type = 'button' 
-              className = 'activity-list-main__add-activity-button' 
+              className = 'savedlesson__add-activity-button' 
               onClick = {() => this.handleCreateLessonForm()} > 
                 Create a New Lesson Plan 
               </button>
             <button 
-              className="go_back--button" 
+              className="savedlesson__go-back" 
               type='button' 
               onClick={() => this.handleClickGoBack()}>
                 Go Back
@@ -117,12 +118,14 @@ export default class Savedlessons extends React.Component {
   }
 
   render() {
+    const {currentUser =[]} = this.context
     return (
-      <div className="saved-lessons">
+      <>
       <header className="saved-lessons__header">
           <h1 className="saved-lessons__heading">
-              Your Saved Lessons
-          </h1 > </header>
+              {currentUser.username}'s Saved Lessons
+          </h1> 
+      </header>
         <main className="saved-lessons__main">
             <form 
               className="saved-lessons_select-forms" 
@@ -136,12 +139,12 @@ export default class Savedlessons extends React.Component {
                         Select a saved lesson plan</option>
                     {this.renderMyLessonPlans()}
                 </select>
-                <div>
+                <div className='savedlessons__buttons'>
                     {this.renderButtons()}
                 </div>
             </form>
         </main>
-    </div>
+    </>
         )
     }
 }

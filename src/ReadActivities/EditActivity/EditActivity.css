@@ -1,0 +1,145 @@
+.EditActivityForm{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 5px 5px 0px 5px black;
+    width: 100%;
+}
+
+.EditActivityForm label{
+    font-size: 20px; 
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.EditActivityForm input{
+    font-size: 20px; 
+    font-weight: bold;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.edit-activity_select {
+	background-color: rgba(236,239,241 ,1);
+	padding: 12px;
+	width: 310px;
+	border-bottom: 2px solid black;
+	height: 50px;
+	font-size: 20px;
+	font-weight: bold;
+	appearance: button;
+	outline: none;
+  }
+  
+  .edit-activity_select::before {
+	content: "\f13a";
+	font-family: Roboto;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 20%;
+	height: 100%;
+	text-align: center;
+	font-size: 28px;
+	line-height: 45px;
+	color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0.1);
+	pointer-events: none;
+  }
+  
+  .edit-activity_select:hover::before {
+	color: rgba(255, 255, 255, 0.6);
+	background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .edit-activity_select option {
+	padding: 30px;
+  }
+    
+  .edit-activity__title{
+    text-align: center;
+  }
+
+ .edit-activity-input__duration,
+ .edit-activity-input__content,
+ .edit-activity-input__groups,
+ .edit-activity-input__category,
+ .edit-activity-input__duration{
+     display: flex;
+     flex-direction: column;
+ }
+
+
+ .editActivity-submit__button,
+ .editActivity-cancel__button{
+    align-self: center;
+    font-size: 20px;
+    font-family: Roboto;
+    font-weight: bold;
+    padding: 5px;
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+	margin: 5px;
+ }
+
+.editactivitybuttons{
+    margin-top: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ .editActivity-submit__button{
+	box-shadow: 3px 3px 0px rgba(0,96,100 ,1);
+	color: rgba(0,96,100 ,1);
+    border: 2px solid rgba(0,96,100 ,1);
+}
+
+.editActivity-submit__button:hover{
+    background-color: rgba(0,96,100 ,1);
+    color: white;
+    font-weight: bolder;
+    box-shadow: 3px 3px 0px rgba(0,77,64 ,1);
+}
+
+.editActivity-submit__button:disabled{
+	border: 2px solid rgba(69,90,100 ,1);
+	background-color: rgba(69,90,100 ,1);
+	color: white;
+	font-weight: bolder;
+	box-shadow: 3px 3px 0px rgba(69,90,100 ,1);
+}
+
+.editActivity-cancel__button{
+	box-shadow: 3px 3px 0px rgba(198,40,40 ,1);
+	color: rgba(198,40,40 ,1);
+    border: 2px solid rgba(198,40,40 ,1);
+}
+
+.editActivity-cancel__button:hover{
+	background-color:rgba(198,40,40 ,1);
+    color: white;
+    box-shadow: 3px 3px 0px rgb(110, 18, 18);
+}
+
+.new-activity-contents{
+    font-size: 15px;
+}
+
+#new-activity-name-input{
+    width: 100%;
+}
+
+.addactivitybuttons{
+    display: flex;
+}
+
+@media (max-width: 768px){
+    .addactivitybuttons{
+        flex-direction: column;
+    }
+}

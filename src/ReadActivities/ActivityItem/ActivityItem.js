@@ -33,25 +33,27 @@ renderAuthor(authorId){
   render() {
     const { title, duration, grouping, id, authorId, categoryId } = this.props
     return (
-      <div className='activity'>
-            <h2 className='activity__title'>
-              <Link to={`/read/activity/${id}`}>
-                {title}
-              </Link>
-            </h2>
-          <div className="activity__category">
-                <span>Category: {' '}</span> {this.renderCategory(categoryId)}
-          </div>
-          <div className="activity__duration">
-                <span>Length: {' '}</span> {duration}
-          </div>
-          <div className="activity__grouping">
-                <span>Groups: {' '}</span> {grouping}
-          </div>
-          <div className="activity__author">
-                <span>Creator: {' '}</span> {this.renderAuthor(authorId)}
+      <div className={'act'+categoryId + ' activity__card'}>
+            <h3 className='activity-card__title'>
+            {title}
+            </h3>
+            <div className='activity-card__body'>
+              <b>Category: {' '}</b> {this.renderCategory(categoryId)}
+              <br />
+              <b>Length: {' '}</b> {duration}
+              <br />
+              <b>Groups: {' '}</b> {grouping}
+              <br />
+              <b>Creator: {' '}</b> <span className='user_capitalize'>{this.renderAuthor(authorId)}</span>
+            </div>
+          <div className='activity-card__readmore'>
+            <Link to={`/read/activity/${id}`}>
+            <button className='activity-card__learnmore_button'>
+            Read More</button>
+            </Link>
           </div>
       </div>
+
     )
   }
 }
