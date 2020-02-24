@@ -1,0 +1,18 @@
+.edit-created-lesson{
+    display: flex;
+    flex-direction: column;
+}
+
+#create-lesson-form-2{
+    background-image: url(../../images/planner_gb.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 75vw;
+    border-radius: 15px;
+    box-shadow: 5px 5px 0px 5px black;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px 0px 20px 0px;
+    margin-bottom: 20px;
+}

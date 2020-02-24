@@ -137,9 +137,10 @@ export default class CreateLesson extends React.Component{
       switch(step){
         case 1: 
             return(
-              <>
-              <h1>Create a Lesson</h1>
+              <div 
+              className='create-lesson__information'>
               <h2>Part 1 - Lesson Information</h2>
+              <h3>Add some classroom information of the class you are teaching.</h3>
               <FormLessonInfo
                 nextStep={this.nextStep}
                 handleChange={this.handleChange}
@@ -147,13 +148,14 @@ export default class CreateLesson extends React.Component{
                 cancel={this.handleClickCancel}
                 values = {values} 
                 />
-              </>
+              </div>
             )
         case 2: 
             return (
-              <>
-              <h1>Create a Lesson</h1>
+              <div 
+              className='create-lesson__TGOM'>
               <h2>Part 2 - Topic, Goals, Objectives and Materials</h2>
+              <h3>Add some important information about the class.</h3>
               <FormLessonTGOM
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
@@ -161,10 +163,14 @@ export default class CreateLesson extends React.Component{
                 handleChange={this.handleChange}
                 cancel={this.handleClickCancel}
                 values = {values} />
-              </>
+              </div>
             )
-        case 3: return (<><h1>Create a Lesson</h1>
+        case 3: return (
+          <div 
+          className='create-lesson__warmup'>
           <h2>Part 3 - Warmup Activity</h2>
+          <h3>Add in activities to get the students in the mood 
+          to learn English.</h3>
               <FormWarmup
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
@@ -174,9 +180,12 @@ export default class CreateLesson extends React.Component{
                 values = {values} 
                 activities = {activities}  
                 />
-              </>)
-        case 4: return (<><h1>Create a Lesson</h1>
+              </div>)
+        case 4: return (<div 
+          className='create-lesson__presentation'>
           <h2>Part 4 - Presenation Phase Activities</h2>
+          <h3>Add in activities that teach the students how to use the
+          focus of the lessons.</h3>
           <FormPresentation
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
@@ -185,9 +194,12 @@ export default class CreateLesson extends React.Component{
                 cancel={this.handleClickCancel}
                 values = {values} 
                 activities = {activities}  
-                /></>)
-        case 5: return (<><h1>Create a Lesson</h1>
+                /></div>)
+        case 5: return (<div 
+          className='create-lesson__practice'>
           <h2>Part 5 - Practice Phase Activities</h2>
+          <h3>Add in activities that let students practice the focus 
+          of the lesson.</h3>
           <FormPractice
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
@@ -196,9 +208,13 @@ export default class CreateLesson extends React.Component{
                 cancel={this.handleClickCancel}
                 values = {values} 
                 activities = {activities}  
-                /></>)
-        case 6: return (<><h1>Create a Lesson</h1>
+                /></div>)
+        case 6: return (
+          <div 
+          className='create-lesson__production'>
           <h2>Part 6 - Production Phase Activities</h2>
+          <h3>Add in activities to see if the students understand how 
+          to use what you have taught.</h3>
           <FormProduct
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
@@ -207,9 +223,14 @@ export default class CreateLesson extends React.Component{
                 cancel={this.handleClickCancel}
                 values = {values} 
                 activities = {activities}  
-                /></>)
-        case 7: return (<><h1>Create a Lesson</h1>
+                /></div>)
+        case 7: return (
+          <div 
+          className='create-lesson__cooldown'>
           <h2>Part 7 - Optional Cooldown phase Activities</h2>
+          <h3>Add in an optional cooldown activity. This phase is if you have spare 
+            time after the lesson. It is recommended that the activities concentrate
+            on items that the students already know.</h3>
           <FormCooldown
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
@@ -218,9 +239,12 @@ export default class CreateLesson extends React.Component{
                 cancel={this.handleClickCancel}
                 values = {values} 
                 activities = {activities}  
-                /></>)
-        case 8: return (<><h1>Create a Lesson</h1>
+                /></div>)
+        case 8: return (
+          <div 
+          className='create-lesson__reflection'>
           <h2>Part 8 - Lesson Reflections</h2>
+          <h3>Add in some reflection questions to help you improve the lesson.</h3>
           <FormReflection
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
@@ -228,9 +252,12 @@ export default class CreateLesson extends React.Component{
                 handleChange={this.handleChange}
                 cancel={this.handleClickCancel}
                 values = {values} />
-              </>)
-        case 9: return (<><h1>Create a Lesson</h1>
+              </div>)
+        case 9: return (
+          <div 
+          className='create-lesson__confirm'>
           <h2>Confirm Information</h2>
+          <h3>Is this information correct?</h3>
           <FormConfirmation 
             values = {values}
             beginning = {this.goToBeginning}
@@ -240,17 +267,22 @@ export default class CreateLesson extends React.Component{
             activities = {activities} 
             submit={this.handleSubmitForm}
           />
-          </>)
+          </div>)
       }
     }
 
 
     render(){
       return(
-        <form className='create-lesson' id="create-lesson-form"
-                onSubmit={this.handleSubmitForm}>
-          {this.renderForm()}
-        </form>
+        <>
+          <header> <h1>Create a Lesson</h1> </header>
+          <form 
+            className='create-lesson' 
+            id="create-lesson-form"
+            onSubmit={this.handleSubmitForm}>
+            {this.renderForm()}
+          </form>
+        </>
       )
     }
 

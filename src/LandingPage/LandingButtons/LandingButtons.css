@@ -1,34 +1,26 @@
-
-.landing-button_create, .landing-button_read{
-    font-size: 20px;
-    font-family: Roboto;
-    font-weight: bold;
-    padding: 5px;
-    width: 250px;
-    height: 50px;
-    border-radius: 10px;
-    box-shadow: 3px 3px 0px rgba(255,255,255 ,.5);
-}
-
 .landing-button_create{
     color: rgba(25,118,210 ,1);
     border: 2px solid rgba(25,118,210 ,1);
+    box-shadow: 3px 3px 0px rgba(25,118,210 ,1);
 }
 
 .landing-button_read{
     margin-left: 20px;
     color: rgba(123,31,162 ,1);
     border: 2px solid rgba(123,31,162 ,1);
+    box-shadow: 3px 3px 0px rgba(123,31,162 ,1);
 }
 
 .landing-button_create:hover{
     background-color: rgba(25,118,210 ,1);
     color: white;
+    box-shadow: 3px 3px 0px rgb(16, 72, 128);
 }
 
 .landing-button_read:hover{
     background-color: rgba(123,31,162 ,1);
     color: white;
+    box-shadow: 3px 3px 0px rgb(66, 17, 87);
 }
 
 .buttons-to-pages{
@@ -44,15 +36,8 @@
         flex-direction: column;
     }
 
-    .landing-button_create{
-        color: rgba(25,118,210 ,1);
-        border: 2px solid rgba(25,118,210 ,1);
-    }
-    
     .landing-button_read{
         margin-top: 20px;
         margin-left: 0px;
-        color: rgba(123,31,162 ,1);
-        border: 2px solid rgba(123,31,162 ,1);
     }
 }

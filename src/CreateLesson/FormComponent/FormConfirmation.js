@@ -1,6 +1,5 @@
 import React from 'react'
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
@@ -27,11 +26,11 @@ export default  class FormConfirmation extends React.Component {
         const { values } = this.props;
         return (
             <div>
-            <form className='create-lesson' id="create-lesson-form"
-                onSubmit={this.handleSubmitForm}>
+            <form className='create-lesson' id="create-lesson-form-confirm"
+                onSubmit={this.props.handleSubmitForm}>
             <MuiThemeProvider>
                 <React.Fragment>
-                        <List>
+                        <List className='create-confirmation'>
                             <ListItem>
                                 <ListItemText
                                     primary='Lesson Title'
@@ -177,22 +176,18 @@ export default  class FormConfirmation extends React.Component {
                                 />
                             </ListItem>
                         </List>
-                    <Button 
-                        label='Back'
-                        onClick={this.props.beginning}
-                    >
-                    Back
-                    </Button>
-                    <Button 
-                        label='Continue'
-                        onClick={this.continue}
-                    >
-                    Continue
-                    </Button>
-                    <Button 
-                        type='submit'>
-                    Submit
-                    </Button>
+                    <div>
+                        <button 
+                            label='Back'
+                            onClick={this.props.beginning}
+                        >
+                        Back
+                        </button>
+                        <button
+                            type='submit'>
+                        Confirm
+                        </button>
+                    </div>
                 </React.Fragment>
             </MuiThemeProvider> 
             </form>               

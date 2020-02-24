@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import './ValidationError.css'
 
 function ValidationError(props) {
   if(props.message) {

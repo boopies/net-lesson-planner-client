@@ -1,9 +1,120 @@
 
  .lesson_plan__title, .lesson_plan__content, .lesson_plan__how_to_play{
-   border: 1px solid black;
+  border: 1px solid black;
+}
+
+#lesson_plan__full{
+   width: 65%;
+   margin-top: 50px;
+   background-color: white;
+   padding: 20px;
+   border-radius: 20px;
+   box-shadow: 5px 5px 0px 5px black;
+   margin-bottom: 50px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.lesson_plan{
+  width: 95%;
+}
+
+.lesson_plan_D-and-P,
+.lesson_plan_C-CS-CL,
+.lesson_plan_G-O{
+   display: flex;
+   width: 100%;
+}
+
+.lesson_plan__title{
+  width: 100%;
+  text-align: center;
+}
+
+.lesson_plan__content{
+  width: 100%;
+}
+
+.lesson_plan__content p{
+  margin:10px 5px 10px 20px;
+  font-size: 16px;
+}
+
+.lesson_plan__title h3{
+  margin: 5px 0px 5px 0px;
+}
+
+.goal_object{
+  height: 110px;
+}
+
+ .lesson_plan_mats{
+   display: flex;
+   width: 100%;
  }
 
- #lesson_plan__full{
-   width: 85%;
-    margin-top: 50px;
+ .materials{
+   width: 100%;
+   padding: 0;
+   margin:0;
  }
+
+.material ul {
+ column-count: 4;
+ column-gap: 20px;
+}
+
+.lesson_plan__info{
+ display: flex;
+}
+
+.lesson_plan__info_name,
+.lesson_plan__info_dur,
+.lesson_plan__info_group{
+ width: 33.33%
+}
+
+.lesson_plan_phase,
+.Star-Lesson-plan{
+ width: 100%;
+}
+
+
+.lesson_plan_phase{
+ border: 1px solid black;
+}
+
+.Warmups{
+ background-color: rgba(255,204,188 ,1);
+}
+
+.Presentations{
+ background-color: rgba(255,249,196 ,1)
+}
+
+.Practices{
+ background-color: rgba(200,230,201 ,1);
+}
+
+.Productions{
+ background-color: rgba(179,229,252 ,1);
+}
+
+.Cooldowns{
+ background-color: rgba(197,202,233 ,1);
+}
+
+.lesson_plan_phase h3{
+ text-align: center;
+}
+
+.lesson_plan_ref{
+ display: flex;
+ width: 100%;
+}
+
+.reflections{
+ width: 100%;
+}

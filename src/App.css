@@ -1,11 +1,6 @@
 body{
-    background-color:#2C0155;
-    background-blend-mode: multiply;
+    background-color: rgba(84,110,122 ,1);
     background-clip: border-box;
-    /*background-image: url(../src/images/background-planner.jpg);*/
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
 }
 
 .App{
@@ -25,6 +20,18 @@ main{
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+}
+
+button{
+    align-self: center;
+    font-size: 20px;
+    font-family: Roboto;
+    font-weight: bold;
+    padding: 5px;
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+	margin: 5px;
 }
 
 @media (min-width: 768px) {

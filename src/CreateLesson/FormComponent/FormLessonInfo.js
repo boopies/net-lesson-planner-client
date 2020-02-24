@@ -1,11 +1,9 @@
 import React from 'react';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
-import AppBar from '@material-ui/core/AppBar'
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Typography from '@material-ui/core/Typography';
+import ValidationError from '../../ReadActivities/ValidationError/ValidationError'
 
 
 export class FormLessonInfo extends React.Component {
@@ -63,51 +61,126 @@ export class FormLessonInfo extends React.Component {
         )
     }
 
+    validateTitle(fieldValue) {
+        const { values  } = this.props;
+        const titles = values.title;
+        if (titles.length === 0) {
+          return 'Title is required.';
+        } else if (titles.length < 2) {
+          return <div id="ANErrorMessage">New Lessons name must be 3 characters long.</div>;
+        }
+      }
+
+      validateClasslevel(fieldValue) {
+        const { values  } = this.props;
+        const classLevel = values.classlevel;
+        if (classLevel.length === 0) {
+          return 'Year level is required.';
+        } else if (classLevel.length < 0) {
+          return <div id="ANErrorMessage">Choose a year level of the class.</div>;
+        }
+      }
+
+      validateDate(fieldValue) {
+        const { values  } = this.props;
+        const date = values.date;
+        if (date.length === 0) {
+          return 'Date is required. Use YYYY/MM/DD.';
+        } else if (date.length < 2) {
+          return <div id="ANErrorMessage">Add a new Date.</div>;
+        }
+      }
+
+      validateDay(fieldValue) {
+        const { values  } = this.props;
+        const day = values.day;
+        if (day.length === 0) {
+          return 'Day of week is required.';
+        } else if (day.length < 2) {
+          return <div id="ANErrorMessage">Choose the day of the lesson.</div>;
+        }
+      }
+
+      validateDuration(fieldValue) {
+        const { values  } = this.props;
+        const duration = values.duration;
+        if (duration.length === 0) {
+          return 'Lesson Duration is required.';
+        } else if (duration.length < 2) {
+          return <div id="ANErrorMessage">Choose the length of the lesson.</div>;
+        }
+      }
+
+      validatePeriod(fieldValue) {
+        const { values  } = this.props;
+        const period = values.period;
+        if (period.length === 0) {
+          return 'Lesson Period is required.';
+        } else if (period.length < 2) {
+          return <div id="ANErrorMessage">Choose the period the lesson occurs</div>;
+        }
+      }
+
+      validateClassSize(fieldValue) {
+        const { values  } = this.props;
+        const classSize = values.class_size;
+        if (parseInt(classSize) === 0) {
+          return 'Class Size is Required';
+        } else if (classSize < 1 || classSize > 45) {
+          return <div id="ANErrorMessage">Class size must be between 1 - 45.</div>;
+        }
+      }
+
     render() {
         const { values, handleChange } = this.props;
         return (
-            <MuiThemeProvider>
                 <React.Fragment>
-                    <AppBar title="Enter User Details" />
-                    <Typography id="lesson_class-size">
-                        Title
-                    </Typography>
-                    <TextField 
-                        required
-                        id="lesson_title"
-                        defaultValue={values.title}
-                        onChange={handleChange('title')}
-                        margin="normal"
-                        placeholder="Lesson Title"
-                        variant="outlined"
-                    />
-                    <br />
                     <FormControl variant="outlined">
-                    <Typography id="lesson_year-level">
-                       Year Level
-                    </Typography>
-                        <NativeSelect
-                        required
-                        id='lesson_year-level'
-                        value={values.classlevel}
-                        onChange={handleChange('classlevel')}
-                        >
-                        <option value="">Select A Year Level</option>
-                        {this.renderClassLevel()}
-                        </NativeSelect>
+                            <Typography id="lesson_class-size">
+                                Title
+                            </Typography>
+                            <TextField
+                                required
+                                id="lesson_title"
+                                defaultValue={values.title}
+                                onChange={handleChange('title')}
+                                margin="normal"
+                                placeholder="Lesson Title"
+                                variant="outlined"
+                            />
+                            {<ValidationError message={this.validateTitle()}/>}
                     </FormControl>
                     <br />
-                    <Typography id="lesson_date">
-                        Date
-                    </Typography>
-                    <TextField
-                        required
-                        id="lesson_date"
-                        type="date"
-                        defaultValue="2020-02-24"
-                        onChange={handleChange('date')}
-                        variant="outlined"
-                    />
+                    <FormControl variant="outlined">
+                        <Typography id="lesson_year-level">
+                        Year Level
+                        </Typography>
+                            <NativeSelect
+                            required
+                            id='lesson_year-level'
+                            value={values.classlevel}
+                            onChange={handleChange('classlevel')}
+                            >
+                            <option value="">Select A Year Level</option>
+                            {this.renderClassLevel()}
+                            </NativeSelect>
+                            {<ValidationError message={this.validateClasslevel()}/>}
+                        </FormControl>
+                    <br />
+                    <FormControl variant="outlined">
+                        <Typography id="lesson_date">
+                            Date
+                        </Typography>
+                        <TextField
+                            required
+                            id="lesson_date"
+                            type="date"
+                            defaultValue="2020-02-24"
+                            onChange={handleChange('date')}
+                            variant="outlined"
+                        />
+                        {<ValidationError message={this.validateDate()}/>}
+                    </FormControl>
                     <br />
                     <Typography id="lesson_day">
                         Day
@@ -122,6 +195,7 @@ export class FormLessonInfo extends React.Component {
                         <option value="">Select a Day</option>
                         {this.renderDayofWeek()}
                         </NativeSelect>
+                        {<ValidationError message={this.validateDay()}/>}
                     </FormControl>
                     <br />
                     <Typography id="lesson_duration">
@@ -137,6 +211,7 @@ export class FormLessonInfo extends React.Component {
                         <option value="">Select Lesson Length</option>
                         {this.renderDuration()}
                     </NativeSelect>
+                    {<ValidationError message={this.validateDuration()}/>}
                     </FormControl>
                     <br />
                     <Typography id="lesson_period">
@@ -152,44 +227,57 @@ export class FormLessonInfo extends React.Component {
                         <option value="">Select Period</option>
                         {this.renderClassPeriod()}
                     </NativeSelect>
+                    {<ValidationError message={this.validatePeriod()}/>}
                     </FormControl>
                     <br />
+                    <FormControl variant="outlined">
                     <Typography id="lesson_class-size">
                         Class Size
                     </Typography>
-                    <TextField
-                        required
-                        value={values.class_size}
-                        id="lesson_class-size"
-                        type="number"
-                        variant="outlined"
-                        inputProps={{ 
-                                        min: "1", 
-                                        max: "40", 
-                                        step: "1", 
-                                        placeholder: "20" }}
-                        onChange={handleChange('class_size')}
-                    />
+                        <TextField
+                            required
+                            value={values.class_size}
+                            id="lesson_class-size"
+                            type="number"
+                            variant="outlined"
+                            inputProps={{ 
+                                            min: "1", 
+                                            max: "45", 
+                                            step: "1", 
+                                            placeholder: "20" }}
+                            onChange={handleChange('class_size')}
+                        />
+                    {<ValidationError message={this.validateClassSize()}/>}
+                    </FormControl>
                     <br />
-                    <Button 
-                        variant="outlined" 
-                        color="primary"
-                        label='Continue'
-                        onClick={this.continue}
-                    >
+                    <div
+                        className='All_buttons'>
+                    <button
+                        className='ActivityPage__edit-button'
+                        type='button'
+                        onClick={this.continue}>
                     Continue
-                    </Button>
-                    <Button 
-                        variant="outlined"
-                        color='secondary'
-                        type='reset' 
+                    </button>
+                    <button
+                        className='savedlesson__go-back'
+                        type='button'
                         onClick={this.props.cancel}>
                     Cancel
-                    </Button>
+                    </button>
+                    </div>
                 </React.Fragment>
-            </MuiThemeProvider>
         )
     }
 }
 
 export default FormLessonInfo
+
+/*
+                        disabled={this.validateTitle()||
+                                    this.validateClasslevel()||
+                                    this.validateDate()||
+                                    this.validateDay()||
+                                    this.validateDuration()||
+                                    this.validatePeriod()||
+                                    this.validateClassSize()}
+                                    */

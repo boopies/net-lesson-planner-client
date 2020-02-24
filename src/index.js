@@ -5,6 +5,7 @@ import './index.css'
 import App from './App'
 import Modal from 'react-modal';
 import 'typeface-roboto';
+import 'normalize.css';
 
 Modal.setAppElement('#root');
 

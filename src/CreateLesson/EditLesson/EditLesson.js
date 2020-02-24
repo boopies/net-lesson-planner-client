@@ -4,6 +4,7 @@ import { getActivityForCategory, findActivity } from '../../ReadActivities/helpe
 import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import './EditLesson.css'
 
 export default class EditLesson extends React.Component{
     constructor(props) {
@@ -294,8 +295,10 @@ export default class EditLesson extends React.Component{
             <header>
                 <h1>Modify Lesson Plan</h1>
             </header>
-            <section>
-                <form className='create-lesson' id="create-lesson-form"
+            <section className='edit_lesson-planbody_editcreate'>
+                <form 
+                className='edit-created-lesson' 
+                id="create-lesson-form-2"
                 onSubmit={this.handleSubmitForm}>
                 <div className="input--class--title">
                     <label htmlFor='title'>Title: </label>
@@ -307,7 +310,7 @@ export default class EditLesson extends React.Component{
                         required
                         />
                 </div>
-                <div className="input--class--level">
+                <div className="input--class--level modify__lessonplan">
                     <label htmlFor='title'>Grade: </label>
                     <select
                     id="classLevel"
@@ -318,7 +321,7 @@ export default class EditLesson extends React.Component{
                         {this.renderClassLevel()}
                         </select>
                 </div>
-                <div className="input--class--date">
+                <div className="input--class--date modify__lessonplan">
                     <label htmlFor='date'>Date: </label>
                         <input 
                         id='date'
@@ -330,7 +333,7 @@ export default class EditLesson extends React.Component{
                         />
                 </div>
 
-                <div className="input--class--day">
+                <div className="input--class--day modify__lessonplan">
                     <label htmlFor='day-of-week'>Day: </label>
                     <select
                     id="day"
@@ -342,7 +345,7 @@ export default class EditLesson extends React.Component{
                 </div>
 
 
-                <div className='input--class--period'>
+                <div className='input--class--period modify__lessonplan'>
                 <label htmlFor='class--period'>Period: </label>
                     <select id="period"
                     value={period}
@@ -352,7 +355,7 @@ export default class EditLesson extends React.Component{
                     </select>
                 </div>
 
-                <div className='input--topic'>
+                <div className='input--topic modify__lessonplan'>
                     <label htmlFor='topic'>Topic: </label>
                         <input id='topic'
                         type='text' 
@@ -362,7 +365,7 @@ export default class EditLesson extends React.Component{
                         required />
                 </div>
 
-                <div className='input--class-size'>    
+                <div className='input--class-size modify__lessonplan'>    
                     <label>Class Size: </label>
                         <input 
                         id='classSize'
@@ -375,7 +378,7 @@ export default class EditLesson extends React.Component{
                         required />
                 </div>
 
-                <div className='input--class-length'>
+                <div className='input--class-length modify__lessonplan'>
                     <label>Class Length: </label>
                     <select 
                         id="duration"
@@ -385,7 +388,7 @@ export default class EditLesson extends React.Component{
                     </select>
                 </div>
 
-                <div className='input--class-goals'>
+                <div className='input--class-goals modify__lessonplan'>
                     <label htmlFor='goal'>Goal: </label>
                         Finish the Sentence
                         <textarea 
@@ -396,9 +399,9 @@ export default class EditLesson extends React.Component{
                         onChange={e => this.updateGoal(e.target.value)}
                         required />
                 </div>
+                <hr />
 
-                <div className='input--class-objectives'>
-                    <fieldset> 
+                <div className='input--class-objectives modify__lessonplan'>
                         <legend>Objectives</legend>
                         <label>Students should be able to: </label>
                             <input id='objectiveOne'
@@ -414,7 +417,7 @@ export default class EditLesson extends React.Component{
                             value={objective_two}
                             onChange={e => this.updateObjectiveTwo(e.target.value)}
                             />
-                        <label>Students should be able to:: </label>
+                        <label>Students should be able to:</label>
                             <input 
                             id='objectiveThree'
                             type='text' 
@@ -422,10 +425,9 @@ export default class EditLesson extends React.Component{
                             value={objective_three}
                             onChange={e => this.updateObjectiveThree(e.target.value)}
                             />
-                    </fieldset> 
                 </div>
-
-                <div className='input--class-materials'>
+            <hr />
+                <div className='input--class-materials modify__lessonplan'>
                     <fieldset> 
                         <legend>Materials</legend>
                         <textarea id = "materials"
@@ -437,10 +439,12 @@ export default class EditLesson extends React.Component{
                                 required />
                     </fieldset> 
                 </div>
-                <div className='input--warmup-phase'>
-                    <fieldset> 
+                <hr />
+
+                <div className='input--warmup-phase modify__lessonplan'>
                         <legend>Warm-up</legend>
                         <label>Warm-up Activity: </label>
+                        <div className='Activity-select'>
                         <select
                         id="warmupactivity"
                         value={warmup_id}
@@ -448,13 +452,14 @@ export default class EditLesson extends React.Component{
                         {this.renderOptions('1')}
                         </select>
                         <div>{this.renderTooltipinfo(this.state.warmup_id)}</div>
-                    </fieldset>
+                        </div>
                 </div>
+                <hr />
 
-                <div className='input--presentation-phase'>
-                    <fieldset> 
+                <div className='input--presentation-phase modify__lessonplan'>
                         <legend>Presentation</legend>
                         <label>Presentation Activity 01: </label>
+                        <div className='Activity-select'>
                         <select
                         id="presentation01"
                         value={presentation_one_id}
@@ -462,21 +467,23 @@ export default class EditLesson extends React.Component{
                             {this.renderOptions('2')}
                         </select>
                         <div>{this.renderTooltipinfo(this.state.presentation_one_id)}</div>
+                        </div>
                         <label>Presentation Activity 02: </label>
+                        <div className='Activity-select'>
                         <select
                         id="presentation02"
                         value={presentation_two_id}
                         onChange={e => this.updatePresentationTwo(e.target.value)}>
                         {this.renderOptions('2')}
                         </select>
-                        <div>{this.renderTooltipinfo(this.state.presentation_two_id)}</div>            
-                    </fieldset>
+                        <div>{this.renderTooltipinfo(this.state.presentation_two_id)}</div>   
+                        </div>
                 </div>
-
-                <div className='input--practice-phase'>
-                    <fieldset> 
+                <hr />
+                <div className='input--practice-phase modify__lessonplan'>
                         <legend>Practice</legend>
                         <label>Practice Activity 01: </label>
+                        <div className='Activity-select'>
                         <select
                         id="practice01"
                         value={practice_one_id}
@@ -484,7 +491,9 @@ export default class EditLesson extends React.Component{
                             {this.renderOptions('3')}
                         </select>
                         <div>{this.renderTooltipinfo(this.state.practice_one_id)}</div> 
+                        </div>
                         <label>Practice Activity 02:</label>
+                        <div className='Activity-select'>
                         <select
                            id="practice02"
                            value={practice_two_id}
@@ -492,21 +501,24 @@ export default class EditLesson extends React.Component{
                             {this.renderOptions('3')}
                         </select>
                         <div>{this.renderTooltipinfo(this.state.practice_two_id)}</div> 
+                        </div>
                         <label>Practice Activity 03: </label>
+                        <div className='Activity-select'>
                         <select
                             id="practice03"
                             value={practice_three_id}
                             onChange={e => this.updatePracticeThree(e.target.value)}>                  
                             {this.renderOptions('3')}
                         </select>  
-                        <div>{this.renderTooltipinfo(this.state.practice_three_id)}</div>         
-                    </fieldset>
+                        <div>{this.renderTooltipinfo(this.state.practice_three_id)}</div> 
+                        </div>        
                   </div>
+                  <hr />
 
-                  <div className='input--production-phase'>
-                    <fieldset> 
+                  <div className='input--production-phase modify__lessonplan'>
                         <legend>Production</legend>
                         <label>Production Activity 01: </label>
+                        <div className='Activity-select'>
                         <select
                             id="production01"
                             value={product_one_id}
@@ -514,33 +526,35 @@ export default class EditLesson extends React.Component{
                             {this.renderOptions('4')}
                         </select>
                         <div>{this.renderTooltipinfo(this.state.product_one_id)}</div>  
+                        </div>
                         <label>Production Activity 02: </label>
+                        <div className='Activity-select'>
                         <select
                             id="production02"
                             value={product_two_id}
                             onChange={e => this.updateProductionTwo(e.target.value)}>
                             {this.renderOptions('4')}
                         </select>
-                        <div>{this.renderTooltipinfo(this.state.product_two_id)}</div>                      
-                    </fieldset>
+                        <div>{this.renderTooltipinfo(this.state.product_two_id)}</div>  
+                        </div>                    
                   </div>
+                  <hr />
 
-                  <div className='input--cooldown-phase'>
-                    <fieldset> 
+                  <div className='input--cooldown-phase modify__lessonplan'>
                         <legend>Cool Down</legend>
                         <label>Cool Down Activity 01: </label>
+                        <div className='Activity-select'>
                         <select
                         id="cooldown"
                         value={cooldown_id}
                         onChange={e => this.updateCooldown(e.target.value)}>
                             {this.renderOptions('5')}
                         </select> 
-                        <div>{this.renderTooltipinfo(this.state.cooldown_id)}</div>               
-                    </fieldset>
+                        <div>{this.renderTooltipinfo(this.state.cooldown_id)}</div>  
+                        </div>             
                     </div>
-
-                    <div className='input--class-reflections'>
-                    <fieldset> 
+                    <hr />
+                    <div className='input--class-reflections modify__lessonplan'>
                         <legend>Reflection</legend>
                         <label>Reflection Question 01: </label>
                             <input 
@@ -567,14 +581,17 @@ export default class EditLesson extends React.Component{
                             value={reflection_three}
                             onChange={e => this.updateReflectionThree(e.target.value)}
                             />
-                    </fieldset> 
                     </div>
-                    <button type='submit'>Submit</button>
+                    <div
+                      className="edit-lesson__buttons">
                     <button 
-                      className="cancel--button" 
+                     className="update-edit-lesson__button" type='submit'>Submit</button>
+                    <button 
+                      className="cancel-edit-lesson__button" 
                       type='button' 
                       onClick={() => this.handleClickCancel()}>
                       Cancel</button>
+                      </div>
                 </form>
             </section>
             </>

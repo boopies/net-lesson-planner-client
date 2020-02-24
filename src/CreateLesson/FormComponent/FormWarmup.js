@@ -1,6 +1,4 @@
 import React from 'react';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Typography from '@material-ui/core/Typography';
@@ -8,6 +6,7 @@ import { getActivityForCategory, findActivity } from '../../ReadActivities/helpe
 import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import ValidationError from '../../ReadActivities/ValidationError/ValidationError'
 
 
 export class FormWarmup extends React.Component {    
@@ -48,7 +47,7 @@ renderTooltipinfo(actId){
 
  return(
       <>
-      <Tooltip title={activity.content.split(/\\n \\r|\\n|\n|\\n \\r/).map((para, i) =>
+      <Tooltip className='tooltip' title={activity.content.split(/\\n \\r|\\n|\n|\\n \\r/).map((para, i) =>
           <p className="tooltips" key={i}>{para}</p>
         )}>
         <IconButton aria-label="check">
@@ -58,16 +57,25 @@ renderTooltipinfo(actId){
       </>)
   }
 
+
+  validateWarmup(fieldValue) {
+    const { values  } = this.props;
+    const warmup = values.warmup_id;
+    if (parseInt(warmup) === 1) {
+      return 'Warmup Activity is Required';
+    }
+  }
+
     render() {
         const { values, handleChange } = this.props;
         return (
             <div>
-                <MuiThemeProvider>
                     <React.Fragment>
                     <FormControl variant="outlined">
                     <Typography id="lesson_warmup-phase">
                        Warmup Activity
                     </Typography>
+                        <div className='Activity-select'>
                         <NativeSelect
                         id='lesson_warmup_id'
                         value={values.warmup_id}
@@ -76,31 +84,41 @@ renderTooltipinfo(actId){
                         {this.renderOptions(1)}
                         </NativeSelect>
                         {this.renderTooltipinfo(values.warmup_id)}
+                        </div>
+                        {<ValidationError message={this.validateWarmup()}/>}
                     </FormControl>
-                    <Button                         
-                        variant="outlined" 
-                        color="secondary"
-                        label='Back'
-                        onClick={this.back}
-                    >
-                    Back
-                    </Button>
-                    <Button 
-                        variant="outlined" 
-                        color="primary"
-                        label='Continue'
-                        onClick={this.continue}
-                    >
-                    Continue
-                    </Button>
-                    <Button 
+                    <div
+                        className='All_buttons'>
+                        <div className='create-create-buttons'>
+                            <button                        
+                                className='savedlesson__delete-activity-button' 
+                                variant="outlined" 
+                                color="secondary"
+                                label='Back'
+                                onClick={this.back}
+                            >
+                            Back
+                            </button>
+                            <button
+                                className='ActivityPage__edit-button'
+                                variant="outlined" 
+                                color="primary"
+                                label='Continue'
+                                onClick={this.continue}
+                                disabled={this.validateWarmup()}
+                            >
+                            Continue
+                            </button>
+                    </div>
+                    <button 
+                        className='savedlesson__go-back'
                         variant="outlined" 
                         type='reset' 
                         onClick={this.props.cancel}>
                     Cancel
-                    </Button>
+                    </button>
+                    </div>
                     </React.Fragment>
-                </MuiThemeProvider>
             </div>
         )
     }

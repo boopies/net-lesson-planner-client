@@ -1,6 +1,5 @@
 import React from 'react';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Typography from '@material-ui/core/Typography';
@@ -8,6 +7,8 @@ import { getActivityForCategory, findActivity } from '../../ReadActivities/helpe
 import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import ValidationError from '../../ReadActivities/ValidationError/ValidationError'
+
 
 
 export class FormPresentation extends React.Component {    
@@ -42,6 +43,14 @@ renderOptions(catId){
     )
 }
 
+validatePresentation(fieldValue) {
+    const { values  } = this.props;
+    const presentation = values.presentation_one_id;
+    if (parseInt(presentation) === 2) {
+      return 'A Presentation Activity is required';
+    }
+  }
+
 renderTooltipinfo(actId){
     const {activities} = this.props
     const activity = findActivity(activities, actId)
@@ -68,6 +77,7 @@ renderTooltipinfo(actId){
                     <Typography id="lesson_presentation-phase">
                        Presentation Activity One
                     </Typography>
+                        <div className='Activity-select'>
                         <NativeSelect
                         id='lesson_presentation_one_id'
                         value={values.presentation_one_id}
@@ -76,12 +86,15 @@ renderTooltipinfo(actId){
                         {this.renderOptions(2)}
                         </NativeSelect>
                         {this.renderTooltipinfo(values.presentation_one_id)}
+                        </div>
+                        {<ValidationError message={this.validatePresentation()}/>}
                     </FormControl>
                     <br />
                     <FormControl variant="outlined">
                     <Typography id="lesson_presentation-phase">
                         Presentation Activity Two
                     </Typography>
+                        <div className='Activity-select'>
                         <NativeSelect
                         id='lesson_presentation_two_id'
                         value={values.presentation_two_id}
@@ -90,30 +103,40 @@ renderTooltipinfo(actId){
                         {this.renderOptions(2)}
                         </NativeSelect>
                         {this.renderTooltipinfo(values.presentation_two_id)}
+                        </div>
                     </FormControl>
                     <br />
-                    <Button                         
-                        variant="outlined" 
-                        color="secondary"
-                        label='Back'
-                        onClick={this.back}
-                    >
-                    Back
-                    </Button>
-                    <Button 
-                        variant="outlined" 
-                        color="primary"
-                        label='Continue'
-                        onClick={this.continue}
-                    >
-                    Continue
-                    </Button>
-                    <Button 
+                    <div
+                        className='All_buttons'>
+                        <div className='create-create-buttons'>
+                            <button                        
+                                className='savedlesson__delete-activity-button' 
+                                variant="outlined" 
+                                color="secondary"
+                                label='Back'
+                                onClick={this.back}
+                            >
+                            Back
+                            </button>
+                            <button
+                                className='ActivityPage__edit-button'
+                                variant="outlined" 
+                                color="primary"
+                                label='Continue'
+                                onClick={this.continue}
+                                disabled={this.validatePresentation()}
+                            >
+                            Continue
+                            </button>
+                    </div>
+                    <button 
+                        className='savedlesson__go-back'
                         variant="outlined" 
                         type='reset' 
                         onClick={this.props.cancel}>
                     Cancel
-                    </Button>
+                    </button>
+                    </div>
                     </React.Fragment>
                 </MuiThemeProvider>
             </div>

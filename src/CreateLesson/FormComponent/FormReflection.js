@@ -1,8 +1,9 @@
 import React from 'react';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography';
+import ValidationError from '../../ReadActivities/ValidationError/ValidationError'
+
 
 export class FormReflection extends React.Component {
 
@@ -16,10 +17,16 @@ export class FormReflection extends React.Component {
         this.props.prevStep();
     }
 
-    reset = e => {
-        e.preventDefault();
-        this.props.resetForm();
-    }
+
+    validateReflection(fieldValue) {
+        const { values  } = this.props;
+        const reflection = values.reflection_one;
+        if (reflection.length === 0) {
+          return 'One reflection question is required.';
+        } else if (reflection.length < 5) {
+          return <div id="ANErrorMessage">reflection question should be longer than 5 characters.</div>;
+        }
+      }
 
     render() {
         const { values, handleChange } = this.props;
@@ -40,6 +47,7 @@ export class FormReflection extends React.Component {
                         helperText="Some reflection questions to ask yourself"
                         variant="outlined"
                     />
+                    {<ValidationError message={this.validateReflection()}/>}
                     <br />
                     <Typography id="lesson_lesson-reflection">
                     Lesson Reflection Two
@@ -65,28 +73,37 @@ export class FormReflection extends React.Component {
                         variant="outlined"
                     />
                     <br />
-                    <Button                         
-                        variant="outlined" 
-                        color="secondary"
-                        label='Back'
-                        onClick={this.back}
-                    >
-                    Back
-                    </Button>
-                    <Button 
-                        variant="outlined" 
-                        color="primary"
-                        label='Continue'
-                        onClick={this.continue}
-                    >
-                    Continue
-                    </Button>
-                    <Button 
+                    <div
+                        className='All_buttons'>
+                        <div className='create-create-buttons'>
+                            <button                        
+                                className='savedlesson__delete-activity-button' 
+                                variant="outlined" 
+                                color="secondary"
+                                label='Back'
+                                onClick={this.back}
+                            >
+                            Back
+                            </button>
+                            <button
+                                className='ActivityPage__edit-button'
+                                variant="outlined" 
+                                color="primary"
+                                label='Continue'
+                                onClick={this.continue}
+                                disabled={this.validateReflection()}
+                            >
+                            Continue
+                            </button>
+                    </div>
+                    <button 
+                        className='savedlesson__go-back'
                         variant="outlined" 
                         type='reset' 
                         onClick={this.props.cancel}>
                     Cancel
-                    </Button>
+                    </button>
+                    </div>
                 </React.Fragment>
             </MuiThemeProvider>
             </div>

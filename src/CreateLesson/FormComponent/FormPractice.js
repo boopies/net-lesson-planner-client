@@ -1,6 +1,5 @@
 import React from 'react';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Typography from '@material-ui/core/Typography';
@@ -8,6 +7,8 @@ import { getActivityForCategory, findActivity } from '../../ReadActivities/helpe
 import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import ValidationError from '../../ReadActivities/ValidationError/ValidationError'
+
 
 
 export class FormPractice extends React.Component {    
@@ -42,6 +43,14 @@ renderOptions(catId){
     )
 }
 
+validatePractice(fieldValue) {
+    const { values  } = this.props;
+    const practice = values.practice_one_id;
+    if (parseInt(practice) === 3) {
+      return 'A practice activity is required';
+    }
+  }
+
 renderTooltipinfo(actId){
     const {activities} = this.props
     const activity = findActivity(activities, actId)
@@ -68,6 +77,7 @@ renderTooltipinfo(actId){
                     <Typography id="lesson_practice-phase">
                     Practice Activity One
                     </Typography>
+                    <div className='Activity-select'>
                         <NativeSelect
                         required
                         id='lesson_practice_one_id'
@@ -77,12 +87,15 @@ renderTooltipinfo(actId){
                         {this.renderOptions(3)}
                         </NativeSelect>
                         {this.renderTooltipinfo(values.practice_one_id)}
+                        </div>
+                        {<ValidationError message={this.validatePractice()}/>}
                     </FormControl>
                     <br />
                     <FormControl variant="outlined">
                     <Typography id="lesson_practice-phase">
-                    Practice Activity Two (Optional)
+                    Practice Activity Two
                     </Typography>
+                    <div className='Activity-select'>
                         <NativeSelect
                         id='lesson_practice_two_id'
                         value={values.practice_two_id}
@@ -91,12 +104,14 @@ renderTooltipinfo(actId){
                         {this.renderOptions(3)}
                         </NativeSelect>
                         {this.renderTooltipinfo(values.practice_two_id)}
+                        </div>
                     </FormControl>
                     <br />
                     <FormControl variant="outlined">
                     <Typography id="lesson_practice-phase">
-                    Practice Activity Three (Optional)
+                    Practice Activity Three
                     </Typography>
+                    <div className='Activity-select'>
                         <NativeSelect
                         id='lesson_practice_three_id'
                         value={values.practice_three_id}
@@ -105,30 +120,40 @@ renderTooltipinfo(actId){
                         {this.renderOptions(3)}
                         </NativeSelect>
                         {this.renderTooltipinfo(values.practice_three_id)}
+                        </div>
                     </FormControl>
                     <br />
-                    <Button                         
-                        variant="outlined" 
-                        color="secondary"
-                        label='Back'
-                        onClick={this.back}
-                    >
-                    Back
-                    </Button>
-                    <Button 
-                        variant="outlined" 
-                        color="primary"
-                        label='Continue'
-                        onClick={this.continue}
-                    >
-                    Continue
-                    </Button>
-                    <Button 
+                    <div
+                        className='All_buttons'>
+                        <div className='create-create-buttons'>
+                            <button                        
+                                className='savedlesson__delete-activity-button' 
+                                variant="outlined" 
+                                color="secondary"
+                                label='Back'
+                                onClick={this.back}
+                            >
+                            Back
+                            </button>
+                            <button
+                                className='ActivityPage__edit-button'
+                                variant="outlined" 
+                                color="primary"
+                                label='Continue'
+                                onClick={this.continue}
+                                disabled={this.validatePractice()}
+                            >
+                            Continue
+                            </button>
+                    </div>
+                    <button 
+                        className='savedlesson__go-back'
                         variant="outlined" 
                         type='reset' 
                         onClick={this.props.cancel}>
                     Cancel
-                    </Button>
+                    </button>
+                    </div>
                     </React.Fragment>
                 </MuiThemeProvider>
             </div>

@@ -1,6 +1,4 @@
 import React from 'react';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Typography from '@material-ui/core/Typography';
@@ -57,12 +55,12 @@ renderTooltipinfo(actId){
         const { values, handleChange } = this.props;
         return (
             <div>
-                <MuiThemeProvider>
                     <React.Fragment>
                     <FormControl variant="outlined">
                     <Typography id="lesson_product-phase">
                     Cooldown Activity
                     </Typography>
+                    <div className='Activity-select'>
                         <NativeSelect
                         required
                         id='lesson_cooldown_id'
@@ -72,32 +70,40 @@ renderTooltipinfo(actId){
                         {this.renderOptions(4)}
                         </NativeSelect>
                         {this.renderTooltipinfo(values.cooldown_id)}
+                        </div>
                     </FormControl>
                     <br />
-                    <Button                         
-                        variant="outlined" 
-                        color="secondary"
-                        label='Back'
-                        onClick={this.back}
-                    >
-                    Back
-                    </Button>
-                    <Button 
-                        variant="outlined" 
-                        color="primary"
-                        label='Continue'
-                        onClick={this.continue}
-                    >
-                    Continue
-                    </Button>
-                    <Button 
+                    <div
+                        className='All_buttons'>
+                        <div className='create-create-buttons'>
+                            <button                        
+                                className='savedlesson__delete-activity-button' 
+                                variant="outlined" 
+                                color="secondary"
+                                label='Back'
+                                onClick={this.back}
+                            >
+                            Back
+                            </button>
+                            <button
+                                className='ActivityPage__edit-button'
+                                variant="outlined" 
+                                color="primary"
+                                label='Continue'
+                                onClick={this.continue}
+                            >
+                            Continue
+                            </button>
+                    </div>
+                    <button 
+                        className='savedlesson__go-back'
                         variant="outlined" 
                         type='reset' 
                         onClick={this.props.cancel}>
                     Cancel
-                    </Button>
+                    </button>
+                    </div>
                     </React.Fragment>
-                </MuiThemeProvider>
             </div>
         )
     }

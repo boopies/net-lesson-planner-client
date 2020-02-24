@@ -1,8 +1,7 @@
 import React from 'react';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography';
+import ValidationError from '../../ReadActivities/ValidationError/ValidationError'
 
 export class FormLessonTGOM extends React.Component {
 
@@ -16,11 +15,40 @@ export class FormLessonTGOM extends React.Component {
         this.props.prevStep();
     }
 
+    validateTopic(fieldValue) {
+        const { values  } = this.props;
+        const topic = values.topic;
+        if (topic.length === 0) {
+          return 'Topic is required.';
+        } else if (topic.length < 5) {
+          return <div id="ANErrorMessage">Topic mus be at least 5 characters long.</div>;
+        }
+      }
+
+      validateGoal(fieldValue) {
+        const { values  } = this.props;
+        const goal = values.goal;
+        if (goal.length === 29) {
+          return 'Compete the goal sentence, please do not delete anything that is written.'
+        } else if (goal.length < 32) {
+          return <div id="ANErrorMessage">Add more to this sentence</div>;
+        }
+      }
+
+      validateObjective(fieldValue) {
+        const { values  } = this.props;
+        const objective = values.objective_one;
+        if (objective.length === 0) {
+          return 'One objective is required.';
+        } else if (objective.length < 5) {
+          return <div id="ANErrorMessage">Add add one Objective</div>;
+        }
+      }
+
     render() {
         const { values, handleChange } = this.props;
         return (
             <div>
-            <MuiThemeProvider>
                 <React.Fragment>
                     <Typography id="lesson_class-size">
                         Lesson Topic
@@ -34,6 +62,7 @@ export class FormLessonTGOM extends React.Component {
                         placeholder='I want ~.'
                         variant="outlined"
                     />
+                    {<ValidationError message={this.validateTopic()}/>}
                     <br />
                     <Typography id="lesson_class-size">
                         Lesson Goals
@@ -48,6 +77,7 @@ export class FormLessonTGOM extends React.Component {
                         rows="3"
                         variant="outlined"
                     />
+                    {<ValidationError message={this.validateGoal()}/>}
                     <br />
                     <Typography id="lesson_class-size">
                         Lesson Objectives One
@@ -58,10 +88,12 @@ export class FormLessonTGOM extends React.Component {
                         onChange={handleChange('objective_one')}
                         margin="normal"
                         required
+                        label="Required"
                         placeholder='Say what they want.'
-                        helperText="What should the students be able to do?"
+                        helperText="Answer this question. What should the students be able to do?"
                         variant="outlined"
                     />
+                    {<ValidationError message={this.validateObjective()}/>}
                     <br />
                     <Typography id="lesson_class-size">
                     Lesson Objectives Two
@@ -102,33 +134,44 @@ export class FormLessonTGOM extends React.Component {
                         variant="outlined"
                     />
                     <br />
-                    <Button                         
-                        variant="outlined" 
-                        color="secondary"
-                        label='Back'
-                        onClick={this.back}
-                    >
-                    Back
-                    </Button>
-                    <Button 
-                        variant="outlined" 
-                        color="primary"
-                        label='Continue'
-                        onClick={this.continue}
-                    >
-                    Continue
-                    </Button>
-                    <Button 
+                    <div
+                        className='All_buttons'>
+                        <div className='create-create-buttons'>
+                            <button                        
+                                className='savedlesson__delete-activity-button' 
+                                variant="outlined" 
+                                color="secondary"
+                                label='Back'
+                                onClick={this.back}
+                            >
+                            Back
+                            </button>
+                            <button
+                                className='ActivityPage__edit-button'
+                                variant="outlined" 
+                                color="primary"
+                                label='Continue'
+                                onClick={this.continue}
+                                >
+                            Continue
+                            </button>
+                    </div>
+                    <button 
+                        className='savedlesson__go-back'
                         variant="outlined" 
                         type='reset' 
                         onClick={this.props.cancel}>
                     Cancel
-                    </Button>
+                    </button>
+                    </div>
                 </React.Fragment>
-            </MuiThemeProvider>
             </div>
         )
     }
 }
 
 export default FormLessonTGOM
+
+/* disabled={this.validateTopic()||
+                                    this.validateGoal()||
+                                    this.validateObjective()} */

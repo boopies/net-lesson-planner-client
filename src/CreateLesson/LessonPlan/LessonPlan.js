@@ -289,96 +289,111 @@ export default class LessonPlan extends React.Component{
     }
 
     render(){
-    const lesson = this.state
-      return(
-            <>
-            <header>
-                <h1>{lesson.title}</h1>
-            </header>
-            <main>
-                <section id="lesson_plan__full">
-                    <div className='lesson_plan date'>
-                        <div className='lesson_plan__title'><h3>Date</h3></div>
-                        <div className='lesson_plan__content'><p>{lesson.day}{' '}{lesson.date}</p></div>
-                    </div>
-                    <div className='lesson_plan period'>
-                        <div className='lesson_plan__title'><h3>Period</h3></div>
-                        <div className='lesson_plan__content'><p>{lesson.period}</p></div>
-                    </div>
-                    <div className='lesson_plan class'>
-                        <div className='lesson_plan__title'><h3>Class</h3></div>
-                        <div className='lesson_plan__content'><p>{lesson.classlevel}</p></div>
-                    </div>
-                    <div className='lesson_plan class_size'>
-                        <div className='lesson_plan__title'><h3>Class Size</h3></div>
-                        <div className='lesson_plan__content'><p>{lesson.class_size} {' '} Students</p></div>
-                    </div>
-                    <div className='lesson_plan time'>
-                        <div className='lesson_plan__title'><h3>Class Length</h3></div>
-                        <div className='lesson_plan__content'><p>{lesson.duration}</p></div>
-                    </div>
-                    <div className='lesson_plan topic'>
-                        <div className='lesson_plan__title'><h3>Topic</h3></div>
-                        <div className='lesson_plan__content'><p>{lesson.topic}</p></div>
-                    </div>
-                    <div className='lesson_plan goal'>
-                        <div className='lesson_plan__title'><h3>Goal</h3></div>
-                        <div className='lesson_plan__content'><p>{lesson.goal}</p></div>
-                    </div>
-                    <div className='lesson_plan objectives'>
-                        <div className='lesson_plan__title'><h3>Objectives</h3></div>
-                        <div className='lesson_plan__content'>                    
-                        <ul>Students Should be able to - 
-                        {this.renderObjectives()}
-                    </ul></div>
-                    </div>
-                    <div className='lesson_plan materials'>
-                        <div className='lesson_plan__title'><h3>Materials</h3></div>
-                        <div className='lesson_plan__content'>                    
-                        <ul> 
-                        {this.renderMaterialsList()}
-                        </ul>
+        const lesson = this.state
+          return(
+                <>
+                <header>
+                    <h1>{lesson.title}</h1>
+                </header>
+                <main className="full__lesson-plan">
+                    <section id="lesson_plan__full"> 
+                        <div className="lesson_plan_D-and-P">
+                            <div className='lesson_plan topic'>
+                                <div className='lesson_plan__title'><h3>Topic</h3></div>
+                                <div className='lesson_plan__content'><p>{lesson.topic}</p></div>
+                            </div>
+                            <div className='lesson_plan date'>
+                                <div className='lesson_plan__title'><h3>Date</h3></div>
+                                <div className='lesson_plan__content'><p>{lesson.day}{' '}{lesson.date}</p></div>
+                            </div>
+                            <div className='lesson_plan period'>
+                                <div className='lesson_plan__title'><h3>Period</h3></div>
+                                <div className='lesson_plan__content'><p>{lesson.period}</p></div>
+                            </div>
                         </div>
-                    </div>
-                    <div className='lesson_plan Star-Lesson-plan'>
-                        <div className='lesson_plan__title'><h2>Lesson</h2></div>              
-                    </div>
-                    <div className='Warm-up'>
-                        <h3>Warm-up Phase</h3>
-                        {this.renderActivities(lesson.warmup_id)}
-                    </div>
-                    <div className='Presentation'>
-                         <h3>Presentation Phase</h3>
-                        {this.renderActivities(lesson.presentation_one_id)}
-                        {this.renderActivities(lesson.presentation_two_id)}
-                    </div>
-                    <div className='Practice'>
+                        <div className='lesson_plan_C-CS-CL'>
+                        <div className='lesson_plan class'>
+                            <div className='lesson_plan__title'><h3>Class</h3></div>
+                            <div className='lesson_plan__content'><p>{lesson.classlevel}</p></div>
+                        </div>
+                        <div className='lesson_plan class_size'>
+                            <div className='lesson_plan__title'><h3>Class Size</h3></div>
+                            <div className='lesson_plan__content'><p>{lesson.class_size} {' '} Students</p></div>
+                        </div>
+                        <div className='lesson_plan time'>
+                            <div className='lesson_plan__title'><h3>Class Length</h3></div>
+                            <div className='lesson_plan__content'><p>{lesson.duration}</p></div>
+                        </div>
+                        </div>
+    
+                        <div className='lesson_plan_G-O'>
+                            <div className='lesson_plan goal'>
+                                <div className='lesson_plan__title'><h3>Goal</h3></div>
+                                <div className='lesson_plan__content goal_object'><p>{lesson.goal}</p></div>
+                            </div>
+                            <div className='lesson_plan objectives'>
+                                <div className='lesson_plan__title'><h3>Objectives</h3></div>
+                                <div className='lesson_plan__content goal_object'>                    
+                                <ul>Students Should be able to - 
+                                {this.renderObjectives()}
+                            </ul></div>
+                        </div>
+                        </div>
+    
+                        <div className='lesson_plan_mats'>
+                            <div className='lesson_plan materials'>
+                                <div className='lesson_plan__title'>
+                                    <h3>Materials</h3>
+                                </div>
+                                <div className='lesson_plan__content material'>                    
+                                    <ul> 
+                                    {this.renderMaterialsList()}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='lesson_plan Star-Lesson-plan'>
+                            <div className='lesson_plan__title'><h2>Lesson</h2></div>
+                            <div className='Warmups lesson_plan_phase'>
+                            <h3>Warm-Up Phase</h3>
+                            {this.renderActivities(lesson.warmup_id)}
+                        </div>
+                        <div className='Presentations lesson_plan_phase'>
+                            <h3>Presentation Phase</h3>
+                            {this.renderActivities(lesson.presentation_one_id)}
+                            {this.renderActivities(lesson.presentation_two_id)}
+                        </div>
+                        <div className='Practices lesson_plan_phase'>
                         <h3>Practice Phase</h3>
-                        {this.renderActivities(lesson.practice_one_id)}
-                        {this.renderActivities(lesson.practice_two_id)}
-                        {this.renderActivities(lesson.practice_three_id)}
-                    </div>
-                    <div className='Producion'>
+                            {this.renderActivities(lesson.practice_one_id)}
+                            {this.renderActivities(lesson.practice_two_id)}
+                            {this.renderActivities(lesson.practice_three_id)}
+                        </div>
+                        <div className='Productions lesson_plan_phase'>
                         <h3>Production Phase</h3>
-                        {this.renderActivities(lesson.product_one_id)}
-                        {this.renderActivities(lesson.product_two_id)}
-                    </div>
-                    <div className='Cooldown'>
+                            {this.renderActivities(lesson.product_one_id)}
+                            {this.renderActivities(lesson.product_two_id)}
+                        </div>
+                        <div className='Cooldowns lesson_plan_phase'>
                         <h3>Cooldown Phase</h3>
-                    {this.renderActivities(lesson.cooldown_id)}
-                    </div>
-                    <div className='lesson_plan class'>
-                        <div className='lesson_plan__title'><h3>Reflection Questions</h3></div>
-                        <div className='lesson_plan__content'>                        <ul>
-                            {this.renderReflection()}
-                        </ul></div>
-                    </div>
-                </section>
-                <div className='Lesson-Plan__Buttons'>
-                    {this.renderButtons()}
-                </div>
-            </main>
-            </>
-        )
+                        {this.renderActivities(lesson.cooldown_id)}
+                        </div>            
+                        </div>
+                        <div className="lesson_plan_ref">
+                            <div className='lesson_plan reflections'>
+                                <div className='lesson_plan__title'><h3>Reflection Questions</h3></div>
+                                <div className='lesson_plan__content'>                        
+                                <ul>
+                                    {this.renderReflection()}
+                                </ul></div>
+                            </div>
+                        </div>
+                        <div className="saved-lessons__buttons">
+                            {this.renderButtons()}
+                        </div>
+                    </section>
+                </main>
+                </>
+            )
+        }
     }
-}

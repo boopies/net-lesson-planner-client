@@ -1,84 +1,140 @@
-.create-lesson{
+#create-lesson-form{
+    background-image: url(../images/planner_gb.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 75vw;
+    height: 120vh;
+    border-radius: 15px;
+    box-shadow: 5px 5px 0px 5px black;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px 0px 20px 0px;
+    margin-bottom: 20px;
+}
+
+.create-lesson__information,
+.create-lesson__TGOM,
+.create-lesson__reflection,
+.create-lesson__confirm{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
+    width: 85%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 0px 5px black;
 }
 
-.create-lesson>div{
-    display: flexbox;
+.create-lesson__warmup{
+    display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    align-items: center;
+    background-color: rgba(255,204,188 ,1);
+    width: 85%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 0px 5px black;
 }
 
-
-input, select{
-    border: 1px solid grey;
-    width: 320;
-    height: 30px;
-    font-size: 20px;
+.create-lesson__presentation{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255,249,196 ,1);
+    width: 85%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 0px 5px black;
 }
 
-input:required, select:required{
-    border: 1px solid red;
-    width: 320;
-    height: 30px;
-    font-size: 20px;
+.create-lesson__practice{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(200,230,201 ,1);
+    width: 85%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 0px 5px black;
 }
 
-.input--class-goals{
+.create-lesson__production{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(179,229,252 ,1);
+    width: 85%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 0px 5px black;
+}
+
+.create-lesson__cooldown{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:rgba(197,202,233 ,1);
+    width: 85%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 0px 5px black;
+}
+
+#create-lesson-form-confirm{
     display: flex;
     flex-direction: column;
 }
 
-.create-lesson>textarea{
-    width: 320px;
-    height: 300px;
+.create-confirmation{
+    color: black;
+    column-count: 2;
+    column-gap: 20px;
 }
 
-textarea:required{
-    border: 1px solid red;
-}
-
-fieldset{
+.All_buttons{
     display: flex;
     flex-direction: column;
 }
 
-.hidden{
-    display:none;
+.create-create-buttons{
+    display: flex;
+}
+
+.ActivityPage__edit-button:disabled{
+    border: 2px solid rgba(144,164,174 ,1);
+    color: white;
+    background-color: rgba(144,164,174 ,1);
+    box-shadow: 2px 2px 0px 2px rgba(69,90,100 ,1);
+}
+
+.ActivityPage__edit-button:hover:disabled{
+    border: 2px solid rgba(144,164,174 ,1);
+    color: white;
+    background-color: rgba(144,164,174 ,1);
+    box-shadow: 2px 2px 0px 2px rgba(69,90,100 ,1);
 }
 
 .tooltips{
-    font-size: 15px;
+    font-size: 17px;
+    width: 100%;
+    line-height: 18px;
 }
 
-@media (max-width: 700px){
-    .create-lesson{
-        width: 320px;
-        padding-left: 20px;
-        font-size: 15px;   
-        text-align: center;
-    }
+.MuiButtonBase-root{
+    width: 15px;
+}
 
-    .create-lesson input{
-        width: 320px;
-        padding-left: 20px;
-        font-size: 20px;   
-    }
+.MuiOutlinedInput-root{
+    width: 50vw;
+}
 
-    .create-lesson select{
-        width: 300px;
-        padding-left: 20px;
-        font-size: 15px;   
-    }
+.MuiInputBase-root{
+    width: 50vw; 
+}
 
-    button{
-        width: 75%;
-        border: 1px solid black;
-    }
+.Activity-select{
+    display: flex;
+}
 
-    .cancel--button{
-        margin-bottom: 20px;
+@media (max-width: 768px){
+    .create-create-buttons{
+        flex-direction: column;
     }
-
+    
 }
