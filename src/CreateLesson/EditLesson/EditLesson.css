@@ -3,16 +3,55 @@
     flex-direction: column;
 }
 
-#create-lesson-form-2{
+.edit_lesson-planbody_editcreate{
     background-image: url(../../images/planner_gb.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 75vw;
     border-radius: 15px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 5px 5px 0px 5px black;
+}
+
+#create-lesson-form-2{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    width: 55vw;
+    border-radius: 15px;
     box-shadow: 5px 5px 0px 5px black;
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding: 20px 0px 20px 0px;
+    padding: 20px 0px 20px 30px;
     margin-bottom: 20px;
+}
+
+#create-lesson-form-2 input{
+    width: 50vw;
+    height: 30px;
+}
+
+#create-lesson-form-2 select{
+    width: 50vw;
+}
+
+#create-lesson-form-2 textarea{
+    width: 50vw;
+}
+
+.edit-lesson__buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+edit-creat_lesson-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
