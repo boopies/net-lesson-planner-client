@@ -46,7 +46,7 @@ export default class ReadActivities extends React.Component{
                 <>
                     <header className="read-activity__header">
                         <h1 className="read-activity__heading">
-                            Read About the Activities
+                            Read the Activities
                         </h1>
                     </header>
                     <main className="read-activity__main">

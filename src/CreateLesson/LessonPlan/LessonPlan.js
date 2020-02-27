@@ -218,21 +218,31 @@ export default class LessonPlan extends React.Component{
         const { activities=[] } = this.context
         const activity = findActivity(activities, actId) || { content: '' }
 
-        if(actId < 6){
+        if(parseInt(actId) < 6){
             return <>
+            <div>No extra activity</div>
             </>
         } else{
         return(
-            <>
-               <div>
-                    <div key={uuid()} className='lesson_plan__title'><h3>Activity</h3></div>
-                    <div key={uuid()} className='lesson_plan__title'>{activity.title}</div>
-                    <div key={uuid()} className='lesson_plan__title'><h3>Activity Length</h3></div>
-                    <div key={uuid()} className='lesson_plan__title'>{activity.duration}</div>
+            <> 
+            <div>
+               <div className='lesson_plan__info'>
+                    <div className='lesson_plan__info_name'>
+                        <div key={uuid()} className='lesson_plan__title'><h3>Activity</h3></div>
+                        <div key={uuid()} className='lesson_plan__title'>{activity.title}</div>
+                    </div>
+                    <div className='lesson_plan__info_dur'>
+                        <div key={uuid()} className='lesson_plan__title'><h3>Activity Length</h3></div>
+                        <div key={uuid()} className='lesson_plan__title'>{activity.duration}</div>
+                    </div>
+                    <div className='lesson_plan__info_group'>
+                        <div key={uuid()} className='lesson_plan__title'><h3>Activity grouping</h3></div>
+                        <div key={uuid()} className='lesson_plan__title'>{activity.grouping}</div>
+                    </div>
+                </div>
                 </div>
                 <div>
                     <div key={uuid()} className="lesson_plan__how_to_play">
-                        <p>Groups:{' '}{activity.grouping}</p>
                         <p><b>Directions:</b> {' '}</p>
                         {activity.content.split(/\\n \\r|\\n|\n|\\n \\r/).map((para, i) =>
                             <p key={i}>{para}</p>
@@ -247,7 +257,8 @@ export default class LessonPlan extends React.Component{
     renderButtons(){
         return(
         <>
-            <button 
+            <button
+                className='button__orange'
                 type='button' 
                 onClick={() => this.handlePrintLesson('printableArea')}>
                 <PrintIcon fontSize="large" />
@@ -255,6 +266,7 @@ export default class LessonPlan extends React.Component{
                 Print
             </button>
             <button 
+                className='button__yellow'
                 type='button' 
                 onClick={() => this.handleEdit()}>
                 <EditOutlinedIcon fontSize="large" />
@@ -263,6 +275,7 @@ export default class LessonPlan extends React.Component{
             </button>
             {TokenService.hasAuthToken()
                 ?   <button 
+                        className='button__blue'
                         type='button' 
                         onClick={() => this.handleSaveLesson()}>
                         <SaveOutlinedIcon fontSize="large" />
@@ -271,6 +284,7 @@ export default class LessonPlan extends React.Component{
                     </button>
                 : <> </>}
             <button 
+                className='button__green'
                 type='button' 
                 onClick={() => this.handleNewLesson()}>
                 <PhotoFilterIcon fontSize="large" />
@@ -278,6 +292,7 @@ export default class LessonPlan extends React.Component{
                 New Lesson
             </button>
             <button 
+                className='button__red'
                 type='button' 
                 onClick={() => this.handleGoHome()}>
                 <HomeIcon fontSize="large" />

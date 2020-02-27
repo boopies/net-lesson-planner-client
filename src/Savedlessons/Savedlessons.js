@@ -4,6 +4,10 @@ import './Savedlessons.css'
 import {findSavedlesson, getUserSavedlesson} from './lessonhelper'
 import config from '../config'
 import TokenService from '../services/token-service'
+import GetAppIcon from '@material-ui/icons/GetApp';
+import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
+import DeleteIcon from '@material-ui/icons/Delete';
+import NoteAddIcon from '@material-ui/icons/NoteAdd';
 
 export default class Savedlessons extends React.Component {
     constructor(props) {
@@ -65,34 +69,38 @@ export default class Savedlessons extends React.Component {
     renderButtons() {
         return (
           <> 
+          <div className='get-del-buttons'>
             <button 
               type = 'submit' 
-              className = 'savedlesson__get-activity-button' 
+              className = 'button__indigo' 
               disabled = { this.state.button} > 
-                Get Lesson
+              <GetAppIcon />  Get Lesson
               </button> 
               <button 
               type = 'button' 
               disabled = { this.state.button}
-              className = 'savedlesson__delete-activity-button' 
+              className = 'button__red' 
               onClick={e =>
                       window.confirm("Are you sure you wish to delete this item?") &&
                       this.handleDeleteLesson(e)
                   }> 
-                Delete Saved Lesson
+              <DeleteIcon />  Delete Saved Lesson
               </button>
+            </div>
+            <div className='other-buttons'>
             <button 
               type = 'button' 
-              className = 'savedlesson__add-activity-button' 
+              className = 'button__green' 
               onClick = {() => this.handleCreateLessonForm()} > 
-                Create a New Lesson Plan 
+               <NoteAddIcon /> Create a New Lesson Plan 
               </button>
             <button 
-              className="savedlesson__go-back" 
+              className="button__red" 
               type='button' 
               onClick={() => this.handleClickGoBack()}>
-                Go Back
+               <KeyboardReturnIcon /> Go Back
               </button> 
+            </div>
           </>
         )
     }

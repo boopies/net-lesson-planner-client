@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import ApiContext from '../../ApiContext'
 import { getActivityForCategory, removedBlankActivities } from '../helpers'
 import './ActivityList.css'
+import NoteAddIcon from '@material-ui/icons/NoteAdd';
 
 export default class ActivityList extends React.Component {
   constructor() {
@@ -173,9 +174,9 @@ export default class ActivityList extends React.Component {
           tag={Link}
           to='/read/add-activity'
           type='button'
-          className='activity-list__add-activity-button'
+          className='button__green'
           onClick={() => this.handleAddActivitiesForm()} >
-        Add Activity
+        <NoteAddIcon /> Add Activity
     </button>
     )
   }

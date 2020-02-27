@@ -3,6 +3,13 @@
   border: 1px solid black;
 }
 
+.full__lesson-plan{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 #lesson_plan__full{
    width: 65%;
    margin-top: 50px;
@@ -81,7 +88,6 @@
  width: 100%;
 }
 
-
 .lesson_plan_phase{
  border: 1px solid black;
 }
@@ -117,4 +123,56 @@
 
 .reflections{
  width: 100%;
+}
+
+.saved-lessons__buttons{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.create_lesson-save__button{
+	box-shadow: 3px 3px 0px rgba(255,138,101 ,1);
+  color: rgba(255,138,101 ,1);
+  font-weight: bolder;
+  border: 2px solid rgba(255,138,101 ,1);
+}
+
+.create_lesson-save__button:hover{
+    background-color: rgba(255,138,101 ,1);
+    color: white;
+    font-weight: bolder;
+    box-shadow: 3px 3px 0px rgba(191,54,12 ,1);
+}
+
+.lp_button{
+  margin: 5px;
+}
+
+@media (max-width: 768px){
+  #lesson_plan__full{
+    width: 95%;
+ }
+
+.lesson_plan_D-and-P,
+.lesson_plan_C-CS-CL,
+.lesson_plan_G-O{
+  flex-direction: column;
+  width: 100%;
+}
+
+.lesson_plan{
+  width: 100%;
+}
+
+.material ul {
+  column-count: 1;
+ }
+
+ .full__lesson-plan{
+   width: 95%;
+ }
+
 }

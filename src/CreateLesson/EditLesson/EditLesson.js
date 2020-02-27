@@ -5,6 +5,8 @@ import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import './EditLesson.css'
+import CancelIcon from '@material-ui/icons/Cancel';
+import PublishIcon from '@material-ui/icons/Publish';
 
 export default class EditLesson extends React.Component{
     constructor(props) {
@@ -187,8 +189,8 @@ export default class EditLesson extends React.Component{
                product_two_id, cooldown_id, reflection_one,
                reflection_two, reflection_three } = this.state
         return (
-            <>
-            <header>
+            <div className='edit_lesson-plan'>
+            <header className='edit_lesson-plan-title'>
                 <h1>Modify Lesson Plan</h1>
             </header>
             <section className='edit_lesson-planbody_editcreate'>
@@ -479,17 +481,17 @@ export default class EditLesson extends React.Component{
                     <div
                       className="edit-lesson__buttons">
                         <button 
-                        className="update-edit-lesson__button" 
-                        type='submit'>Submit</button>
+                        className="button__violet" 
+                        type='submit'><PublishIcon /> Submit</button>
                         <button 
-                          className="cancel-edit-lesson__button" 
+                          className="button__red" 
                           type='button' 
                           onClick={() => this.handleClickCancel()}>
-                          Cancel</button>
+                          <CancelIcon /> Cancel</button>
                       </div>
                 </form>
             </section>
-            </>
+            </div>
         )
     }
 }

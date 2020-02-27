@@ -3,7 +3,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     width: 75vw;
-    height: 120vh;
     border-radius: 15px;
     box-shadow: 5px 5px 0px 5px black;
     display: flex;
@@ -11,6 +10,16 @@
     justify-content: center;
     padding: 20px 0px 20px 0px;
     margin-bottom: 20px;
+}
+
+.create_lesson_titles{
+	text-transform: capitalize;
+    font-family: Roboto;
+    font-size: 3em;
+    padding-top: 30px;
+    margin-bottom: 70px;
+    color: white;
+
 }
 
 .create-lesson__information,
@@ -44,6 +53,13 @@
     width: 85%;
     border-radius: 15px;
     box-shadow: 5px 5px 0px 5px black;
+}
+
+.create-confirmation li{
+    list-style: none;
+}
+.create-confirmation h4{
+    text-align: center;
 }
 
 .create-lesson__practice{
@@ -90,24 +106,17 @@
 .All_buttons{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 25px;
+    margin-top: 10px;
 }
 
 .create-create-buttons{
     display: flex;
-}
-
-.ActivityPage__edit-button:disabled{
-    border: 2px solid rgba(144,164,174 ,1);
-    color: white;
-    background-color: rgba(144,164,174 ,1);
-    box-shadow: 2px 2px 0px 2px rgba(69,90,100 ,1);
-}
-
-.ActivityPage__edit-button:hover:disabled{
-    border: 2px solid rgba(144,164,174 ,1);
-    color: white;
-    background-color: rgba(144,164,174 ,1);
-    box-shadow: 2px 2px 0px 2px rgba(69,90,100 ,1);
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
 }
 
 .tooltips{
@@ -116,25 +125,128 @@
     line-height: 18px;
 }
 
-.MuiButtonBase-root{
-    width: 15px;
-}
-
-.MuiOutlinedInput-root{
-    width: 50vw;
-}
-
-.MuiInputBase-root{
-    width: 50vw; 
-}
-
 .Activity-select{
     display: flex;
 }
 
+.crate-lesson-subtitles{
+    padding: 0px 10px 0px 10px;  
+}
+
+.crate-lesson-titles{
+    padding: 0px 30px 0px 30px;
+    text-align: center;
+}
+
+.outlined{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.outlined input{
+    width: 55vw;
+}
+
+.outlined textarea{
+    float: left;
+    width: 55vw;
+    min-height: 200px;
+    outline: none;
+    resize: none;
+}
+
+button{
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.outlined select{
+    width: 55vw;
+    height: 50px;
+}
+
+.MuiIconButton-root{
+    width: 10px;
+}
+
 @media (max-width: 768px){
+    #create-lesson-form{
+       width: 100vw;
+    }
+
     .create-create-buttons{
         flex-direction: column;
     }
+
+    .outlined textarea{
+        width: 90%;
+    }
+    
+
+    .create-lesson__information,
+    .create-lesson__TGOM,
+    .create-lesson__reflection,
+    .create-lesson__confirm{
+        width: 95%;
+    }
+
+    .create-cre{
+        margin-top: 20px;
+    }
+
+    .ActivityPage__edit-button.create-cre{
+        margin-top: 10px;
+    }
+
+
+.create-lesson__warmup{
+    width: 95%;
+}
+
+.create-lesson__presentation{
+    width: 95%;
+}
+
+.create-lesson__practice{
+    width: 95%;
+}
+
+.create-lesson__production{
+    width: 95%;
+}
+
+.create-lesson__cooldown{
+    width: 95%;
+}
+
+#create-lesson-form-confirm{
+    display: flex;
+    flex-direction: column;
+}
+
+.create-confirmation{
+    color: black;
+    column-count: 1;
+}
+
+
+.outlined{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.outlined input{
+    width: 80vw;
+}
+
+.outlined select{
+    width: 80vw;
+}
     
 }

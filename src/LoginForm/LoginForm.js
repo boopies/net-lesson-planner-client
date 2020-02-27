@@ -3,6 +3,8 @@ import AuthApiService from '../services/auth-api-service'
 import ApiContext from '../ApiContext'
 import config from '../config'
 import './LoginForm.css'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 export default class LoginForm extends Component {
     static defaultProps = {
@@ -97,9 +99,17 @@ export default class LoginForm extends Component {
                                 type='password'
                                 id='LoginForm__password' />
                         </div>
-                        <button className='login__button' type='submit'>
-                            Login
+                        <div className='loginButtons'>
+                        <button className='button__violet' type='submit'>
+                            <ExitToAppIcon /> Login
                         </button>
+                        <button 
+                            className='button__red'
+                            type='button'
+                            onClick={() => this.props.history.push('/')}>
+                            <CancelIcon /> Cancel
+                        </button>
+                        </div>
                     </form>
                 </main>
             </>

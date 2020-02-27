@@ -1,12 +1,12 @@
 import React from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Typography from '@material-ui/core/Typography';
 import { getActivityForCategory, findActivity } from '../../ReadActivities/helpers'
 import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import ValidationError from '../../ReadActivities/ValidationError/ValidationError'
+import CancelIcon from '@material-ui/icons/Cancel';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 
 export class FormWarmup extends React.Component {    
@@ -70,55 +70,48 @@ renderTooltipinfo(actId){
         const { values, handleChange } = this.props;
         return (
             <div>
-                    <React.Fragment>
-                    <FormControl variant="outlined">
-                    <Typography id="lesson_warmup-phase">
+                <div className="outlined">
+                    <h4 id="lesson_warmup-phase">
                        Warmup Activity
-                    </Typography>
+                    </h4>
                         <div className='Activity-select'>
-                        <NativeSelect
+                        <select
                         id='lesson_warmup_id'
                         value={values.warmup_id}
                         onChange={handleChange('warmup_id')}
                         >
                         {this.renderOptions(1)}
-                        </NativeSelect>
+                        </select>
                         {this.renderTooltipinfo(values.warmup_id)}
                         </div>
                         {<ValidationError message={this.validateWarmup()}/>}
-                    </FormControl>
+                </div>
                     <div
                         className='All_buttons'>
                         <div className='create-create-buttons'>
                             <button                        
-                                className='savedlesson__delete-activity-button' 
-                                variant="outlined" 
-                                color="secondary"
-                                label='Back'
+                                className='button__red' 
+                                type='button'  
                                 onClick={this.back}
                             >
-                            Back
+                            <ChevronLeftIcon /> Back
                             </button>
                             <button
-                                className='ActivityPage__edit-button'
-                                variant="outlined" 
-                                color="primary"
-                                label='Continue'
+                                className='button__blue'
+                                type='button'  
                                 onClick={this.continue}
                                 disabled={this.validateWarmup()}
                             >
-                            Continue
+                            Continue <ChevronRightIcon />
                             </button>
                     </div>
                     <button 
-                        className='savedlesson__go-back'
-                        variant="outlined" 
-                        type='reset' 
+                        className='button__red'
+                        type='button'  
                         onClick={this.props.cancel}>
-                    Cancel
+                    <CancelIcon />Cancel
                     </button>
                     </div>
-                    </React.Fragment>
             </div>
         )
     }

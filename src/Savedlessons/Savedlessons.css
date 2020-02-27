@@ -1,7 +1,7 @@
 .saved-lessons_select {
 	background-color: rgba(236,239,241 ,1);
 	padding: 12px;
-	width: 310px;
+	width: 55vw;
 	border-bottom: 2px solid black;
 	height: 50px;
 	font-size: 20px;
@@ -34,70 +34,13 @@
   .saved-lessons_select option {
 	padding: 30px;
   }
-    
-.savedlesson__delete-activity-button{
-	box-shadow: 3px 3px 0px rgba(213,0,0 ,1);
-	color: rgba(213,0,0 ,1);
-    border: 2px solid rgba(213,0,0 ,1);
-}
-
-.savedlesson__delete-activity-button:hover{
-    background-color: rgba(213,0,0 ,1);
-    color: white;
-	font-weight: bolder;
-	box-shadow: 3px 3px 0px rgb(119, 2, 2);
-}
-
-.savedlesson__get-activity-button{
-	box-shadow: 3px 3px 0px rgba(0,96,100 ,1);
-	color: rgba(0,96,100 ,1);
-    border: 2px solid rgba(0,96,100 ,1);
-}
-
-.savedlesson__get-activity-button:hover{
-    background-color: rgba(0,96,100 ,1);
-    color: white;
-    font-weight: bolder;
-}
-
-.savedlesson__get-activity-button:disabled,
-.savedlesson__delete-activity-button:disabled{
-	border: 2px solid rgba(69,90,100 ,1);
-	background-color: rgba(69,90,100 ,1);
-	color: white;
-	font-weight: bolder;
-	box-shadow: 3px 3px 0px rgba(69,90,100 ,1);
-}
-
-.savedlesson__add-activity-button{
-	box-shadow: 3px 3px 0px rgba(25,118,210 ,1);
-	color: rgba(25,118,210 ,1);
-    border: 2px solid rgba(25,118,210 ,1);
-}
-
-.savedlesson__add-activity-button:hover{
-	background-color:rgba(25,118,210 ,1);
-	color: white;
-}
-
-.savedlesson__go-back{
-	box-shadow: 3px 3px 0px rgba(136,14,79 ,1);
-	color: rgba(136,14,79 ,1);
-	font-weight: bolder;
-    border: 2px solid rgba(136,14,79 ,1);
-}
-
-.savedlesson__go-back:hover{
-	background-color:rgba(136,14,79 ,1);
-	color: white;
-	font-weight: bolder;
-	border: 2px solid rgb(85, 9, 49);
-}
-
+  
 .savedlessons__buttons{
 	padding-top: 20px;
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .saved-lessons__heading{
@@ -105,8 +48,6 @@
     font-family: Roboto;
     font-size: 3em;
     margin-bottom: 50px;
-    text-decoration-line: overline underline;
-    text-underline-position: under;
     color: white;
     text-shadow: 5px 5px 5px rgb(71, 71, 71);
 }
@@ -118,8 +59,38 @@
 	box-shadow: 5px 5px 0px 5px black;
 }
 
+.saved-lessons__main {
+	display: flex;
+	flex-direction: column;
+}
+
+.get-del-buttons{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.other-buttons{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 @media (max-width: 768px){
     .addactivitybuttons{
         flex-direction: column;
-    }
+	}
+
+	.saved-lessons_select {
+		width: 90vw;
+	  }
+
+	.get-del-buttons{
+		flex-direction: column;
+	}
+	
+	.other-buttons{
+		flex-direction: column;
+	}
+	  
 }

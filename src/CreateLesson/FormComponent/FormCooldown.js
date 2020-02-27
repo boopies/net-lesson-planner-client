@@ -1,12 +1,11 @@
 import React from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Typography from '@material-ui/core/Typography';
 import { getActivityForCategory, findActivity } from '../../ReadActivities/helpers'
 import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-
+import CancelIcon from '@material-ui/icons/Cancel';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 export default class FormCooldown extends React.Component {    
 continue = e => {
@@ -55,55 +54,48 @@ renderTooltipinfo(actId){
         const { values, handleChange } = this.props;
         return (
             <div>
-                    <React.Fragment>
-                    <FormControl variant="outlined">
-                    <Typography id="lesson_product-phase">
+                    <div className="outlined">
+                    <h4 id="lesson_product-phase">
                     Cooldown Activity
-                    </Typography>
+                    </h4>
                     <div className='Activity-select'>
-                        <NativeSelect
+                        <select
                         required
                         id='lesson_cooldown_id'
                         value={values.cooldown_id}
                         onChange={handleChange('cooldown_id')}
                         >
                         {this.renderOptions(4)}
-                        </NativeSelect>
+                        </select>
                         {this.renderTooltipinfo(values.cooldown_id)}
                         </div>
-                    </FormControl>
+                    </div>
                     <br />
                     <div
                         className='All_buttons'>
                         <div className='create-create-buttons'>
-                            <button                        
-                                className='savedlesson__delete-activity-button' 
-                                variant="outlined" 
-                                color="secondary"
-                                label='Back'
+                            <button 
+                                type='button'                         
+                                className='button__red' 
                                 onClick={this.back}
                             >
-                            Back
+                            <ChevronLeftIcon /> Back
                             </button>
                             <button
-                                className='ActivityPage__edit-button'
-                                variant="outlined" 
-                                color="primary"
-                                label='Continue'
+                                type='button'  
+                                className='button__blue'
                                 onClick={this.continue}
                             >
-                            Continue
+                            Continue <ChevronRightIcon />
                             </button>
                     </div>
-                    <button 
-                        className='savedlesson__go-back'
-                        variant="outlined" 
-                        type='reset' 
+                    <button
+                    type='button'   
+                        className='button__red'
                         onClick={this.props.cancel}>
-                    Cancel
+                    <CancelIcon />Cancel
                     </button>
                     </div>
-                    </React.Fragment>
             </div>
         )
     }

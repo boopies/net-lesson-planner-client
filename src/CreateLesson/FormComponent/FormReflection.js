@@ -1,8 +1,8 @@
 import React from 'react';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
-import TextField from '@material-ui/core/TextField'
-import Typography from '@material-ui/core/Typography';
 import ValidationError from '../../ReadActivities/ValidationError/ValidationError'
+import CancelIcon from '@material-ui/icons/Cancel';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 
 export class FormReflection extends React.Component {
@@ -32,12 +32,11 @@ export class FormReflection extends React.Component {
         const { values, handleChange } = this.props;
         return (
             <div>
-                 <MuiThemeProvider>
-                <React.Fragment>
-                    <Typography id="lesson_lesson-reflection">
+                <div className='outlined'>
+                    <h4 id="lesson_lesson-reflection">
                         Lesson Reflection One
-                    </Typography>
-                    <TextField 
+                    </h4>
+                    <input 
                         id="lesson_reflection_one"
                         defaultValue={values.reflection_one}
                         onChange={handleChange('reflection_one')}
@@ -48,11 +47,13 @@ export class FormReflection extends React.Component {
                         variant="outlined"
                     />
                     {<ValidationError message={this.validateReflection()}/>}
+                </div>
+                <div className="outlined">
                     <br />
-                    <Typography id="lesson_lesson-reflection">
+                    <h4 id="lesson_lesson-reflection">
                     Lesson Reflection Two
-                    </Typography>
-                    <TextField 
+                    </h4>
+                    <input 
                         id="lesson_reflection_two"
                         defaultValue={values.reflection_two}
                         onChange={handleChange('reflection_two')}
@@ -60,11 +61,13 @@ export class FormReflection extends React.Component {
                         placeholder='Did the students have fun?'
                         variant="outlined"
                     />
+                </div>
+                <div className="outlined">
                     <br />
-                    <Typography id="lesson_lesson-reflection">
+                    <h4 id="lesson_lesson-reflection">
                     Lesson Reflection Three
-                    </Typography>
-                    <TextField 
+                    </h4>
+                    <input 
                         id="lesson_reflection_three"
                         defaultValue={values.reflection_three}
                         onChange={handleChange('reflection_three')}
@@ -72,40 +75,34 @@ export class FormReflection extends React.Component {
                         placeholder='What can I do to make the class work better?'
                         variant="outlined"
                     />
+                </div>
                     <br />
                     <div
                         className='All_buttons'>
                         <div className='create-create-buttons'>
                             <button                        
-                                className='savedlesson__delete-activity-button' 
-                                variant="outlined" 
-                                color="secondary"
-                                label='Back'
+                                className='button__red' 
+                                type='button'
                                 onClick={this.back}
                             >
-                            Back
+                            <ChevronLeftIcon /> Back
                             </button>
                             <button
-                                className='ActivityPage__edit-button'
-                                variant="outlined" 
-                                color="primary"
-                                label='Continue'
+                                className='button__blue'
+                                type='button'
                                 onClick={this.continue}
                                 disabled={this.validateReflection()}
                             >
-                            Continue
+                            Continue <ChevronRightIcon />
                             </button>
                     </div>
                     <button 
-                        className='savedlesson__go-back'
-                        variant="outlined" 
-                        type='reset' 
+                        className='button__red'
+                        type='button' 
                         onClick={this.props.cancel}>
-                    Cancel
+                    <CancelIcon /> Cancel
                     </button>
                     </div>
-                </React.Fragment>
-            </MuiThemeProvider>
             </div>
         )
     }

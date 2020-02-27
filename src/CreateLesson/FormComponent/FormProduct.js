@@ -1,13 +1,12 @@
 import React from 'react';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
-import FormControl from '@material-ui/core/FormControl';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Typography from '@material-ui/core/Typography';
 import { getActivityForCategory, findActivity } from '../../ReadActivities/helpers'
 import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import ValidationError from '../../ReadActivities/ValidationError/ValidationError'
+import CancelIcon from '@material-ui/icons/Cancel';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 
 export class FormProduct extends React.Component {    
@@ -71,74 +70,66 @@ renderTooltipinfo(actId){
         const { values, handleChange } = this.props;
         return (
             <div>
-                <MuiThemeProvider>
-                    <React.Fragment>
-                    <FormControl variant="outlined">
-                    <Typography id="lesson_product-phase">
+                    <div className="outlined">
+                    <h4 id="lesson_product-phase">
                     Product Activity One
-                    </Typography>
+                    </h4>
                     <div className='Activity-select'>
-                        <NativeSelect
+                        <select
                         required
                         id='lesson_product_one_id'
                         value={values.product_one_id}
                         onChange={handleChange('product_one_id')}
                         >
                         {this.renderOptions(4)}
-                        </NativeSelect>
+                        </select>
                         {this.renderTooltipinfo(values.product_one_id)}</div>
                         {<ValidationError message={this.validateProduct()}/>}
-                    </FormControl>
+                    </div>
                     <br />
-                    <FormControl variant="outlined">
-                    <Typography id="lesson_product-phase">
+                    <div className="outlined">
+                    <h4 id="lesson_product-phase">
                     Product Activity Two (Optional)
-                    </Typography>
+                    </h4>
                     <div className='Activity-select'>
-                        <NativeSelect
+                        <select
                         id='lesson_product_two_id'
                         value={values.product_two_id}
                         onChange={handleChange('product_two_id')}
                         >
                         {this.renderOptions(4)}
-                        </NativeSelect>
+                        </select>
                         {this.renderTooltipinfo(values.product_two_id)}
                         </div>
-                    </FormControl>
+                    </div>
                     <br />
                     <div
                         className='All_buttons'>
                         <div className='create-create-buttons'>
                             <button                        
-                                className='savedlesson__delete-activity-button' 
-                                variant="outlined" 
-                                color="secondary"
-                                label='Back'
+                                className='button__red' 
+                                type='button'  
                                 onClick={this.back}
                             >
-                            Back
+                            <ChevronLeftIcon /> Back
                             </button>
                             <button
-                                className='ActivityPage__edit-button'
-                                variant="outlined" 
-                                color="primary"
+                                className='button__blue'
+                                type='button'  
                                 label='Continue'
                                 onClick={this.continue}
                                 disabled={this.validateProduct()}
                             >
-                            Continue
+                            Continue <ChevronRightIcon />
                             </button>
                     </div>
                     <button 
-                        className='savedlesson__go-back'
-                        variant="outlined" 
-                        type='reset' 
+                        className='button__red'
+                        type='button'  
                         onClick={this.props.cancel}>
-                    Cancel
+                    <CancelIcon />Cancel
                     </button>
                     </div>
-                    </React.Fragment>
-                </MuiThemeProvider>
             </div>
         )
     }

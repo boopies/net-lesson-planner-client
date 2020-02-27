@@ -1,6 +1,8 @@
 import React from 'react'
 import AuthApiService from '../services/auth-api-service'
 import './RegistrationForm.css'
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 export default class RegistrationForm extends React.Component {
   static defaultProps = {
@@ -89,12 +91,19 @@ export default class RegistrationForm extends React.Component {
                   id='RegistrationForm__password'>
                 </input>
               </div>
-
+              <div className='registration_buttons'>
               <button 
-                className='registration__button'
+                className='button__green'
                 type='submit'>
-                Register
+                <PersonAddIcon /> Register
               </button>
+              <button 
+                className='button__red'
+                type='button'
+                onClick={() => this.props.history.push('/')}>
+                <CancelIcon /> Cancel
+              </button>
+              </div>
             </form>
           </main>
         </>

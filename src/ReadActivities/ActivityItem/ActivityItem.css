@@ -14,7 +14,7 @@
     flex-direction: column;
     align-items: center;
     border-radius: 15px;;
-    width: 320px;
+    width: 50vw;
     padding: 20px;
     margin-top: 20px;
     box-shadow: 5px 5px 0px black;
@@ -77,4 +77,22 @@
 .act5 {
     background-color: rgba(74,20,140 ,1);
     color: white;
+  }
+
+  .activity-card__readmore a{
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px){
+    .activity-list{
+      width: 100vw;
+    }
+
+    .act1,
+    .act2,
+    .act3,
+    .act4,
+    .act5{
+        width: 80vw;
+    }
   }

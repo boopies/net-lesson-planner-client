@@ -1,7 +1,9 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField'
-import Typography from '@material-ui/core/Typography';
 import ValidationError from '../../ReadActivities/ValidationError/ValidationError'
+import '../CreateLesson.css'
+import CancelIcon from '@material-ui/icons/Cancel';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 export class FormLessonTGOM extends React.Component {
 
@@ -20,8 +22,8 @@ export class FormLessonTGOM extends React.Component {
         const topic = values.topic;
         if (topic.length === 0) {
           return 'Topic is required.';
-        } else if (topic.length < 5) {
-          return <div id="ANErrorMessage">Topic mus be at least 5 characters long.</div>;
+        } else if (topic.length < 3) {
+          return <div id="ANErrorMessage">Topic mus be at least 3 characters long.</div>;
         }
       }
 
@@ -48,57 +50,54 @@ export class FormLessonTGOM extends React.Component {
     render() {
         const { values, handleChange } = this.props;
         return (
-            <div>
-                <React.Fragment>
-                    <Typography id="lesson_class-size">
+            <>  
+                <div className="outlined">
+                    <h4 id="lesson_class-size">
                         Lesson Topic
-                    </Typography>
-                    <TextField 
+                    </h4>
+                    <input
                         id="lesson_topic"
                         defaultValue={values.topic}
                         onChange={handleChange('topic')}
                         margin="normal"
                         helperText="What is the topic of the lesson?"
                         placeholder='I want ~.'
-                        variant="outlined"
                     />
                     {<ValidationError message={this.validateTopic()}/>}
+                    </div>
                     <br />
-                    <Typography id="lesson_class-size">
+                    <div className="outlined">
+                    <h4 id="lesson_class-size">
                         Lesson Goals
-                    </Typography>
-                    <TextField 
+                    </h4>
+                    <textarea
                         id="lesson_topic"
                         defaultValue={values.goal}
                         onChange={handleChange('goal')}
-                        margin="normal"
-                        helperText="Finish the sentence"
-                        multiline
-                        rows="3"
-                        variant="outlined"
-                    />
+                        rows="3" 
+                        />
                     {<ValidationError message={this.validateGoal()}/>}
+                    </div>
                     <br />
-                    <Typography id="lesson_class-size">
+                    <div className="outlined">
+                    <h4 id="lesson_class-size">
                         Lesson Objectives One
-                    </Typography>
-                    <TextField 
+                    </h4>
+                    <p>Students should be able to ...</p>
+                    <input
                         id="lesson_objective_one"
                         defaultValue={values.objective_one}
                         onChange={handleChange('objective_one')}
-                        margin="normal"
-                        required
-                        label="Required"
                         placeholder='Say what they want.'
-                        helperText="Answer this question. What should the students be able to do?"
-                        variant="outlined"
                     />
                     {<ValidationError message={this.validateObjective()}/>}
+                    </div>
                     <br />
-                    <Typography id="lesson_class-size">
+                    <div className="outlined">
+                    <h4 id="lesson_class-size">
                     Lesson Objectives Two
-                    </Typography>
-                    <TextField 
+                    </h4>
+                    <input
                         id="lesson_objective_two"
                         defaultValue={values.objective_two}
                         onChange={handleChange('objective_two')}
@@ -106,11 +105,13 @@ export class FormLessonTGOM extends React.Component {
                         placeholder='Know what an item is.'
                         variant="outlined"
                     />
+                    </div>
                     <br />
-                    <Typography id="lesson_class-size">
+                    <div className="outlined">
+                    <h4 id="lesson_class-size">
                     Lesson Objectives Three
-                    </Typography>
-                    <TextField 
+                    </h4>
+                    <input
                         id="lesson_three"
                         defaultValue={values.objective_three}
                         onChange={handleChange('objective_three')}
@@ -118,54 +119,46 @@ export class FormLessonTGOM extends React.Component {
                         placeholder='Talk to freely to the teacher and other students.'
                         variant="outlined"
                     />
+                    </div>
                     <br />
-                    <Typography id="lesson_class-size">
-                    Lesson Objectives Materials
-                    </Typography>
-                    <TextField 
-                        id="lesson_materials"
-                        defaultValue={values.materials}
-                        onChange={handleChange('materials')}
-                        margin="normal"
-                        multiline
-                        rows="4"
-                        placeholder='Textbook, Flashcards'
-                        helperText="List all materials needed. Use a comma and space to seperate items."
-                        variant="outlined"
-                    />
+                    <div className="outlined">
+                        <h4 id="lesson_class-size">
+                        Lesson Objectives Materials
+                        </h4>
+                        <textarea
+                            id="lesson_materials"
+                            defaultValue={values.materials}
+                            onChange={handleChange('materials')}
+                            placeholder='Textbook, Flashcards'
+                        />
+                    </div>
                     <br />
                     <div
                         className='All_buttons'>
                         <div className='create-create-buttons'>
                             <button                        
-                                className='savedlesson__delete-activity-button' 
-                                variant="outlined" 
-                                color="secondary"
-                                label='Back'
+                                className='button__red create-cre' 
+                                type='button'  
                                 onClick={this.back}
                             >
-                            Back
+                            <ChevronLeftIcon /> Back
                             </button>
                             <button
-                                className='ActivityPage__edit-button'
-                                variant="outlined" 
-                                color="primary"
-                                label='Continue'
+                                className='button__blue create-cre'
+                                type='button'  
                                 onClick={this.continue}
                                 >
-                            Continue
+                            Continue <ChevronRightIcon  />
                             </button>
                     </div>
                     <button 
-                        className='savedlesson__go-back'
-                        variant="outlined" 
-                        type='reset' 
+                        className='button__red'
+                        type='button'  
                         onClick={this.props.cancel}>
-                    Cancel
+                    <CancelIcon /> Cancel
                     </button>
-                    </div>
-                </React.Fragment>
-            </div>
+                </div>
+            </>
         )
     }
 }

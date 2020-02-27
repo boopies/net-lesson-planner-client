@@ -34,26 +34,6 @@
     flex-direction: column;
 }
 
-.registration__button{
-    color: rgba(191,54,12 ,1);
-    border: 2px solid rgba(191,54,12 ,1);
-    align-self: center;
-    font-size: 20px;
-    font-family: Roboto;
-    font-weight: bold;
-    padding: 5px;
-    width: 250px;
-    height: 50px;
-    border-radius: 10px;
-    box-shadow: 3px 3px 0px rgba(191,54,12 ,1);
-}
-
-.registration__button:hover{
-    background-color: rgba(191,54,12 ,1);
-    color: white;
-    font-weight: bolder;
-}
-
 .registration__main{
     width: 100%;
 }
@@ -62,8 +42,17 @@
     font-family: Roboto;
     font-size: 3em;
     margin-bottom: 50px;
-    text-decoration-line: overline underline;
-    text-underline-position: under;
     color: white;
     text-shadow: 5px 5px 5px rgb(71, 71, 71);
+}
+.registration_buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .registration_buttons{
+        flex-direction: column;
+    }
 }

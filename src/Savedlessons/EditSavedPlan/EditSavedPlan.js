@@ -3,7 +3,8 @@ import ApiContext from '../../ApiContext'
 import { getActivityForCategory } from '../../ReadActivities/helpers'
 import config from '../../config'
 import TokenService from '../../services/token-service'
-import './EditSavedPlan.css'
+import CancelIcon from '@material-ui/icons/Cancel';
+import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 
 export default class EditSavedPlan extends React.Component{
     constructor(props) {
@@ -101,113 +102,10 @@ export default class EditSavedPlan extends React.Component{
       }
 
 
-    validateName(fieldValue) {
-      const title = this.state.title.value.trim();
-      if (title.length === 0) {
-        return 'Name is required';
-      } else if (title.length < 2) {
-        return <div id="ANErrorMessage">New Notes's name must be 3 characters long.</div>;
-      }
-    }
-    
-    updateName(name){
-      this.setState({title: name});
-    }
-
-    updateDate(date){
-        this.setState({date: date});
-      }
-
-   updateDay(day){
-        this.setState({day: day});
-      }
-
-      updatePeriod(period){
-        this.setState({period: period});
-      }
-
-    updateClassLevel(classLevel){
-        this.setState({classlevel: classLevel});
-      }
-
-      updateClassSize(classSize){
-        this.setState({class_size: classSize});
-      }
-
-    updateDuration(duration){
-        this.setState({duration: duration});
-    }
-
-    updateGoal(goal){
-        this.setState({goal: goal});
-    }
-
-    updateTopic(topic){
-        this.setState({topic: topic});
-    }
-
-      updateObjectiveOne(objectiveOne){
-        this.setState({objective_one: objectiveOne});
-      }
-
-      updateObjectiveTwo(objectiveTwo){
-        this.setState({objective_two: objectiveTwo});
-      }
-
-      updateObjectiveThree(objectiveThree){
-        this.setState({objective_three: objectiveThree});
-      }
-
-      updateMaterials(materials){
-        this.setState({materials: materials});
-      }
-
-
-      updateReflectionOne(reflectionOne){
-        this.setState({reflection_one: reflectionOne});
-      }
-
-      updateReflectionTwo(reflectionTwo){
-        this.setState({reflection_two: reflectionTwo});
-      }
-
-      updateReflectionThree(reflectionThree){
-        this.setState({reflection_three: reflectionThree});
-      }
-
-      updateWarmup(warmup){
-        this.setState({warmup_id: warmup})
-      }
-
-      updatePresentationOne(presentation01){
-        this.setState({presentation_one_id: presentation01});
-      }
-
-      updatePresentationTwo(presentation02){
-        this.setState({presentation_two_id: presentation02});
-      }
-
-      updatePracticeOne(practice01){
-        this.setState({practice_one_id: practice01});
-      }
-
-      updatePracticeTwo(practice02){
-        this.setState({practice_two_id: practice02});
-      }
-
-      updatePracticeThree(practice03){
-        this.setState({practice_three_id: practice03});
-      }
-      updateProductionOne(production01){
-        this.setState({product_one_id: production01});
-      }
-
-      updateProductionTwo(production02){
-        this.setState({product_two_id: production02});
-      }
-
-      updateCooldown(cooldown){
-        this.setState({cooldown_id: cooldown});
+      handleChange = input => e => {
+        this.setState({
+          [input]: e.target.value
+        })
       }
 
     handleSubmitForm = e => {
@@ -314,22 +212,20 @@ export default class EditSavedPlan extends React.Component{
         return (
             <div className='edit_lesson-plan'>
               <header className='edit_lesson-plan-title'>
-                  <h1 >Modify Lesson Plan</h1>
+                  <h1 >Modify Saved Lesson Plan</h1>
               </header>
-            <section className='edit_lesson-planbody'>
+              <section className='edit_lesson-planbody_editcreate'>
                 <form 
-                className='edit-saved-lesson' 
-                id="create-lesson-form"
-                onSubmit= {e =>window.confirm("Are you sure you want to edit this lesson?") &&
-               this.handleSubmitForm(e)}>
-                  <legend className='modify__lessonplan_legend'>Lesson Information</legend>
+                className='edit-created-lesson' 
+                id="create-lesson-form-2"
+                onSubmit={this.handleSubmitForm}>
                 <div className="input--class--title modify__lessonplan">
                     <label htmlFor='title'>Title: </label>
                         <input 
                         id='title'
                         type="text" 
                         value={title}
-                        onChange={e => this.updateName(e.target.value)}
+                        onChange={this.handleChange('title')}
                         required
                         />
                 </div>
@@ -337,7 +233,7 @@ export default class EditSavedPlan extends React.Component{
                     <label htmlFor='title'>Grade: </label>
                     <select
                     id="classLevel"
-                    onChange={e => this.updateClassLevel(e.target.value)}
+                    onChange={this.handleChange('classlevel')}
                     required 
                     value={classlevel}>
                         <option value=''>Select a year level</option>
@@ -351,7 +247,7 @@ export default class EditSavedPlan extends React.Component{
                         type="date" 
                         placeholder="2020/01/01"
                         value={date}
-                        onChange={e => this.updateDate(e.target.value)} 
+                        onChange={this.handleChange('date')}
                         required
                         />
                 </div>
@@ -361,7 +257,7 @@ export default class EditSavedPlan extends React.Component{
                     <select
                     id="day"
                     value={day}
-                    onChange={e => this.updateDay(e.target.value)} required>
+                    onChange={this.handleChange('day')} required>
                         <option value=''>Select a day</option>
                         {this.renderDayofWeek()}
                         </select>
@@ -372,7 +268,7 @@ export default class EditSavedPlan extends React.Component{
                 <label htmlFor='class--period'>Period: </label>
                     <select id="period"
                     value={period}
-                    onChange={e => this.updatePeriod(e.target.value)} required>
+                    onChange={this.handleChange('period')} required>
                         <option value=''>Select a Period</option>
                         {this.renderClassPeriod()}
                     </select>
@@ -384,7 +280,7 @@ export default class EditSavedPlan extends React.Component{
                         type='text' 
                         placeholder='Topic of lesson' 
                         value={topic}
-                        onChange={e => this.updateTopic(e.target.value)}
+                        onChange={this.handleChange('topic')}
                         required />
                 </div>
 
@@ -397,7 +293,7 @@ export default class EditSavedPlan extends React.Component{
                         max="40" 
                         placeholder="10" 
                         value={class_size}
-                        onChange={e => this.updateClassSize(e.target.value)}
+                        onChange={this.handleChange('class_size')}
                         required />
                 </div>
 
@@ -406,7 +302,7 @@ export default class EditSavedPlan extends React.Component{
                     <select 
                         id="duration"
                         value={duration}
-                        onChange={e => this.updateDuration(e.target.value)} required>
+                        onChange={this.handleChange('duration')} required>
                         {this.renderDuration()}
                     </select>
                 </div>
@@ -419,36 +315,37 @@ export default class EditSavedPlan extends React.Component{
                         rows = "3"
                         cols = "60"
                         value={goal}
-                        onChange={e => this.updateGoal(e.target.value)}
+                        onChange={this.handleChange('goal')}
                         required />
                 </div>
                 <hr />
-              <div className='input--class-objectives modify__lessonplan'>
+
+                <div className='input--class-objectives modify__lessonplan'>
                         <legend>Objectives</legend>
                         <label>Students should be able to: </label>
                             <input id='objectiveOne'
                             type='text' 
                             placeholder='First Objective'
                             value={objective_one}
-                            onChange={e => this.updateObjectiveOne(e.target.value)}
+                            onChange={this.handleChange('objective_one')}
                             required />
                         <label>Students should be able to: </label>
                             <input id='objectiveTwo'
                             type='text' 
                             placeholder='Second Objective' 
                             value={objective_two}
-                            onChange={e => this.updateObjectiveTwo(e.target.value)}
+                            onChange={this.handleChange('objective_two')}
                             />
-                        <label>Students should be able to:: </label>
+                        <label>Students should be able to:</label>
                             <input 
                             id='objectiveThree'
                             type='text' 
                             placeholder='Third Objective' 
                             value={objective_three}
-                            onChange={e => this.updateObjectiveThree(e.target.value)}
+                            onChange={this.handleChange('objective_three')}
                             />
-              </div> 
-              <hr />
+                </div>
+            <hr />
                 <div className='input--class-materials modify__lessonplan'>
                         <legend>Materials</legend>
                         <textarea id = "materials"
@@ -456,132 +353,157 @@ export default class EditSavedPlan extends React.Component{
                                 cols = "60"
                                 value={materials}
                                 placeholder= "List all materials here. Seperate items by a comma no space." 
-                                onChange={e => this.updateMaterials(e.target.value)}
-                                required />
+                                onChange={this.handleChange('materials')}
+                                />
                 </div>
                 <hr />
+
                 <div className='input--warmup-phase modify__lessonplan'>
-                        <legend>Warmup Phase</legend>
-                        <label>Activity: </label>
+                        <legend>Warm-up</legend>
+                        <label>Warm-up Activity: </label>
+                        <div className='Activity-select'>
                         <select
                         id="warmupactivity"
                         value={warmup_id}
-                        onChange={e => this.updateWarmup(e.target.value)} required>
+                        onChange={this.handleChange('warmup_id')} required>
                         {this.renderOptions('1')}
                         </select>
+                        </div>
                 </div>
                 <hr />
+
                 <div className='input--presentation-phase modify__lessonplan'>
-                        <legend>Presentation Phase</legend>
-                        <label>Activity 01:</label>
+                        <legend>Presentation</legend>
+                        <label>Presentation Activity 01: </label>
+                        <div className='Activity-select'>
                         <select
                         id="presentation01"
                         value={presentation_one_id}
-                        onChange={e => this.updatePresentationOne(e.target.value)} required> 
+                        onChange={this.handleChange('presentation_one_id')} required> 
                             {this.renderOptions('2')}
                         </select>
-                        <label>Activity 02:</label>
+                        </div>
+                        <label>Presentation Activity 02: </label>
+                        <div className='Activity-select'>
                         <select
                         id="presentation02"
                         value={presentation_two_id}
-                        onChange={e => this.updatePresentationTwo(e.target.value)}>
+                        onChange={this.handleChange('presentation_two_id')}>
                         {this.renderOptions('2')}
-                        </select>          
+                        </select>
+                        </div>
                 </div>
-                    <hr />
+                <hr />
                 <div className='input--practice-phase modify__lessonplan'>
-                        <legend>Practice Phase</legend>
-                        <label>Activity 01: </label>
+                        <legend>Practice</legend>
+                        <label>Practice Activity 01: </label>
+                        <div className='Activity-select'>
                         <select
                         id="practice01"
                         value={practice_one_id}
-                        onChange={e => this.updatePracticeOne(e.target.value)} required>
+                        onChange={this.handleChange('practice_one_id')} required>
                             {this.renderOptions('3')}
                         </select>
-                        <label>Activity 02:</label>
+                        </div>
+                        <label>Practice Activity 02:</label>
+                        <div className='Activity-select'>
                         <select
                            id="practice02"
                            value={practice_two_id}
-                        onChange={e => this.updatePracticeTwo(e.target.value)}>
+                           onChange={this.handleChange('practice_two_id')} >
                             {this.renderOptions('3')}
                         </select>
-                        <label>Activity 03:</label>
+                        </div>
+                        <label>Practice Activity 03: </label>
+                        <div className='Activity-select'>
                         <select
                             id="practice03"
                             value={practice_three_id}
-                            onChange={e => this.updatePracticeThree(e.target.value)}>                  
+                            onChange={this.handleChange('practice_three_id')} >                  
                             {this.renderOptions('3')}
-                        </select>      
+                        </select>       
+                        </div>
                   </div>
                   <hr />
+
                   <div className='input--production-phase modify__lessonplan'>
-                        <legend>Production Phase</legend>
-                        <label>Activity 01: </label>
+                        <legend>Production</legend>
+                        <label>Production Activity 01: </label>
+                        <div className='Activity-select'>
                         <select
                             id="production01"
                             value={product_one_id}
-                            onChange={e => this.updateProductionOne(e.target.value)} required>
+                            onChange={this.handleChange('product_one_id')}  required>
                             {this.renderOptions('4')}
                         </select>
-                        <label>Activity 02:</label>
+                        </div>
+                        <label>Production Activity 02: </label>
+                        <div className='Activity-select'>
                         <select
                             id="production02"
                             value={product_two_id}
-                            onChange={e => this.updateProductionTwo(e.target.value)}>
+                            onChange={this.handleChange('product_two_id')}>
                             {this.renderOptions('4')}
-                        </select>                  
+                        </select> 
+                        </div>               
                   </div>
                   <hr />
+
                   <div className='input--cooldown-phase modify__lessonplan'>
                         <legend>Cool Down</legend>
-                        <label>Activity 01:</label>
+                        <label>Cool Down Activity 01: </label>
+                        <div className='Activity-select'>
                         <select
                         id="cooldown"
                         value={cooldown_id}
-                        onChange={e => this.updateCooldown(e.target.value)}>
+                        onChange={this.handleChange('cooldown_id')}>
                             {this.renderOptions('5')}
-                        </select>         
+                        </select>     
+                        </div>   
                     </div>
                     <hr />
                     <div className='input--class-reflections modify__lessonplan'>
                         <legend>Reflection</legend>
-                        <label>Question 01:</label>
+                        <label>Reflection Question 01: </label>
                             <input 
                             id='reflectionOne'
                             type='text' 
                             placeholder='First reflection question'
                             value={reflection_one}
-                            onChange={e => this.updateReflectionOne(e.target.value)}
+                            onChange={this.handleChange('reflection_one')}
                             required
                             />
-                        <label>Question 01:</label>
+                        <label>Reflection Question 01: </label>
                             <input 
                             id='reflectionTwo'
                             type='text' 
                             placeholder='Second reflection question' 
                             value={reflection_two}
-                            onChange={e => this.updateReflectionTwo(e.target.value)}
+                            onChange={this.handleChange('reflection_two')}
                             />
-                        <label>Question 01:</label>
+                        <label>Reflection Question 01: </label>
                             <input 
                             id='reflectionThree'
                             type='text' 
                             placeholder='Third reflection question'
                             value={reflection_three}
-                            onChange={e => this.updateReflectionThree(e.target.value)}
+                            onChange={this.handleChange('reflection_three')}
                             />
                     </div>
-                    <div
-                      className="edit-lesson__buttons">
-                      <button 
-                      className="update-edit-lesson__button" 
-                      type='submit'>Update</button>
-                      <button 
-                        className="cancel-edit-lesson__button" 
-                        type='button' 
-                        onClick={() => this.handleClickCancel()}>
-                        Cancel</button>
-                    </div>
+                      <div
+                        className="edit-lesson__buttons">
+                        <button 
+                        className="button__violet" 
+                        type='submit'>
+                        <SystemUpdateAltIcon /> Update
+                        </button>
+
+                        <button 
+                          className="button__red" 
+                          type='button' 
+                          onClick={() => this.handleClickCancel()}>
+                          <CancelIcon /> Cancel</button>
+                      </div>
                 </form>
             </section>
             </div>

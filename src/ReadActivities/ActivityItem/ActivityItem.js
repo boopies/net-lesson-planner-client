@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import ApiContext from '../../ApiContext'
 import { findAuthor, findCategory } from '../helpers'
 import './ActivityItem.css'
+import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode';
+
 
 export default class ActivityItem extends React.Component {
   static contextType = ApiContext;
@@ -48,8 +50,8 @@ renderAuthor(authorId){
             </div>
           <div className='activity-card__readmore'>
             <Link to={`/read/activity/${id}`}>
-            <button className='activity-card__learnmore_button'>
-            Read More</button>
+            <button className='button__blue'>
+            <ChromeReaderModeIcon /> Read More</button>
             </Link>
           </div>
       </div>

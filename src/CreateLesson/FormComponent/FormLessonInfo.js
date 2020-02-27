@@ -1,9 +1,7 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField'
-import FormControl from '@material-ui/core/FormControl';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Typography from '@material-ui/core/Typography';
 import ValidationError from '../../ReadActivities/ValidationError/ValidationError'
+import CancelIcon from '@material-ui/icons/Cancel';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 
 export class FormLessonInfo extends React.Component {
@@ -85,7 +83,7 @@ export class FormLessonInfo extends React.Component {
         const { values  } = this.props;
         const date = values.date;
         if (date.length === 0) {
-          return 'Date is required. Use YYYY/MM/DD.';
+          return 'Date is required.';
         } else if (date.length < 2) {
           return <div id="ANErrorMessage">Add a new Date.</div>;
         }
@@ -134,28 +132,27 @@ export class FormLessonInfo extends React.Component {
     render() {
         const { values, handleChange } = this.props;
         return (
-                <React.Fragment>
-                    <FormControl variant="outlined">
-                            <Typography id="lesson_class-size">
+                <>
+                    <div className="outlined">
+                            <h4 id="lesson_class-size">
                                 Title
-                            </Typography>
-                            <TextField
+                            </h4>
+                            <input
                                 required
                                 id="lesson_title"
                                 defaultValue={values.title}
                                 onChange={handleChange('title')}
                                 margin="normal"
                                 placeholder="Lesson Title"
-                                variant="outlined"
                             />
                             {<ValidationError message={this.validateTitle()}/>}
-                    </FormControl>
+                    </div>
                     <br />
-                    <FormControl variant="outlined">
-                        <Typography id="lesson_year-level">
+                    <div className="outlined">
+                        <h4 id="lesson_year-level">
                         Year Level
-                        </Typography>
-                            <NativeSelect
+                        </h4>
+                            <select
                             required
                             id='lesson_year-level'
                             value={values.classlevel}
@@ -163,30 +160,29 @@ export class FormLessonInfo extends React.Component {
                             >
                             <option value="">Select A Year Level</option>
                             {this.renderClassLevel()}
-                            </NativeSelect>
+                            </select>
                             {<ValidationError message={this.validateClasslevel()}/>}
-                        </FormControl>
+                        </div>
                     <br />
-                    <FormControl variant="outlined">
-                        <Typography id="lesson_date">
+                    <div className="outlined">
+                        <h4 id="lesson_date">
                             Date
-                        </Typography>
-                        <TextField
+                        </h4>
+                        <input
                             required
                             id="lesson_date"
                             type="date"
-                            defaultValue="2020-02-24"
+                            value={values.date}
                             onChange={handleChange('date')}
-                            variant="outlined"
                         />
                         {<ValidationError message={this.validateDate()}/>}
-                    </FormControl>
+                    </div>
                     <br />
-                    <Typography id="lesson_day">
+                    <div className="outlined">
+                    <h4 id="lesson_day">
                         Day
-                    </Typography>
-                    <FormControl variant="outlined">
-                        <NativeSelect
+                    </h4>
+                        <select
                         required
                         id='lesson_day'
                         value={values.day}
@@ -194,15 +190,16 @@ export class FormLessonInfo extends React.Component {
                         >
                         <option value="">Select a Day</option>
                         {this.renderDayofWeek()}
-                        </NativeSelect>
+                        </select>
                         {<ValidationError message={this.validateDay()}/>}
-                    </FormControl>
+                    </div>
                     <br />
-                    <Typography id="lesson_duration">
+
+                    <div className="outlined">
+                    <h4 id="lesson_duration">
                         Lesson Duration
-                    </Typography>
-                    <FormControl variant="outlined">
-                        <NativeSelect
+                    </h4>
+                        <select
                         required
                         id='lesson_duration'
                         value={values.duration}
@@ -210,15 +207,15 @@ export class FormLessonInfo extends React.Component {
                         >
                         <option value="">Select Lesson Length</option>
                         {this.renderDuration()}
-                    </NativeSelect>
+                    </select>
                     {<ValidationError message={this.validateDuration()}/>}
-                    </FormControl>
+                    </div>
                     <br />
-                    <Typography id="lesson_period">
-                        Period
-                    </Typography>
-                    <FormControl variant="outlined">
-                        <NativeSelect
+                    <div className="outlined">
+                      <h4 id="lesson_period">
+                          Period
+                      </h4>
+                        <select
                         required
                         id='lesson_period'
                         value={values.period}
@@ -226,46 +223,44 @@ export class FormLessonInfo extends React.Component {
                         >
                         <option value="">Select Period</option>
                         {this.renderClassPeriod()}
-                    </NativeSelect>
+                    </select>
                     {<ValidationError message={this.validatePeriod()}/>}
-                    </FormControl>
+                    </div>
                     <br />
-                    <FormControl variant="outlined">
-                    <Typography id="lesson_class-size">
-                        Class Size
-                    </Typography>
-                        <TextField
-                            required
-                            value={values.class_size}
-                            id="lesson_class-size"
-                            type="number"
-                            variant="outlined"
-                            inputProps={{ 
-                                            min: "1", 
-                                            max: "45", 
-                                            step: "1", 
-                                            placeholder: "20" }}
-                            onChange={handleChange('class_size')}
-                        />
-                    {<ValidationError message={this.validateClassSize()}/>}
-                    </FormControl>
+                    <div className="outlined">
+                      <h4 id="lesson_class-size">
+                          Class Size
+                      </h4>
+                          <input
+                              required
+                              value={values.class_size}
+                              id="lesson_class-size"
+                              type="number"
+                              min= "1" 
+                              max= "45" 
+                              step= "1" 
+                              placeholder= "20"
+                              onChange={handleChange('class_size')}
+                          />
+                      {<ValidationError message={this.validateClassSize()}/>}
+                    </div>
                     <br />
                     <div
                         className='All_buttons'>
                     <button
-                        className='ActivityPage__edit-button'
+                        className='button__blue'
                         type='button'
                         onClick={this.continue}>
-                    Continue
+                    Continue <ChevronRightIcon />
                     </button>
                     <button
-                        className='savedlesson__go-back'
+                        className='button__red'
                         type='button'
                         onClick={this.props.cancel}>
-                    Cancel
+                    <CancelIcon /> Cancel
                     </button>
                     </div>
-                </React.Fragment>
+                </>
         )
     }
 }

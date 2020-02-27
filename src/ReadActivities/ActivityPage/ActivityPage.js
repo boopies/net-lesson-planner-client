@@ -4,6 +4,8 @@ import ApiContext from '../../ApiContext'
 import { findActivity } from '../helpers'
 import PropTypes from 'prop-types'
 import './ActivityPage.css'
+import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
+import EditIcon from '@material-ui/icons/Edit';
 
 export default class ActivityPage extends React.Component {
   static defaultProps = {
@@ -39,19 +41,17 @@ export default class ActivityPage extends React.Component {
         </div>
         <div className='activities-content__buttons'>
           <button
-              tag='button'
-              role='link'
-              className={(activity.user_id === currentUser.id? 'ActivityPage__edit-button' : 'ActivityPage__edit-button hidden')}
+              type='button'
+              className={(activity.user_id === currentUser.id? 'button__yellow' : 'button__yellow hidden')}
               onClick={() => this.props.history.push(`/read/edit-activity/${activity.id}`)}>
-              Edit
+              <EditIcon /> Edit
           </button>
           
           <button
-              tag='button'
-              role='link'
-              onClick={() => this.props.history.goBack()}
-              className='ActivityPage__back-button'>
-              Back
+              type='button'
+              onClick={() => this.props.history.push('/read')}
+              className='button__red'>
+              <KeyboardReturnIcon /> Back
         </button>
       </div>
       </section>

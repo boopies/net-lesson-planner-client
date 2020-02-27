@@ -1,9 +1,7 @@
 import React from 'react'
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
-import List from '@material-ui/core/List';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItem from '@material-ui/core/ListItem';
 import { findActivity } from '../../ReadActivities/helpers'
+import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
+import PublishIcon from '@material-ui/icons/Publish';
 
 export default  class FormConfirmation extends React.Component {
     static defaultProps = {
@@ -28,168 +26,118 @@ export default  class FormConfirmation extends React.Component {
             <div>
             <form className='create-lesson' id="create-lesson-form-confirm"
                 onSubmit={this.props.handleSubmitForm}>
-            <MuiThemeProvider>
-                <React.Fragment>
-                        <List className='create-confirmation'>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Lesson Title'
-                                    secondary={values.title}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Date'
-                                    secondary={values.date}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Day'
-                                    secondary={values.day}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Duration'
-                                    secondary={values.duration}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Year Level'
-                                    secondary={values.classlevel}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Period'
-                                    secondary={values.period}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Topic'
-                                    secondary={values.topic}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Goals'
-                                    secondary={values.goal}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Objective One'
-                                    secondary={values.objective_one}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Objective Two'
-                                    secondary={values.objective_two}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Objective Three'
-                                    secondary={values.objective_three}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Materials'
-                                    secondary={values.materials}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Warmup Activity'
-                                    secondary={this.renderActivityName(values.warmup_id)}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Presentation Activity One'
-                                    secondary={this.renderActivityName(values.presentation_one_id)}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Presentation Activity Two'
-                                    secondary={this.renderActivityName(values.presentation_two_id)}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Practice Activity One'
-                                    secondary={this.renderActivityName(values.practice_one_id)}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Practice Activity Two'
-                                    secondary={this.renderActivityName(values.practice_two_id)}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Practice Activity Three'
-                                    secondary={this.renderActivityName(values.practice_three_id)}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Production Activity One'
-                                    secondary={this.renderActivityName(values.product_one_id)}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Production Activity Two'
-                                    secondary={this.renderActivityName(values.product_two_id)}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='CooldownActivity'
-                                    secondary={this.renderActivityName(values.cooldown_id)}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Reflection One'
-                                    secondary={values.reflection_one}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Reflection Two'
-                                    secondary={values.reflection_two}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary='Reflection Three'
-                                    secondary={values.reflection_three}
-                                />
-                            </ListItem>
-                        </List>
-                    <div>
+                        <ul className='create-confirmation'>
+                            <li>
+                                    <h4>Lesson Title</h4>
+                                    <p>{values.title}</p>
+                            </li>
+                            <li>
+                                    <h4>Date</h4>
+                                    <p>{values.date}</p>
+                            </li>
+                            <li>
+                                    <h4>Day</h4>
+                                    <p>{values.day}</p>
+                            </li>
+                            <li>
+                                    <h4>Duration</h4>
+                                    <p>{values.duration}</p>
+                            </li>
+                            <li>
+                                    <h4>Year Level</h4>
+                                    <p>{values.classlevel}</p>
+                            </li>
+                            <li>
+                                    <h4>Period</h4>
+                                    <p>{values.period}</p>
+                            </li>
+                            <li>
+                                    <h4>Topic</h4>
+                                    <p>{values.topic}</p>
+                            </li>
+                            <li>
+                                    <h4>Goals</h4>
+                                    <p>{values.goal}</p>
+                            </li>
+                            <li>
+                                    <h4>Objective One</h4>
+                                    <p>{values.objective_one}</p>
+                            </li>
+                            <li>
+                                    <h4>Objective Two</h4>
+                                    <p>{values.objective_two}</p>
+                            </li>
+                            <li>
+                                    <h4>Objective Three</h4>
+                                    <p>{values.objective_three}</p>
+                            </li>
+                            <li>
+                                    <h4>Materials</h4>
+                                    <p>{values.materials}</p>
+                            </li>
+                            <li>
+                                    <h4>Warmup Activity</h4>
+                                    <p>{this.renderActivityName(values.warmup_id)}</p>
+                            </li>
+                            <li>
+                                    <h4>Presentation Activity One</h4>
+                                    <p>{this.renderActivityName(values.presentation_one_id)}</p>
+                            </li>
+                            <li>
+                                    <h4>Presentation Activity Two</h4>
+                                    <p>{this.renderActivityName(values.presentation_two_id)}</p>
+                            </li>
+                            <li>
+                                    <h4>Practice Activity One</h4>
+                                    <p>{this.renderActivityName(values.practice_one_id)}</p>
+                            </li>
+                            <li>
+                                    <h4>Practice Activity Two</h4>
+                                    <p>{this.renderActivityName(values.practice_two_id)}</p>
+                            </li>
+                            <li>
+                                    <h4>Practice Activity Three</h4>
+                                    <p>{this.renderActivityName(values.practice_three_id)}</p>
+                            </li>
+                            <li>
+                                    <h4>Production Activity One</h4>
+                                    <p>{this.renderActivityName(values.product_one_id)}</p>
+                            </li>
+                            <li>
+                                    <h4>Production Activity Two</h4>
+                                    <p>{this.renderActivityName(values.product_two_id)}</p>
+                            </li>
+                            <li>
+                                    <h4>CooldownActivity</h4>
+                                    <p>{this.renderActivityName(values.cooldown_id)}</p>
+                            </li>
+                            <li>
+                                    <h4>Reflection One</h4>
+                                    <p>{values.reflection_one}</p>
+                            </li>
+                            <li>
+                                    <h4>Reflection Two</h4>
+                                    <p>{values.reflection_two}</p>
+                            </li>
+                            <li>
+                                    <h4>Reflection Three</h4>
+                                    <p>{values.reflection_three}</p>
+                            </li>
+                        </ul>
+                    <div className='All_buttons'>
                         <button 
-                            label='Back'
+                            type='button'
+                            className='button__yellow'
                             onClick={this.props.beginning}
                         >
-                        Back
+                        <SettingsBackupRestoreIcon /> Check once more
                         </button>
                         <button
+                            className='button__violet'
                             type='submit'>
-                        Confirm
+                        <PublishIcon /> Confirm
                         </button>
                     </div>
-                </React.Fragment>
-            </MuiThemeProvider> 
             </form>               
             </div>
         )

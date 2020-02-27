@@ -142,4 +142,17 @@
     .addactivitybuttons{
         flex-direction: column;
     }
+
+    .editactivitybuttons{
+        flex-direction: column;
+    }
+
+    .edit-activity-contents textarea{
+        width: 95%;
+    }
+
+    .EditActivityForm,{
+        width: 90vw;
+    }
+
 }

@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import TokenService from '../../services/token-service'
 import config from '../../config'
 import './EditActivity.css'
+import CancelIcon from '@material-ui/icons/Cancel';
+import PublishIcon from '@material-ui/icons/Publish';
 
 export default class EditActivity extends Component {
   constructor(props) {
@@ -106,7 +108,7 @@ updateGrouping(grouping){
     const { categories=[] } = this.context
     const { activityId } = this.props.match.params
     return (
-      <section className='AddActivity'>
+      <section>
         <form 
           onSubmit=
           {e =>window.confirm("Are you sure you want to edit this activity?") &&
@@ -201,16 +203,16 @@ updateGrouping(grouping){
           <div className='editactivitybuttons'>
             <button 
               type='submit'
-              className='editActivity-submit__button'
+              className='button__yellow'
               aria-label='submit button to create the new activity'>
-              Submit
+              <PublishIcon /> Submit
             </button>
             <button 
               type='button' 
-              className='editActivity-cancel__button'
+              className='button__red'
               aria-label='Button to Cancel creating new activity'
               onClick={() => this.props.history.push(`/read/activity/${activityId}`)}>
-              Cancel
+              <CancelIcon /> Cancel
             </button>
           </div>
         </form>

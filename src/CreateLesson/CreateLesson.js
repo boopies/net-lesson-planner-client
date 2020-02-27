@@ -139,8 +139,8 @@ export default class CreateLesson extends React.Component{
             return(
               <div 
               className='create-lesson__information'>
-              <h2>Part 1 - Lesson Information</h2>
-              <h3>Add some classroom information of the class you are teaching.</h3>
+              <h2 className='crate-lesson-titles'>Part 1 - Lesson Information</h2>
+              <h3 className='crate-lesson-subtitles'>Add some classroom information of the class you are teaching.</h3>
               <FormLessonInfo
                 nextStep={this.nextStep}
                 handleChange={this.handleChange}
@@ -154,8 +154,8 @@ export default class CreateLesson extends React.Component{
             return (
               <div 
               className='create-lesson__TGOM'>
-              <h2>Part 2 - Topic, Goals, Objectives and Materials</h2>
-              <h3>Add some important information about the class.</h3>
+              <h2 className='crate-lesson-titles'>Part 2 - Topic, Goals, Objectives and Materials</h2>
+              <h3 className='crate-lesson-subtitles'>Add some important information about the class.</h3>
               <FormLessonTGOM
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
@@ -168,8 +168,8 @@ export default class CreateLesson extends React.Component{
         case 3: return (
           <div 
           className='create-lesson__warmup'>
-          <h2>Part 3 - Warmup Activity</h2>
-          <h3>Add in activities to get the students in the mood 
+          <h2 className='crate-lesson-titles'>Part 3 - Warmup Activity</h2>
+          <h3 className='crate-lesson-subtitles'>Add in activities to get the students in the mood 
           to learn English.</h3>
               <FormWarmup
                 nextStep={this.nextStep}
@@ -183,8 +183,8 @@ export default class CreateLesson extends React.Component{
               </div>)
         case 4: return (<div 
           className='create-lesson__presentation'>
-          <h2>Part 4 - Presenation Phase Activities</h2>
-          <h3>Add in activities that teach the students how to use the
+          <h2 className='crate-lesson-titles'>Part 4 - Presenation Phase Activities</h2>
+          <h3 className='crate-lesson-subtitles'>Add in activities that teach the students how to use the
           focus of the lessons.</h3>
           <FormPresentation
                 nextStep={this.nextStep}
@@ -197,8 +197,8 @@ export default class CreateLesson extends React.Component{
                 /></div>)
         case 5: return (<div 
           className='create-lesson__practice'>
-          <h2>Part 5 - Practice Phase Activities</h2>
-          <h3>Add in activities that let students practice the focus 
+          <h2 className='crate-lesson-titles'>Part 5 - Practice Phase Activities</h2>
+          <h3 className='crate-lesson-subtitles'>Add in activities that let students practice the focus 
           of the lesson.</h3>
           <FormPractice
                 nextStep={this.nextStep}
@@ -212,8 +212,8 @@ export default class CreateLesson extends React.Component{
         case 6: return (
           <div 
           className='create-lesson__production'>
-          <h2>Part 6 - Production Phase Activities</h2>
-          <h3>Add in activities to see if the students understand how 
+          <h2 className='crate-lesson-titles'>Part 6 - Production Phase Activities</h2>
+          <h3 className='crate-lesson-subtitles'>Add in activities to see if the students understand how 
           to use what you have taught.</h3>
           <FormProduct
                 nextStep={this.nextStep}
@@ -227,8 +227,8 @@ export default class CreateLesson extends React.Component{
         case 7: return (
           <div 
           className='create-lesson__cooldown'>
-          <h2>Part 7 - Optional Cooldown phase Activities</h2>
-          <h3>Add in an optional cooldown activity. This phase is if you have spare 
+          <h2 className='crate-lesson-titles'>Part 7 - Optional Cooldown phase Activities</h2>
+          <h3 className='crate-lesson-subtitles'>Add in an optional cooldown activity. This phase is if you have spare 
             time after the lesson. It is recommended that the activities concentrate
             on items that the students already know.</h3>
           <FormCooldown
@@ -243,8 +243,8 @@ export default class CreateLesson extends React.Component{
         case 8: return (
           <div 
           className='create-lesson__reflection'>
-          <h2>Part 8 - Lesson Reflections</h2>
-          <h3>Add in some reflection questions to help you improve the lesson.</h3>
+          <h2 className='crate-lesson-titles'>Part 8 - Lesson Reflections</h2>
+          <h3 className='crate-lesson-subtitles'>Add in some reflection questions to help you improve the lesson.</h3>
           <FormReflection
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
@@ -256,8 +256,8 @@ export default class CreateLesson extends React.Component{
         case 9: return (
           <div 
           className='create-lesson__confirm'>
-          <h2>Confirm Information</h2>
-          <h3>Is this information correct?</h3>
+          <h2 className='crate-lesson-titles'>Confirm Information</h2>
+          <h3 className='crate-lesson-subtitles'>Is this information correct?</h3>
           <FormConfirmation 
             values = {values}
             beginning = {this.goToBeginning}
@@ -275,7 +275,7 @@ export default class CreateLesson extends React.Component{
     render(){
       return(
         <>
-          <header> <h1>Create a Lesson</h1> </header>
+          <header> <h1 className='create_lesson_titles'>Create a Lesson</h1> </header>
           <form 
             className='create-lesson' 
             id="create-lesson-form"

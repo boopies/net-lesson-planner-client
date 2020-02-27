@@ -1,10 +1,14 @@
 import React from 'react';
 import ApiContext from '../../ApiContext'
-import './SavedLessonPlan.css'
 import { findActivity } from '../../ReadActivities/helpers'
 import uuid from 'react-uuid'
 import config from '../../config'
 import TokenService from '../../services/token-service'
+import PrintIcon from '@material-ui/icons/Print';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import PhotoFilterIcon from '@material-ui/icons/PhotoFilter';
+import HomeIcon from '@material-ui/icons/Home'
+import DeleteIcon from '@material-ui/icons/Delete';
 
 export default class SavedLessonPlan extends React.Component{
     constructor(props) {
@@ -246,38 +250,39 @@ export default class SavedLessonPlan extends React.Component{
         return (
             <>
                 <button 
-                    className='savedlesson__delete-activity-button'
+                    className='button__red'
                     type='button'               
                     onClick={e =>
                         window.confirm("Are you sure you wish to delete this item?") &&
                         this.handleDeleteLesson(e)
-                    }>Delete
+                    }>
+                    <DeleteIcon /> Delete
                 </button>
                 <button
-                    className='ActivityPage__edit-button'
+                    className='button__yellow'
                     type='button'
                     onClick={e =>
                     this.handleEditLesson(e)
                     }>
-                    Edit
+                    <EditOutlinedIcon /> Edit
                     </button>
                 <button
-                    className='lesson_print_lesson'
+                    className='button__orange'
                     type='button' 
                     onClick={() => this.handlePrintLesson('printableArea')}>
-                    Print
+                    <PrintIcon /> Print
                 </button>
                 <button 
-                    className='landing-button_create'
+                    className='button__green'
                     type='button' 
                     onClick={() => this.handleNewLesson()}>
-                    New Lesson
+                    <PhotoFilterIcon /> New Lesson
                 </button>
                 <button 
-                    className='ActivityPage__back-button'
+                    className='button__red'
                     type='button' 
                     onClick={() => this.handleGoHome()}>
-                    Go Back
+                    <HomeIcon />Go Back
                 </button>
             </>
         )

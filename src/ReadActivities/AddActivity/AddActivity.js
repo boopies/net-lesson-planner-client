@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import TokenService from '../../services/token-service'
 import config from '../../config'
 import './AddActivity.css'
+import CancelIcon from '@material-ui/icons/Cancel';
+import PublishIcon from '@material-ui/icons/Publish';
 
 export default class AddActivity extends Component {
   constructor(props) {
@@ -250,7 +252,7 @@ updateGrouping(grouping){
           <div className='addactivitybuttons'>
             <button 
               type='submit'
-              className='addActivity-submit__button'
+              className='button__violet'
               aria-label='submit button to create the new Activity'
               aria-describedby='buttonError'
               disabled={this.validateTitle()||
@@ -258,17 +260,16 @@ updateGrouping(grouping){
                 this.validateCategoryId()||
                 this.validateDuration()||
                 this.validateGrouping()}>
-              Submit
+              <PublishIcon /> Submit
             </button>
             <button 
-              className='addActivity-cancel__button' 
+              className='button__red' 
               type='button'
               aria-label='Button to Cancel creating new Activity'
               onClick={() => this.goBack()}>
-              Cancel
+              <CancelIcon /> Cancel
             </button>
           </div>
-          <div id='buttonError'>submit button will activate when form is filled out correctuly.</div>
         </form>
       </section>
     )

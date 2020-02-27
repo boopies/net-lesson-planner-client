@@ -1,6 +1,8 @@
 import React from 'react'
 import './LandingButtons.css'
 import {withRouter} from 'react-router-dom';
+import NoteAddIcon from '@material-ui/icons/NoteAdd';
+import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode';
 
 class LandingButtons extends React.Component{
     handleNewLesson = () => {
@@ -15,17 +17,16 @@ class LandingButtons extends React.Component{
         return (
         <section className='buttons-to-pages'>
             <button
-              className="landing-button_create"
+              className="button__green"
               type='button' 
               onClick={() => this.handleNewLesson()}>
-              Create a Lesson Plan</button>
+              <NoteAddIcon /> Create a Lesson Plan</button>
               
             <button 
-              className="landing-button_read"
-              color="primary"
+              className="button__indigo"
               type='button' 
               onClick={() => this.handleReadActivities()}>
-              Read the Activities</button>
+              <ChromeReaderModeIcon /> Read the Activities</button>
         </section>
         )
     }
