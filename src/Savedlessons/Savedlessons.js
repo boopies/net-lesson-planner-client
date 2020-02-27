@@ -84,7 +84,7 @@ export default class Savedlessons extends React.Component {
                       window.confirm("Are you sure you wish to delete this item?") &&
                       this.handleDeleteLesson(e)
                   }> 
-              <DeleteIcon />  Delete Saved Lesson
+              <DeleteIcon />  Delete
               </button>
             </div>
             <div className='other-buttons'>
@@ -92,7 +92,7 @@ export default class Savedlessons extends React.Component {
               type = 'button' 
               className = 'button__green' 
               onClick = {() => this.handleCreateLessonForm()} > 
-               <NoteAddIcon /> Create a New Lesson Plan 
+               <NoteAddIcon /> New Lesson
               </button>
             <button 
               className="button__red" 

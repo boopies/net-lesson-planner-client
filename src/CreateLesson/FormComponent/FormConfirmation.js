@@ -130,7 +130,7 @@ export default  class FormConfirmation extends React.Component {
                             className='button__yellow'
                             onClick={this.props.beginning}
                         >
-                        <SettingsBackupRestoreIcon /> Check once more
+                        <SettingsBackupRestoreIcon /> Check
                         </button>
                         <button
                             className='button__violet'

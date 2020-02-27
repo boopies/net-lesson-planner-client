@@ -20,13 +20,13 @@ class LandingButtons extends React.Component{
               className="button__green"
               type='button' 
               onClick={() => this.handleNewLesson()}>
-              <NoteAddIcon /> Create a Lesson Plan</button>
+              <NoteAddIcon /> Create</button>
               
             <button 
               className="button__indigo"
               type='button' 
               onClick={() => this.handleReadActivities()}>
-              <ChromeReaderModeIcon /> Read the Activities</button>
+              <ChromeReaderModeIcon /> Read</button>
         </section>
         )
     }
