@@ -133,24 +133,6 @@
   justify-content: center;
 }
 
-.create_lesson-save__button{
-	box-shadow: 3px 3px 0px rgba(255,138,101 ,1);
-  color: rgba(255,138,101 ,1);
-  font-weight: bolder;
-  border: 2px solid rgba(255,138,101 ,1);
-}
-
-.create_lesson-save__button:hover{
-    background-color: rgba(255,138,101 ,1);
-    color: white;
-    font-weight: bolder;
-    box-shadow: 3px 3px 0px rgba(191,54,12 ,1);
-}
-
-.lp_button{
-  margin: 5px;
-}
-
 @media (max-width: 768px){
   #lesson_plan__full{
     width: 95%;
