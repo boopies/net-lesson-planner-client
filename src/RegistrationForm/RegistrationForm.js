@@ -3,6 +3,7 @@ import AuthApiService from '../services/auth-api-service'
 import './RegistrationForm.css'
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import CancelIcon from '@material-ui/icons/Cancel';
+import {Link} from 'react-router-dom'
 
 export default class RegistrationForm extends React.Component {
   static defaultProps = {
@@ -91,6 +92,15 @@ export default class RegistrationForm extends React.Component {
                   id='RegistrationForm__password'>
                 </input>
               </div>
+              <div className='gotoLogin'>
+                  <h3>Already a member?
+                  <Link
+                  to='/login'
+                  className={this.context.hasToken? 'hidden' : ''}>
+                  {' '}Log in here.
+                </Link></h3>
+              </div>
+
               <div className='registration_buttons'>
               <button 
                 className='button__green'

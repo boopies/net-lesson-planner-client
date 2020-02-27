@@ -5,6 +5,7 @@ import config from '../config'
 import './LoginForm.css'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import CancelIcon from '@material-ui/icons/Cancel';
+import {Link} from 'react-router-dom'
 
 export default class LoginForm extends Component {
     static defaultProps = {
@@ -98,6 +99,14 @@ export default class LoginForm extends Component {
                                 name='password'
                                 type='password'
                                 id='LoginForm__password' />
+                        </div>
+                        <div className='gotoRegister'>
+                            <h3>Not a member?
+                            <Link
+                            to='/register'
+                            className={this.context.hasToken? 'hidden' : ''}>
+                            {' '}Register here.
+                            </Link></h3>
                         </div>
                         <div className='loginButtons'>
                         <button className='button__violet' type='submit'>

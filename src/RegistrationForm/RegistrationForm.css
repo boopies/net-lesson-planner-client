@@ -1,3 +1,9 @@
+.registration__main{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
 .RegistrationForm{
     display: flex;
     flex-direction: column;
@@ -5,7 +11,11 @@
     border-radius: 15px;
     background-color: white;
     box-shadow: 5px 5px 0px 5px black;
-    width: 100%;
+    width: 60%;
+}
+
+.gotoLogin{
+    text-align: center;
 }
 
 .RegistrationForm label{
@@ -54,5 +64,10 @@
 @media (max-width: 768px) {
     .registration_buttons{
         flex-direction: column;
+    }
+
+    .RegistrationForm{
+        display: flex;
+        width: 100%;
     }
 }

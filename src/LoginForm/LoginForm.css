@@ -32,7 +32,7 @@
 }
 
 .login__main{
-    width: 50%;
+    width: 60%;
 }
 
 .login__heading{
@@ -47,6 +47,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.gotoRegister{
+    text-align: center;
 }
 
 @media (max-width: 768px){
