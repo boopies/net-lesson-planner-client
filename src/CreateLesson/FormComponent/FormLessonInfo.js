@@ -250,6 +250,13 @@ export class FormLessonInfo extends React.Component {
                     <button
                         className='button__blue'
                         type='button'
+                        disabled={this.validateTitle()||
+                                    this.validateClasslevel()||
+                                    this.validateDate()||
+                                    this.validateDay()||
+                                    this.validateDuration()||
+                                    this.validatePeriod()||
+                                    this.validateClassSize()}
                         onClick={this.continue}>
                     Continue <ChevronRightIcon />
                     </button>
@@ -266,13 +273,3 @@ export class FormLessonInfo extends React.Component {
 }
 
 export default FormLessonInfo
-
-/*
-                        disabled={this.validateTitle()||
-                                    this.validateClasslevel()||
-                                    this.validateDate()||
-                                    this.validateDay()||
-                                    this.validateDuration()||
-                                    this.validatePeriod()||
-                                    this.validateClassSize()}
-                                    */

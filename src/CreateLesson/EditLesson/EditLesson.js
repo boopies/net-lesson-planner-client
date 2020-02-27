@@ -269,7 +269,7 @@ export default class EditLesson extends React.Component{
                         id='classSize'
                         type='number' 
                         min="1" 
-                        max="40" 
+                        max="45" 
                         placeholder="10" 
                         value={class_size}
                         onChange={this.handleChange('class_size')}

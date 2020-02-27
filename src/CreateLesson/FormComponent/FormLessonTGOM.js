@@ -147,6 +147,9 @@ export class FormLessonTGOM extends React.Component {
                                 className='button__blue create-cre'
                                 type='button'  
                                 onClick={this.continue}
+                                disabled={this.validateTopic()||
+                                    this.validateGoal()||
+                                    this.validateObjective()} 
                                 >
                             Continue <ChevronRightIcon  />
                             </button>
@@ -164,7 +167,3 @@ export class FormLessonTGOM extends React.Component {
 }
 
 export default FormLessonTGOM
-
-/* disabled={this.validateTopic()||
-                                    this.validateGoal()||
-                                    this.validateObjective()} */
