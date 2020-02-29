@@ -12,7 +12,7 @@ export default  class FormConfirmation extends React.Component {
 
     renderActivityName(actId){
         const { activities } = this.props
-        const activity = findActivity(activities, actId)
+        const activity = findActivity(activities, actId) || {title: ' '}
         return(
             <>
                 {activity.title}
@@ -130,12 +130,12 @@ export default  class FormConfirmation extends React.Component {
                             className='button__yellow'
                             onClick={this.props.beginning}
                         >
-                        <SettingsBackupRestoreIcon /> Check
+                        <SettingsBackupRestoreIcon fontSize="large" /> Check
                         </button>
                         <button
                             className='button__violet'
                             type='submit'>
-                        <PublishIcon /> Confirm
+                        <PublishIcon fontSize="large" /> Confirm
                         </button>
                     </div>
             </form>               

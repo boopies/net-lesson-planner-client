@@ -36,7 +36,7 @@ export default class EditLesson extends React.Component{
             cooldown_id: 5,
             reflection_one: '',
             reflection_two: '',
-            reflection_three: '', 
+            reflection_three: ''
             };
             this.handleSubmitForm = this.handleSubmitForm.bind(this);
     }
@@ -80,13 +80,13 @@ export default class EditLesson extends React.Component{
                   cooldown_id: parseInt(edit.cooldown_id),
                   reflection_one: edit.reflection_one,
                   reflection_two: edit.reflection_two,
-                  reflection_three: edit.reflection_three, 
+                  reflection_three: edit.reflection_three,
         })
     }
 
     renderTooltipinfo(actId){
       const {activities = []} = this.context
-      const activity = findActivity(activities, actId)
+      const activity = findActivity(activities, actId) || { content: '' }
       return(
         <>
         <Tooltip title={activity.content.split(/\\n \\r|\\n|\n|\\n \\r/).map((para, i) =>
@@ -482,12 +482,12 @@ export default class EditLesson extends React.Component{
                       className="edit-lesson__buttons">
                         <button 
                         className="button__violet" 
-                        type='submit'><PublishIcon /> Submit</button>
+                        type='submit'><PublishIcon fontSize="large" /> Submit</button>
                         <button 
                           className="button__red" 
                           type='button' 
                           onClick={() => this.handleClickCancel()}>
-                          <CancelIcon /> Cancel</button>
+                          <CancelIcon fontSize="large" /> Cancel</button>
                       </div>
                 </form>
             </section>

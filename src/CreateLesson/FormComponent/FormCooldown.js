@@ -36,7 +36,7 @@ renderOptions(catId){
 
 renderTooltipinfo(actId){
     const {activities} = this.props
-    const activity = findActivity(activities, actId)
+    const activity = findActivity(activities, actId) || { content: '' }
 
  return(
       <>
@@ -62,7 +62,7 @@ renderTooltipinfo(actId){
                         <select
                         required
                         id='lesson_cooldown_id'
-                        value={values.cooldown_id}
+                        defaultValue={values.cooldown_id}
                         onChange={handleChange('cooldown_id')}
                         >
                         {this.renderOptions(4)}
@@ -79,21 +79,21 @@ renderTooltipinfo(actId){
                                 className='button__red' 
                                 onClick={this.back}
                             >
-                            <ChevronLeftIcon /> Back
+                            <ChevronLeftIcon fontSize="large" /> Back
                             </button>
                             <button
                                 type='button'  
                                 className='button__blue'
                                 onClick={this.continue}
                             >
-                            Continue <ChevronRightIcon />
+                            Continue <ChevronRightIcon fontSize="large" />
                             </button>
                     </div>
                     <button
                     type='button'   
                         className='button__red'
                         onClick={this.props.cancel}>
-                    <CancelIcon />Cancel
+                    <CancelIcon fontSize="large" />Cancel
                     </button>
                     </div>
             </div>

@@ -52,7 +52,7 @@ validateProduct(fieldValue) {
 
 renderTooltipinfo(actId){
     const {activities} = this.props
-    const activity = findActivity(activities, actId)
+    const activity = findActivity(activities, actId) || {content: ' '}
 
  return(
       <>
@@ -78,7 +78,7 @@ renderTooltipinfo(actId){
                         <select
                         required
                         id='lesson_product_one_id'
-                        value={values.product_one_id}
+                        defaultValue={values.product_one_id}
                         onChange={handleChange('product_one_id')}
                         >
                         {this.renderOptions(4)}
@@ -94,7 +94,7 @@ renderTooltipinfo(actId){
                     <div className='Activity-select'>
                         <select
                         id='lesson_product_two_id'
-                        value={values.product_two_id}
+                        defaultValue={values.product_two_id}
                         onChange={handleChange('product_two_id')}
                         >
                         {this.renderOptions(4)}
@@ -111,7 +111,7 @@ renderTooltipinfo(actId){
                                 type='button'  
                                 onClick={this.back}
                             >
-                            <ChevronLeftIcon /> Back
+                            <ChevronLeftIcon fontSize="large" /> Back
                             </button>
                             <button
                                 className='button__blue'
@@ -120,14 +120,14 @@ renderTooltipinfo(actId){
                                 onClick={this.continue}
                                 disabled={this.validateProduct()}
                             >
-                            Continue <ChevronRightIcon />
+                            Continue <ChevronRightIcon fontSize="large" />
                             </button>
                     </div>
                     <button 
                         className='button__red'
                         type='button'  
                         onClick={this.props.cancel}>
-                    <CancelIcon />Cancel
+                    <CancelIcon fontSize="large" />Cancel
                     </button>
                     </div>
             </div>

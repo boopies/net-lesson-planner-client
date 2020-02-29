@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types'
 import './ValidationError.css'
 
 function ValidationError(props) {
@@ -10,10 +9,6 @@ function ValidationError(props) {
   }
 
   return <></>
-}
-
-ValidationError.propTypes = {
-  message: PropTypes.object
 }
 
 export default ValidationError

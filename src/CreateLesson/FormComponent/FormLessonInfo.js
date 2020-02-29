@@ -155,7 +155,7 @@ export class FormLessonInfo extends React.Component {
                             <select
                             required
                             id='lesson_year-level'
-                            value={values.classlevel}
+                            defaultValue={values.classlevel}
                             onChange={handleChange('classlevel')}
                             >
                             <option value="">Select A Year Level</option>
@@ -172,7 +172,7 @@ export class FormLessonInfo extends React.Component {
                             required
                             id="lesson_date"
                             type="date"
-                            value={values.date}
+                            defaultValue={values.date}
                             onChange={handleChange('date')}
                         />
                         {<ValidationError message={this.validateDate()}/>}
@@ -185,7 +185,7 @@ export class FormLessonInfo extends React.Component {
                         <select
                         required
                         id='lesson_day'
-                        value={values.day}
+                        defaultValue={values.day}
                         onChange={handleChange('day')}
                         >
                         <option value="">Select a Day</option>
@@ -202,7 +202,7 @@ export class FormLessonInfo extends React.Component {
                         <select
                         required
                         id='lesson_duration'
-                        value={values.duration}
+                        defaultValue={values.duration}
                         onChange={handleChange('duration')}
                         >
                         <option value="">Select Lesson Length</option>
@@ -218,7 +218,7 @@ export class FormLessonInfo extends React.Component {
                         <select
                         required
                         id='lesson_period'
-                        value={values.period}
+                        defaultValue={values.period}
                         onChange={handleChange('period')}
                         >
                         <option value="">Select Period</option>
@@ -233,7 +233,7 @@ export class FormLessonInfo extends React.Component {
                       </h4>
                           <input
                               required
-                              value={values.class_size}
+                              defaultValue={values.class_size}
                               id="lesson_class-size"
                               type="number"
                               min= "1" 
@@ -258,13 +258,13 @@ export class FormLessonInfo extends React.Component {
                                     this.validatePeriod()||
                                     this.validateClassSize()}
                         onClick={this.continue}>
-                    Continue <ChevronRightIcon />
+                    Continue <ChevronRightIcon fontSize="large" />
                     </button>
                     <button
                         className='button__red'
                         type='button'
                         onClick={this.props.cancel}>
-                    <CancelIcon /> Cancel
+                    <CancelIcon fontSize="large" /> Cancel
                     </button>
                     </div>
                 </>

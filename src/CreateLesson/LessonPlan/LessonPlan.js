@@ -39,14 +39,16 @@ export default class LessonPlan extends React.Component{
                     cooldown_id: 5,
                     reflection_one: '',
                     reflection_two: '',
-                    reflection_three: '', 
-                    };
+                    reflection_three: '',
+                    activities: [],
+        };
     }
 
     static contextType = ApiContext;
 
     componentDidMount() {
         const lesson = this.props.location.state
+        const {activities =[]} = this.context
           this.setState({
                     title: lesson.title,
                     date: lesson.date,

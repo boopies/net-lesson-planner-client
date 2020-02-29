@@ -60,7 +60,6 @@ export class FormLessonTGOM extends React.Component {
                         defaultValue={values.topic}
                         onChange={handleChange('topic')}
                         margin="normal"
-                        helperText="What is the topic of the lesson?"
                         placeholder='I want ~.'
                     />
                     {<ValidationError message={this.validateTopic()}/>}
@@ -141,7 +140,7 @@ export class FormLessonTGOM extends React.Component {
                                 type='button'  
                                 onClick={this.back}
                             >
-                            <ChevronLeftIcon /> Back
+                            <ChevronLeftIcon fontSize="large" /> Back
                             </button>
                             <button
                                 className='button__blue create-cre'
@@ -151,14 +150,14 @@ export class FormLessonTGOM extends React.Component {
                                     this.validateGoal()||
                                     this.validateObjective()} 
                                 >
-                            Continue <ChevronRightIcon  />
+                            Continue <ChevronRightIcon fontSize="large"  />
                             </button>
                     </div>
                     <button 
                         className='button__red'
                         type='button'  
                         onClick={this.props.cancel}>
-                    <CancelIcon /> Cancel
+                    <CancelIcon fontSize="large" /> Cancel
                     </button>
                 </div>
             </>

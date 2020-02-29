@@ -43,7 +43,6 @@ export class FormReflection extends React.Component {
                         margin="normal"
                         required
                         placeholder='Did the students achieve the goals?'
-                        helperText="Some reflection questions to ask yourself"
                         variant="outlined"
                     />
                     {<ValidationError message={this.validateReflection()}/>}
@@ -93,14 +92,14 @@ export class FormReflection extends React.Component {
                                 onClick={this.continue}
                                 disabled={this.validateReflection()}
                             >
-                            Continue <ChevronRightIcon />
+                            Continue <ChevronRightIcon fontSize="large" />
                             </button>
                     </div>
                     <button 
                         className='button__red'
                         type='button' 
                         onClick={this.props.cancel}>
-                    <CancelIcon /> Cancel
+                    <CancelIcon fontSize="large"  /> Cancel
                     </button>
                     </div>
             </div>

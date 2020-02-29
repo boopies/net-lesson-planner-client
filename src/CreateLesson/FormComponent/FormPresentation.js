@@ -50,7 +50,7 @@ validatePresentation(fieldValue) {
 
 renderTooltipinfo(actId){
     const {activities} = this.props
-    const activity = findActivity(activities, actId)
+    const activity = findActivity(activities, actId) || {content: ' '}
 
  return(
       <>
@@ -75,7 +75,7 @@ renderTooltipinfo(actId){
                         <div className='Activity-select'>
                         <select
                         id='lesson_presentation_one_id'
-                        value={values.presentation_one_id}
+                        defaultValue={values.presentation_one_id}
                         onChange={handleChange('presentation_one_id')}
                         >
                         {this.renderOptions(2)}
@@ -92,7 +92,7 @@ renderTooltipinfo(actId){
                         <div className='Activity-select'>
                         <select
                         id='lesson_presentation_two_id'
-                        value={values.presentation_two_id}
+                        defaultValue={values.presentation_two_id}
                         onChange={handleChange('presentation_two_id')}
                         >
                         {this.renderOptions(2)}
@@ -117,14 +117,14 @@ renderTooltipinfo(actId){
                                 onClick={this.continue}
                                 disabled={this.validatePresentation()}
                             >
-                            Continue <ChevronRightIcon />
+                            Continue <ChevronRightIcon fontSize="large"  />
                             </button>
                     </div>
                     <button 
                         className='button__red'
                         type='button' 
                         onClick={this.props.cancel}>
-                    <CancelIcon /> Cancel
+                    <CancelIcon fontSize="large" /> Cancel
                     </button>
                     </div>
             </div>

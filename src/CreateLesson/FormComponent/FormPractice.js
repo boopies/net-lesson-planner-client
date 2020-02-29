@@ -51,7 +51,7 @@ validatePractice(fieldValue) {
 
 renderTooltipinfo(actId){
     const {activities} = this.props
-    const activity = findActivity(activities, actId)
+    const activity = findActivity(activities, actId) || {content: ' '}
 
  return(
       <>
@@ -77,7 +77,7 @@ renderTooltipinfo(actId){
                         <select
                         required
                         id='lesson_practice_one_id'
-                        value={values.practice_one_id}
+                        defaultValue={values.practice_one_id}
                         onChange={handleChange('practice_one_id')}
                         >
                         {this.renderOptions(3)}
@@ -94,7 +94,7 @@ renderTooltipinfo(actId){
                     <div className='Activity-select'>
                         <select
                         id='lesson_practice_two_id'
-                        value={values.practice_two_id}
+                        defaultValue={values.practice_two_id}
                         onChange={handleChange('practice_two_id')}
                         >
                         {this.renderOptions(3)}
@@ -110,7 +110,7 @@ renderTooltipinfo(actId){
                     <div className='Activity-select'>
                         <select
                         id='lesson_practice_three_id'
-                        value={values.practice_three_id}
+                        defaultValue={values.practice_three_id}
                         onChange={handleChange('practice_three_id')}
                         >
                         {this.renderOptions(3)}
@@ -135,13 +135,13 @@ renderTooltipinfo(actId){
                                 onClick={this.continue}
                                 disabled={this.validatePractice()}
                             >
-                            Continue <ChevronRightIcon />
+                            Continue <ChevronRightIcon fontSize="large" />
                             </button>
                     </div>
                     <button 
                         className='button__red'
                         onClick={this.props.cancel}>
-                    <CancelIcon /> Cancel
+                    <CancelIcon fontSize="large" /> Cancel
                     </button>
                     </div>
             </div>

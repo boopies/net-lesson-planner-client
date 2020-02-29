@@ -1,6 +1,9 @@
 import React from 'react'
 import ApiContext from '../../ApiContext'
-import { getActivityForCategory } from '../../ReadActivities/helpers'
+import { getActivityForCategory, findActivity } from '../../ReadActivities/helpers'
+import InfoIcon from '@material-ui/icons/Info';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import config from '../../config'
 import TokenService from '../../services/token-service'
 import CancelIcon from '@material-ui/icons/Cancel';
@@ -51,6 +54,21 @@ export default class EditSavedPlan extends React.Component{
         this.props.history.goBack();
     }
     
+    renderTooltipinfo(actId){
+      const {activities = []} = this.context
+      const activity = findActivity(activities, actId) || { content: '' }
+      return(
+        <>
+        <Tooltip title={activity.content.split(/\\n \\r|\\n|\n|\\n \\r/).map((para, i) =>
+            <p className="tooltips" key={i}>{para}</p>
+          )}>
+          <IconButton aria-label="check">
+            <InfoIcon  />
+          </IconButton>
+        </Tooltip>
+        </>)
+    }
+
     componentDidMount() {
         const { savedId } = this.props.match.params
         fetch(`${config.API_ENDPOINT}/savedlessons/${savedId}`, {
@@ -361,19 +379,20 @@ export default class EditSavedPlan extends React.Component{
                 <div className='input--warmup-phase modify__lessonplan'>
                         <legend>Warm-up</legend>
                         <label>Warm-up Activity: </label>
-                        <div className='Activity-select'>
-                        <select
-                        id="warmupactivity"
-                        value={warmup_id}
-                        onChange={this.handleChange('warmup_id')} required>
-                        {this.renderOptions('1')}
-                        </select>
+                          <div className='Activity-select'>
+                          <select
+                          id="warmupactivity"
+                          value={warmup_id}
+                          onChange={this.handleChange('warmup_id')} required>
+                          {this.renderOptions('1')}
+                          </select>
+                          <div>{this.renderTooltipinfo(this.state.warmup_id)}</div>
                         </div>
                 </div>
                 <hr />
 
                 <div className='input--presentation-phase modify__lessonplan'>
-                        <legend>Presentation</legend>
+                <legend>Presentation</legend>
                         <label>Presentation Activity 01: </label>
                         <div className='Activity-select'>
                         <select
@@ -382,6 +401,7 @@ export default class EditSavedPlan extends React.Component{
                         onChange={this.handleChange('presentation_one_id')} required> 
                             {this.renderOptions('2')}
                         </select>
+                        <div>{this.renderTooltipinfo(this.state.presentation_one_id)}</div>
                         </div>
                         <label>Presentation Activity 02: </label>
                         <div className='Activity-select'>
@@ -391,11 +411,13 @@ export default class EditSavedPlan extends React.Component{
                         onChange={this.handleChange('presentation_two_id')}>
                         {this.renderOptions('2')}
                         </select>
+                        <div>{this.renderTooltipinfo(this.state.presentation_two_id)}</div>   
                         </div>
                 </div>
                 <hr />
+
                 <div className='input--practice-phase modify__lessonplan'>
-                        <legend>Practice</legend>
+                <legend>Practice</legend>
                         <label>Practice Activity 01: </label>
                         <div className='Activity-select'>
                         <select
@@ -404,6 +426,7 @@ export default class EditSavedPlan extends React.Component{
                         onChange={this.handleChange('practice_one_id')} required>
                             {this.renderOptions('3')}
                         </select>
+                        <div>{this.renderTooltipinfo(this.state.practice_one_id)}</div> 
                         </div>
                         <label>Practice Activity 02:</label>
                         <div className='Activity-select'>
@@ -413,6 +436,7 @@ export default class EditSavedPlan extends React.Component{
                            onChange={this.handleChange('practice_two_id')} >
                             {this.renderOptions('3')}
                         </select>
+                        <div>{this.renderTooltipinfo(this.state.practice_two_id)}</div> 
                         </div>
                         <label>Practice Activity 03: </label>
                         <div className='Activity-select'>
@@ -421,13 +445,14 @@ export default class EditSavedPlan extends React.Component{
                             value={practice_three_id}
                             onChange={this.handleChange('practice_three_id')} >                  
                             {this.renderOptions('3')}
-                        </select>       
-                        </div>
+                        </select>  
+                        <div>{this.renderTooltipinfo(this.state.practice_three_id)}</div> 
+                        </div>        
                   </div>
                   <hr />
 
                   <div className='input--production-phase modify__lessonplan'>
-                        <legend>Production</legend>
+                  <legend>Production</legend>
                         <label>Production Activity 01: </label>
                         <div className='Activity-select'>
                         <select
@@ -436,6 +461,7 @@ export default class EditSavedPlan extends React.Component{
                             onChange={this.handleChange('product_one_id')}  required>
                             {this.renderOptions('4')}
                         </select>
+                        <div>{this.renderTooltipinfo(this.state.product_one_id)}</div>  
                         </div>
                         <label>Production Activity 02: </label>
                         <div className='Activity-select'>
@@ -444,13 +470,14 @@ export default class EditSavedPlan extends React.Component{
                             value={product_two_id}
                             onChange={this.handleChange('product_two_id')}>
                             {this.renderOptions('4')}
-                        </select> 
-                        </div>               
+                        </select>
+                        <div>{this.renderTooltipinfo(this.state.product_two_id)}</div>  
+                        </div>                    
                   </div>
                   <hr />
 
                   <div className='input--cooldown-phase modify__lessonplan'>
-                        <legend>Cool Down</legend>
+                  <legend>Cool Down</legend>
                         <label>Cool Down Activity 01: </label>
                         <div className='Activity-select'>
                         <select
@@ -458,8 +485,9 @@ export default class EditSavedPlan extends React.Component{
                         value={cooldown_id}
                         onChange={this.handleChange('cooldown_id')}>
                             {this.renderOptions('5')}
-                        </select>     
-                        </div>   
+                        </select> 
+                        <div>{this.renderTooltipinfo(this.state.cooldown_id)}</div>  
+                        </div>             
                     </div>
                     <hr />
                     <div className='input--class-reflections modify__lessonplan'>
