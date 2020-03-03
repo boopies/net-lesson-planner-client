@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Savedlessons from './SavedLessons'
+import Savedlessons from './Savedlessons'
 import {BrowserRouter} from "react-router-dom";
 
 
