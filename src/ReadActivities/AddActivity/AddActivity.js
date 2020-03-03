@@ -138,7 +138,7 @@ updateGrouping(grouping){
   }
   
   render() {
-    const { categories=[] } = this.context
+    const { categories=[], currentUser } = this.context
     return (
       <section className='AddActivity'>
         <form 
@@ -259,7 +259,8 @@ updateGrouping(grouping){
                 this.validateContent()||
                 this.validateCategoryId()||
                 this.validateDuration()||
-                this.validateGrouping()}>
+                this.validateGrouping()||
+                currentUser.id !== "1"? true: false}>
               <PublishIcon /> Submit
             </button>
             <button 

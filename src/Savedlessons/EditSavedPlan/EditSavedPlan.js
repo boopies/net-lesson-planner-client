@@ -219,6 +219,7 @@ export default class EditSavedPlan extends React.Component{
     }
 
     render(){
+      const { currentUser } = this.context
       const {  title, date, day, duration, classlevel,
                period, topic, goal, class_size,
                objective_one, objective_two, objective_three,
@@ -521,6 +522,7 @@ export default class EditSavedPlan extends React.Component{
                       <div
                         className="edit-lesson__buttons">
                         <button 
+                        disabled={(currentUser.id !== "1"? true: false)}
                         className="button__violet" 
                         type='submit'>
                         <SystemUpdateAltIcon /> Update

@@ -247,10 +247,12 @@ export default class SavedLessonPlan extends React.Component{
       }
 
       renderButtons(){
+        const { currentUser } = this.context
         return (
             <>
                 <button 
                     className='button__red'
+                    disabled={(currentUser.id !== "1"? true: false)}
                     type='button'               
                     onClick={e =>
                         window.confirm("Are you sure you wish to delete this item?") &&
@@ -260,6 +262,7 @@ export default class SavedLessonPlan extends React.Component{
                 </button>
                 <button
                     className='button__yellow'
+                    disabled={(currentUser.id !== "1"? true: false)}
                     type='button'
                     onClick={e =>
                     this.handleEditLesson(e)

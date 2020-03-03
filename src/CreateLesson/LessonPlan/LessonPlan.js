@@ -48,7 +48,6 @@ export default class LessonPlan extends React.Component{
 
     componentDidMount() {
         const lesson = this.props.location.state
-        const {activities =[]} = this.context
           this.setState({
                     title: lesson.title,
                     date: lesson.date,
@@ -257,6 +256,7 @@ export default class LessonPlan extends React.Component{
     }
 
     renderButtons(){
+        const { currentUser } = this.context
         return(
         <>
             <button
@@ -279,6 +279,7 @@ export default class LessonPlan extends React.Component{
                 ?   <button 
                         className='button__blue'
                         type='button' 
+                        disabled={(currentUser.id !== "1"? true: false)}
                         onClick={() => this.handleSaveLesson()}>
                         <SaveOutlinedIcon fontSize="large" />
                         {' '}
@@ -306,6 +307,7 @@ export default class LessonPlan extends React.Component{
     }
 
     render(){
+        
         const lesson = this.state
           return(
                 <>

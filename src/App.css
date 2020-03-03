@@ -34,7 +34,7 @@ button{
     width: 250px;
     height: 50px;
     border-radius: 10px;
-	margin: 5px;
+	  margin: 5px;
 }
 
 .app__main{
@@ -48,6 +48,7 @@ button{
 
 .button__orange{
     box-shadow: 3px 3px 0px rgba(239,108,0 ,1);
+    background-color: white;
     color: rgba(239,108,0 ,1);
     font-weight: bolder;
     margin: 5px;
@@ -63,6 +64,7 @@ button{
   
   .button__yellow{
     box-shadow: 3px 3px 0px rgba(249,168,37 ,1);
+    background-color: white;
     color: rgba(249,168,37 ,1);
     font-weight: bolder;
     margin: 5px;
@@ -78,6 +80,7 @@ button{
   
   .button__red{
     box-shadow: 3px 3px 0px rgba(198,40,40 ,1);
+    background-color: white;
     color: rgba(198,40,40 ,1);
     font-weight: bolder;
     margin: 5px;
@@ -93,6 +96,7 @@ button{
   
   .button__green{
     box-shadow: 3px 3px 0px rgba(46,125,50 ,1);
+    background-color: white;
     color: rgba(46,125,50 ,1);
     font-weight: bolder;
     margin: 5px;
@@ -108,6 +112,7 @@ button{
   
   .button__blue{
     box-shadow: 3px 3px 0px rgba(2,119,189 ,1);
+    background-color: white;
     color: rgba(2,119,189 ,1);
     font-weight: bolder;
     margin: 5px;
@@ -123,6 +128,7 @@ button{
 
   .button__blue:disabled{
     box-shadow: 3px 3px 0px rgba(55,71,79 ,1);
+    background-color: white;
     color: rgba(55,71,79 ,1);
     font-weight: bolder;
     margin: 5px;
@@ -138,6 +144,7 @@ button{
   
   .button__indigo{
     box-shadow: 3px 3px 0px rgba(40,53,147 ,1);
+    background-color: white;
     color: rgba(40,53,147 ,1);
     font-weight: bolder;
     margin: 5px;
@@ -153,6 +160,7 @@ button{
   
   .button__violet{
     box-shadow: 3px 3px 0px rgba(106,27,154 ,1);
+    background-color: white;
     color: rgba(106,27,154 ,1);
     font-weight: bolder;
     margin: 5px;
@@ -168,6 +176,7 @@ button{
   
   .button__violet:disabled{
     box-shadow: 3px 3px 0px rgba(55,71,79 ,1);
+    background-color: white;
     color: rgba(55,71,79 ,1);
     font-weight: bolder;
     margin: 5px;
@@ -183,6 +192,7 @@ button{
 
   .button__red:disabled{
     box-shadow: 3px 3px 0px rgba(55,71,79 ,1);
+    background-color: white;
     color: rgba(55,71,79 ,1);
     font-weight: bolder;
     margin: 5px;
@@ -198,6 +208,7 @@ button{
 
   .button__indigo:disabled{
     box-shadow: 3px 3px 0px rgba(55,71,79 ,1);
+    background-color: white;
     color: rgba(55,71,79 ,1);
     font-weight: bolder;
     margin: 5px;
@@ -211,6 +222,21 @@ button{
       box-shadow: 3px 3px 0px rgba(38,50,56 ,1);
   }
 
+  .button__yellow:disabled{
+    box-shadow: 3px 3px 0px rgba(55,71,79 ,1);
+    background-color: white;
+    color: rgba(55,71,79 ,1);
+    font-weight: bolder;
+    margin: 5px;
+    border: 2px solid rgba(55,71,79 ,1);
+  }
+  
+  .button__yellow:hover:disabled{
+      background-color: rgba(55,71,79 ,1);
+      color: white;
+      font-weight: bolder;
+      box-shadow: 3px 3px 0px rgba(38,50,56 ,1);
+  }
 
 @media (min-width: 768px) {
     .toggle-button{

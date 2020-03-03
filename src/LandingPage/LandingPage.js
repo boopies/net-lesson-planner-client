@@ -25,11 +25,21 @@ export default class LandingPage extends React.Component{
                         </div>
                     </div>
                 <div className='landing-page_info'>
-                    <p className='landing-page___introduction'>&emsp;Welcome to N.E.T Lesson Planner. This app was designed to get you up and running
-                    in the English Language Classroom. <br /> &emsp; This will help you create lesson plan so you will never be caught out again in the classroom. 
+                    <p className='landing-page___introduction'>&emsp;&emsp;Welcome to N.E.T Lesson Planner. This app was designed to get you up and running
+                    in the English Language Classroom. <br /> &emsp; &emsp;This will help you create lesson plan so you will never be caught out again in the classroom. 
                     This website lets you quickly generate lesson plans, using a vast list of activities that have been proven useful in the Language
                     learning classroom.
-                    </p>
+                    <br />
+                    &emsp; &emsp;Make a lesson plan without registering, but for some of the some benefits of a registered member
+                        use the the demo account. The demo account cannot save lessons, edit saved lessons or activities, delete saved lessons 
+                        or upload any new activities. 
+                    <br />
+                    <b>username:</b> demo 
+                    <br />
+                    <b>password:</b> password
+                    <br />
+                    &emsp;&emsp;If you like what you see, and want to add to the list of activities. or have lessons saved, please join.</p>
+
                     <LandingButtons />
                 </div>
             </section>
