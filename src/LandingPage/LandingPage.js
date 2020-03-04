@@ -47,7 +47,7 @@ export default class LandingPage extends React.Component{
                     <b>password:</b> password
                     <br />
                     &emsp;&emsp;If you like what you see, and want to add to the list of activities. or have lessons saved, please join.</p>
-                    <section className='buttons-to-pages'>
+                    <div className='buttons-to-pages'>
                         <button
                         className="button__green"
                         type='button' 
@@ -59,7 +59,7 @@ export default class LandingPage extends React.Component{
                         type='button' 
                         onClick={() => this.handleReadActivities()}>
                         <ChromeReaderModeIcon /> Read</button>
-                    </section>
+                    </div>
                 </div>
             </section>
                 
