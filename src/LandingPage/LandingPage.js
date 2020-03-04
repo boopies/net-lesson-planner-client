@@ -1,9 +1,17 @@
 import React from 'react'
 import './LandingPage.css'
-import LandingButtons from './LandingButtons/LandingButtons'
 import ApiContext from '../ApiContext'
+import NoteAddIcon from '@material-ui/icons/NoteAdd';
+import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode';
 
 export default class LandingPage extends React.Component{
+    handleNewLesson = () => {
+        this.props.history.push('/create')
+      };
+    
+    handleReadActivities= () => {
+        this.props.history.push('/read')
+      };
 
     static contextType = ApiContext;
 
@@ -39,8 +47,19 @@ export default class LandingPage extends React.Component{
                     <b>password:</b> password
                     <br />
                     &emsp;&emsp;If you like what you see, and want to add to the list of activities. or have lessons saved, please join.</p>
-
-                    <LandingButtons />
+                    <section className='buttons-to-pages'>
+                        <button
+                        className="button__green"
+                        type='button' 
+                        onClick={() => this.handleNewLesson()}>
+                        <NoteAddIcon /> Create</button>
+                        
+                        <button 
+                        className="button__indigo"
+                        type='button' 
+                        onClick={() => this.handleReadActivities()}>
+                        <ChromeReaderModeIcon /> Read</button>
+                    </section>
                 </div>
             </section>
                 
