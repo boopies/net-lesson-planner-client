@@ -4,9 +4,9 @@ Be Prepared in the Classroom
 -----------------------------
 
 ## Technologies
-React.js
-CSS 3
-JavaScript
+* React.js
+* CSS 3
+* JavaScript
 
 ### Live Link
 https://net-lesson-planner-client.now.sh/
@@ -50,15 +50,23 @@ Any one in the Registered can
 
 ## Screen Shots
 ### Landing Page
+Landing page. 
+
 ![Landing Page](/screenshots/landingpage.png)
 
 ### Register Page
+Registration page
+
 ![Register](/screenshots/register.png)
 
 ### Login page
+Login Page
+
 ![Login Page](/screenshots/login.png)
 
 ### Create Lesson Page
+8 page form to create lessons
+
 ![Create Lesson Page 01](/screenshots/create01.png)
 ![Create Lesson Page 02](/screenshots/create02.png)
 ![Create Lesson Page 03](/screenshots/create03.png)
@@ -70,11 +78,14 @@ Any one in the Registered can
 ![Create Lesson Page 09](/screenshots/create09.png)
 
 ### Read Activities Page
+Read the various activities that are available. Add and edit activities.  
+
 ![Reading Page 01](/screenshots/read01.png)
 ![Reading Page 02](/screenshots/read02.png)
 ![Reading Page 03](/screenshots/read03.png)
 ![Add Activity](/screenshots/addactivities.png)
 
-### Saved Lessons
+### Saved Lessons Page
+Select your saved lessons. 
+
 ![savedlessons](/screenshots/savedlessons.png)
-savedlessons
