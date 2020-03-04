@@ -46,7 +46,7 @@ export default class LandingPage extends React.Component{
                     <br />
                     <b>password:</b> password
                     <br />
-                    &emsp;&emsp;If you like what you see, and want to add to the list of activities. or have lessons saved, please join.</p>
+                    &emsp;&emsp;If you like what you see, and want to add to the list of activities, or have your lessons saved, please join.</p>
                     <div className='buttons-to-pages'>
                         <button
                         className="button__green"
