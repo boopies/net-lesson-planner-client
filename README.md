@@ -41,11 +41,12 @@ Any one in the public can
 Any one in the Registered can
 
 1. Do everything in the Public Tier.
-2. Saved created lesson plans.
-3. View Saved lessons plans.
-3. Edit the saved lesson plans.
-4. Add in new Activities for people to use.
-5. Edit The activities that they added.
+2. Save created lesson plans.
+3. View Saved lessons.
+4. Deleted Saved Lessons.
+5. Edit the saved lessons.
+6. Add in new Activities for people to use.
+7. Edit activities that they added.
 
 
 ## Screen Shots
@@ -65,7 +66,7 @@ Login Page
 ![Login Page](/screenshots/login.png)
 
 ### Create Lesson Page
-8 page form to create lessons
+8-step form to create lessons
 
 ![Create Lesson Page 01](/screenshots/create01.png)
 ![Create Lesson Page 02](/screenshots/create02.png)
@@ -86,6 +87,6 @@ Read the various activities that are available. Add and edit activities.
 ![Add Activity](/screenshots/addactivities.png)
 
 ### Saved Lessons Page
-Select your saved lessons. 
+Select your saved lessons. Registered tier can delete lessons from this page.
 
 ![savedlessons](/screenshots/savedlessons.png)
