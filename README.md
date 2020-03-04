@@ -3,6 +3,11 @@ N.E.T Lesson Plan Creator
 Be Prepared in the Classroom
 -----------------------------
 
+## Technologies
+React.js
+CSS 3
+JavaScript
+
 ### Live Link
 https://net-lesson-planner-client.now.sh/
 
@@ -41,3 +46,35 @@ Any one in the Registered can
 3. Edit the saved lesson plans.
 4. Add in new Activities for people to use.
 5. Edit The activities that they added.
+
+
+## Screen Shots
+### Landing Page
+![Landing Page](/screenshots/landingpage.png)
+
+### Register Page
+![Register](/screenshots/register.png)
+
+### Login page
+![Login Page](/screenshots/login.png)
+
+### Create Lesson Page
+![Create Lesson Page 01](/screenshots/create01.png)
+![Create Lesson Page 02](/screenshots/create02.png)
+![Create Lesson Page 03](/screenshots/create03.png)
+![Create Lesson Page 04](/screenshots/create04.png)
+![Create Lesson Page 05](/screenshots/create05.png)
+![Create Lesson Page 06](/screenshots/create06.png)
+![Create Lesson Page 07](/screenshots/create07.png)
+![Create Lesson Page 08](/screenshots/create08.png)
+![Create Lesson Page 09](/screenshots/create09.png)
+
+### Read Activities Page
+![Reading Page 01](/screenshots/read01.png)
+![Reading Page 02](/screenshots/read02.png)
+![Reading Page 03](/screenshots/read03.png)
+![Add Activity](/screenshots/addactivities.png)
+
+### Saved Lessons
+![savedlessons](/screenshots/savedlessons.png)
+savedlessons
