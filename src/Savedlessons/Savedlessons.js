@@ -68,7 +68,6 @@ export default class Savedlessons extends React.Component {
 
     renderButtons() {
       const { currentUser } = this.context
-      console.log(currentUser.id)
         return (
           <> 
           <div className='get-del-buttons'>
