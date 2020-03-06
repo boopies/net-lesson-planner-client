@@ -260,7 +260,7 @@ updateGrouping(grouping){
                 this.validateCategoryId()||
                 this.validateDuration()||
                 this.validateGrouping()||
-                currentUser.id !== "1"? true: false}>
+                parseInt(currentUser.id) === 1? true: false}>
               <PublishIcon /> Submit
             </button>
             <button 

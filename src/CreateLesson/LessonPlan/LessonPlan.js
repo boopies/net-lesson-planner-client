@@ -279,7 +279,7 @@ export default class LessonPlan extends React.Component{
                 ?   <button 
                         className='button__blue'
                         type='button' 
-                        disabled={(currentUser.id !== "1"? true: false)}
+                        disabled={(parseInt(currentUser.id) === 1? true: false)}
                         onClick={() => this.handleSaveLesson()}>
                         <SaveOutlinedIcon fontSize="large" />
                         {' '}

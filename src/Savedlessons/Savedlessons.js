@@ -68,6 +68,7 @@ export default class Savedlessons extends React.Component {
 
     renderButtons() {
       const { currentUser } = this.context
+      console.log(currentUser.id)
         return (
           <> 
           <div className='get-del-buttons'>
@@ -80,7 +81,7 @@ export default class Savedlessons extends React.Component {
               <button 
               type = 'button' 
               disabled = { this.state.button}
-              className = {(currentUser.id === "1"? 'button__red' : 'button__red hidden')}
+              className = {(parseInt(currentUser.id) === 1? 'button__red hidden' : 'button__red')}
               onClick={e =>
                       window.confirm("Are you sure you wish to delete this item?") &&
                       this.handleDeleteLesson(e)

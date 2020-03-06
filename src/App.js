@@ -18,6 +18,7 @@ import TokenService from './services/token-service'
 import SavedLessonPlan from './Savedlessons/SavedLessonPlan/SavedLessonPlan'
 import EditSavedPlan from './Savedlessons/EditSavedPlan/EditSavedPlan'
 import config from './config'
+import NoPage from './NoPage/NoPage'
 
 export default class App extends React.Component{
   constructor(props) {
@@ -232,6 +233,7 @@ handleUpdateLesson = updatedLesson => {
               <PrivateRoute path='/savedlessons' component={ Savedlessons } />
               <PrivateRoute path='/savedlessonplan/:savedId' component={ SavedLessonPlan } />
               <PrivateRoute path='/editlessonplan/:savedId' component={ EditSavedPlan } />
+              <Route component={NoPage}/>
             </Switch>
           </main>
         </div>
