@@ -42,7 +42,7 @@ export default class ActivityPage extends React.Component {
         <div className='activities-content__buttons'>
           <button
               type='button'
-              disabled={(currentUser.id !== "1"? true: false)}
+              disabled={parseInt(currentUser.id) === 1? true: false}
               className={(activity.user_id === currentUser.id? 'button__yellow' : 'button__yellow hidden')}
               onClick={() => this.props.history.push(`/read/edit-activity/${activity.id}`)}>
               <EditIcon /> Edit

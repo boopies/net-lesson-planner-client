@@ -117,7 +117,7 @@ updatePassword2(password2){
                   Password
                 </label>
                 <input
-                  className='registrationform__user-input'
+                  className='registrationform__password-input'
                   name='password'
                   type='password'
                   id='RegistrationForm__password'
@@ -142,11 +142,10 @@ updatePassword2(password2){
                   Reenter Password
                 </label>
                 <input
-                  className='registrationform__user-input'
+                  className='registrationform__password_check'
                   name='password_check'
                   type='password'
-                  title="Must contain at least one number and one uppercase and lowercase letter, one special character and at least 8 or more characters"
-                  id='RegistrationForm__password'
+                  id='password_check'
                   onChange={e => this.updatePassword2(e.target.value)}>
                 </input>
                 {<ValidationError message={this.validatePassword2()} />}
