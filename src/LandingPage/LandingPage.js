@@ -41,7 +41,8 @@ export default class LandingPage extends React.Component{
                     &emsp; &emsp;Make a lesson plan without registering, but for some of the some benefits of a registered member
                         use the the demo account. The demo account cannot save lessons, edit saved lessons or activities, delete saved lessons 
                         or upload any new activities. 
-                    <br />
+                    </p>
+                    <p>
                     <b>username:</b> demo 
                     <br />
                     <b>password:</b> password

@@ -56,7 +56,7 @@ updatePassword(password){
     const lowerCaseLetters = /[a-z]/g;
     const numbers = /[0-9]/g;
     const upperCaseLetters = /[A-Z]/g;
-    const special = /[!@#\$%\^&]/g;
+    const special = /[-~!@#$%^&*()_+=<>.?/;:"'|{}`]/g;
     const { showDiv } = this.state;
     return (
       <>
