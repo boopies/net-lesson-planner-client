@@ -65,7 +65,7 @@ renderTooltipinfo(actId){
                         defaultValue={values.cooldown_id}
                         onChange={handleChange('cooldown_id')}
                         >
-                        {this.renderOptions(4)}
+                        {this.renderOptions(5)}
                         </select>
                         {this.renderTooltipinfo(values.cooldown_id)}
                         </div>
