@@ -522,7 +522,7 @@ export default class EditSavedPlan extends React.Component{
                       <div
                         className="edit-lesson__buttons">
                         <button 
-                        disabled={parseInt(currentUser.id) === 1? true: false)}
+                        disabled={parseInt(currentUser.id) === 1? true: false}
                         className="button__violet" 
                         type='submit'>
                         <SystemUpdateAltIcon /> Update
