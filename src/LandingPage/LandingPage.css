@@ -19,6 +19,10 @@
     justify-items: center;
 }
 
+.user_info{
+    text-align: center;
+}
+
 .landing-page__quote{
     text-align: center;
 }
@@ -43,8 +47,6 @@
     font-family: Roboto;
     font-size: 3em;
     margin-bottom: 50px;
-    text-decoration-line: overline underline;
-    text-underline-position: under;
     color: white;
     text-shadow: 5px 5px 5px rgb(71, 71, 71);
 }

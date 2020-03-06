@@ -37,17 +37,18 @@ export default class LandingPage extends React.Component{
                     in the English Language Classroom. <br /> &emsp; &emsp;This will help you create lesson plan so you will never be caught out again in the classroom. 
                     This website lets you quickly generate lesson plans, using a vast list of activities that have been proven useful in the Language
                     learning classroom.
+                    <br />&emsp;&emsp;Free users can create lessons and read activities. However please register for a full account if you want to add activities, and saved your lessons.
                     <br />
-                    &emsp; &emsp;Make a lesson plan without registering, but for some of the some benefits of a registered member
-                        use the the demo account. The demo account cannot save lessons, edit saved lessons or activities, delete saved lessons 
-                        or upload any new activities. 
-                    </p>
-                    <p>
-                    <b>username:</b> demo 
+                    &emsp;&emsp;If you want to trial all the areas that the full users can access, please use this demo account. Editing lessons, and saving lessons have been
+                    disabled due to it being a public account. But you can see what the saved lessons look like. </p>
+                    <div className='landing-page___introduction user_info' >
+                    <h3>Demo Account</h3>
+                    <b>username:</b> demo
                     <br />
                     <b>password:</b> password
                     <br />
-                    &emsp;&emsp;If you like what you see, and want to add to the list of activities, or have your lessons saved, please join.</p>
+                    </div>
+                    <p className='landing-page___introduction'>&emsp;&emsp;If you like what you see, and want to add to the list of activities, or have your lessons saved, please join.</p>
                     <div className='buttons-to-pages'>
                         <button
                         className="button__green"
