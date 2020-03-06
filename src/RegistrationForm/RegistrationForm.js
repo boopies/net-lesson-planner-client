@@ -4,6 +4,7 @@ import './RegistrationForm.css'
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import CancelIcon from '@material-ui/icons/Cancel';
 import {Link} from 'react-router-dom'
+import ValidationError from '../ReadActivities/ValidationError/ValidationError'
 
 export default class RegistrationForm extends React.Component {
   static defaultProps = {
@@ -16,13 +17,26 @@ export default class RegistrationForm extends React.Component {
     super(props);
     this.state = {
         password:'',
+        password2:'',
         showDiv: false,
         error: null
   }
 }
 
+validatePassword2(fieldValue) {
+  const password = this.state.password
+  const password2 = this.state.password2
+  if (password !== password2) {
+    return <div id="FSErrorMessage">You must input the same password</div>;
+  }
+}
+
 updatePassword(password){
   this.setState({password: password});
+}
+
+updatePassword2(password2){
+  this.setState({password2: password2})
 }
 
   handleRegistrationSuccess = user => {
@@ -106,7 +120,6 @@ updatePassword(password){
                   className='registrationform__user-input'
                   name='password'
                   type='password'
-                  title="Must contain at least one number and one uppercase and lowercase letter, one special character and at least 8 or more characters"
                   id='RegistrationForm__password'
                   onChange={e => this.updatePassword(e.target.value)}
                   onFocus={() => this.setState({ showDiv: true })}
@@ -124,6 +137,20 @@ updatePassword(password){
                 </div>
                 : <></>}
               </div>
+              <div className='registration_password'>
+                <label htmlFor='RegistrationForm__password'>
+                  Reenter Password
+                </label>
+                <input
+                  className='registrationform__user-input'
+                  name='password_check'
+                  type='password'
+                  title="Must contain at least one number and one uppercase and lowercase letter, one special character and at least 8 or more characters"
+                  id='RegistrationForm__password'
+                  onChange={e => this.updatePassword2(e.target.value)}>
+                </input>
+                {<ValidationError message={this.validatePassword2()} />}
+              </div>
               <div className='gotoLogin'>
                   <h3>Already a member?
                   <Link
@@ -136,7 +163,8 @@ updatePassword(password){
               <div className='registration_buttons'>
               <button 
                 className='button__green'
-                type='submit'>
+                type='submit'
+                disabled={this.validatePassword2()}>
                 <PersonAddIcon /> Register
               </button>
               <button 

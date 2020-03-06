@@ -238,6 +238,22 @@ button{
       box-shadow: 3px 3px 0px rgba(38,50,56 ,1);
   }
 
+  .button__green:disabled{
+    box-shadow: 3px 3px 0px rgba(55,71,79 ,1);
+    background-color: white;
+    color: rgba(55,71,79 ,1);
+    font-weight: bolder;
+    margin: 5px;
+    border: 2px solid rgba(55,71,79 ,1);
+  }
+  
+  .button__green:hover:disabled{
+      background-color: rgba(55,71,79 ,1);
+      color: white;
+      font-weight: bolder;
+      box-shadow: 3px 3px 0px rgba(38,50,56 ,1);
+  }
+
 @media (min-width: 768px) {
     .toggle-button{
         display: none;
