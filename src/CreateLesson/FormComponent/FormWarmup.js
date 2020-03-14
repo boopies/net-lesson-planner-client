@@ -25,7 +25,7 @@ export default class FormWarmup extends React.Component {
             this.props.resetForm();
         };
 
-        renderOptions(catId) {
+        renderOptions(catId){
             const {activities} = this.props;
             const activityForCategory = getActivityForCategory(activities, catId);
             return (<> {
@@ -34,22 +34,22 @@ export default class FormWarmup extends React.Component {
                         {activity.title}
                     </option>
                 )
-            } < />
+            }</>
     )
 };
 
 renderTooltipinfo(actId){
     const {activities} = this.props;
     const activity = findActivity(activities, actId) || {content: ' '};
-
  return(
       <>
-      <Tooltip className='tooltip' title={activity.content.split(/\\n \\r | \\n | \n | \\n \\r /).map(
-                (para, i) => <p className="tooltips" key={i}>{para}</p>
-            )
-        } > <IconButton aria-label="check">
-                <InfoIcon/>
-            </IconButton>
+      <Tooltip 
+            className='tooltip' 
+            title={activity.content.split(/\\n \\r | \\n | \n | \\n \\r /).map(
+                (para, i) => <p className="tooltips" key={i}>{para}</p>)} > 
+                <IconButton aria-label="check">
+                    <InfoIcon/>
+                </IconButton>
         </Tooltip>
     </>
     )
@@ -59,7 +59,7 @@ validateWarmup(fieldValue) {
     const {values} = this.props;
     const warmup = values.warmup_id;
     if (parseInt(warmup) === 1) {
-        return 'Warmup Activity is Required';
+        return 'Warmup Activity is Required'
     }
 };
 
