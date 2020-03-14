@@ -1,33 +1,33 @@
 import React from 'react';
-import { getActivityForCategory, findActivity } from '../../ReadActivities/helpers'
+import { getActivityForCategory, findActivity } from '../../ReadActivities/helpers';
 import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import ValidationError from '../../ReadActivities/ValidationError/ValidationError'
+import ValidationError from '../../ReadActivities/ValidationError/ValidationError';
 import CancelIcon from '@material-ui/icons/Cancel';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 
-export class FormProduct extends React.Component {    
+export default class FormProduct extends React.Component {    
 continue = e => {
     e.preventDefault();
     this.props.nextStep();
-}
+};
 
 back = e => {
     e.preventDefault();
     this.props.prevStep();
-}
+};
 
 reset = e => {
     e.preventDefault();
     this.props.resetForm();
-}
+};
 
 renderOptions(catId){
-    const { activities } = this.props
-    const activityForCategory = getActivityForCategory(activities, catId)
+    const { activities } = this.props;
+    const activityForCategory = getActivityForCategory(activities, catId);
     return(
         <>
         {activityForCategory.map(activity =>
@@ -39,20 +39,20 @@ renderOptions(catId){
         )}   
         </>
     )
-}
+};
 
 validateProduct(fieldValue) {
     const { values  } = this.props;
-    const product = values.product_one_id
+    const product = values.product_one_id;
     if (parseInt(product) === 4) {
-      return 'A production activity is required';
+      return 'One production activity is required';
     }
-  }
+  };
 
 
 renderTooltipinfo(actId){
-    const {activities} = this.props
-    const activity = findActivity(activities, actId) || {content: ' '}
+    const {activities} = this.props;
+    const activity = findActivity(activities, actId) || {content: ' '};
 
  return(
       <>
@@ -64,7 +64,7 @@ renderTooltipinfo(actId){
         </IconButton>
       </Tooltip>
       </>)
-  }
+  };
 
     render() {
         const { values, handleChange } = this.props;
@@ -132,7 +132,5 @@ renderTooltipinfo(actId){
                     </div>
             </div>
         )
-    }
+    };
 }
-
-export default FormProduct

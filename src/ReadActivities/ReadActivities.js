@@ -1,21 +1,21 @@
-import React from 'react'
+import React from 'react';
 import {Route} from 'react-router-dom';
-import ActivityList from './ActivityList/ActivityList'
-import ActivityPage from './ActivityPage/ActivityPage'
-import AddActivity from './AddActivity/AddActivity'
-import EditActivity from './EditActivity/EditActivity'
-import './ReadActivities.css'
-import PrivateRoute from '../Utilities/PrivateRoute'
-import ApiContext from '../ApiContext'
+import ActivityList from './ActivityList/ActivityList';
+import ActivityPage from './ActivityPage/ActivityPage';
+import AddActivity from './AddActivity/AddActivity';
+import EditActivity from './EditActivity/EditActivity';
+import './ReadActivities.css';
+import PrivateRoute from '../Utilities/PrivateRoute';
+import ApiContext from '../ApiContext';
 
 export default class ReadActivities extends React.Component{
   static defaultProps = {
     match: {
       params: {}
     }
-  }
+  };
 
-  static contextType = ApiContext
+  static contextType = ApiContext;
  
     renderMainRoutes() {
         return (
@@ -39,7 +39,7 @@ export default class ReadActivities extends React.Component{
             />
           </>
         )
-      }
+      };
 
     render() {
         return (
@@ -56,5 +56,5 @@ export default class ReadActivities extends React.Component{
                     </main>
                 </>
         );
-    }
+    };
 }

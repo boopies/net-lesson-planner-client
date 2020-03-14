@@ -29,7 +29,7 @@ const values = {
               reflection_one: 'test',
               reflection_two: 'test',
               reflection_three: 'test',
-    }
+    };
 
 const activities = [{id: 1,
     title: 'test',
@@ -37,9 +37,9 @@ const activities = [{id: 1,
     category_id: 1,
     groups: 'test',
     duration: 'test',
-    author_id: 'test'}]
+    author_id: 'test'}];
 
-const handleChange = () => {}
+const handleChange = () => {};
   
 describe('Form Production Selection Component', () => {
     it('renders without crashing', () => {

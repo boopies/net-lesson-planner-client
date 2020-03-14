@@ -105,6 +105,9 @@
     margin-left:20px;
 }
 
+.hidden{
+    display: none;
+}
 
 .buttons-to-pages{
     display: flex;

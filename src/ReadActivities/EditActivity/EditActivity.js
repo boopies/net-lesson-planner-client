@@ -19,18 +19,18 @@ export default class EditActivity extends Component {
       content: '',
       user_id: '',
     };
-  }
+  };
 
   static defaultProps = {
     history: {
       push: () => { }
     },
-  }
+  };
   
   static contextType = ApiContext;
 
   componentDidMount() {
-    const { activityId } = this.props.match.params
+    const { activityId } = this.props.match.params;
     fetch(`${config.API_ENDPOINT}/activities/${activityId}`, {
       method: 'GET',
       }
@@ -55,27 +55,27 @@ export default class EditActivity extends Component {
         console.error(error)
         this.setState({ error })
       })
-  }
+  };
 
   goBack = () => {
     this.props.history.goBack();
-}
+};
 
 updateContent(content){
   this.setState({content: content });
-}
+};
 
 updateCategoryId(categoryId){
   this.setState({categoryId: categoryId });
-}
+};
 
 updateDuration(duration){
     this.setState({duration: duration });
-  }
+  };
 
 updateGrouping(grouping){
     this.setState({grouping: grouping });
-  }
+  };
 
   handleSubmit = e => {
     e.preventDefault()
@@ -101,12 +101,12 @@ updateGrouping(grouping){
         console.error(error)
         this.setState({ error })
       })
-  }
+  };
 
   render() {
-    const { title, duration, grouping, category_id, content} = this.state
-    const { categories=[] } = this.context
-    const { activityId } = this.props.match.params
+    const { title, duration, grouping, category_id, content} = this.state;
+    const { categories=[] } = this.context;
+    const { activityId } = this.props.match.params;
     return (
       <section>
         <form 
@@ -218,7 +218,7 @@ updateGrouping(grouping){
         </form>
       </section>
     )
-  }
+  };
 }
 
 EditActivity.defaultProps = {

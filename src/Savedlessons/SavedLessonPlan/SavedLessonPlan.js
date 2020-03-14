@@ -1,13 +1,13 @@
 import React from 'react';
-import ApiContext from '../../ApiContext'
-import { findActivity } from '../../ReadActivities/helpers'
-import uuid from 'react-uuid'
-import config from '../../config'
-import TokenService from '../../services/token-service'
+import ApiContext from '../../ApiContext';
+import { findActivity } from '../../ReadActivities/helpers';
+import uuid from 'react-uuid';
+import config from '../../config';
+import TokenService from '../../services/token-service';
 import PrintIcon from '@material-ui/icons/Print';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import PhotoFilterIcon from '@material-ui/icons/PhotoFilter';
-import HomeIcon from '@material-ui/icons/Home'
+import HomeIcon from '@material-ui/icons/Home';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 export default class SavedLessonPlan extends React.Component{
@@ -41,13 +41,13 @@ export default class SavedLessonPlan extends React.Component{
                     reflection_two: '',
                     reflection_three: '', 
                     };
-    }
+    };
 
     static contextType = ApiContext;
 
     handlePrintLesson = () =>{
         window.print();
-    }
+    };
 
     componentDidMount() {
         const { savedId } = this.props.match.params
@@ -97,7 +97,7 @@ export default class SavedLessonPlan extends React.Component{
             console.error(error)
             this.setState({ error })
           })
-      }
+      };
 
     handleNewLesson = () => {
         this.props.history.push('/create')
@@ -121,7 +121,7 @@ export default class SavedLessonPlan extends React.Component{
             )}
             </>
         )
-    }
+    };
 
       renderObjectives(){
         const objOne = this.state.objective_one
@@ -146,7 +146,7 @@ export default class SavedLessonPlan extends React.Component{
                 <li key={uuid()}>{objTwo}</li>
                 <li key={uuid()}>{objThree}</li>
             </>)
-    }}
+    }};
 
       renderReflection(){
         const refOne = this.state.reflection_one
@@ -172,7 +172,7 @@ export default class SavedLessonPlan extends React.Component{
                 <li key={uuid()}>{refThree}</li>
             </>)
     }
-}
+};
 
       renderActivities(actId){
         const { activities=[] } = this.context
@@ -209,14 +209,14 @@ export default class SavedLessonPlan extends React.Component{
                 </div>
             </>
         )
-        }
-    }
+       }
+    };
 
     handleEditLesson = e => {
         e.preventDefault()
         const { savedId } = this.props.match.params
         this.props.history.push(`/editlessonplan/${savedId}`)
-    }
+    };
 
 
     onDeleteLesson = () => {
@@ -244,15 +244,13 @@ export default class SavedLessonPlan extends React.Component{
           .catch(error => {
             console.error({ error })
           })
-      }
+      };
 
       renderButtons(){
-        const { currentUser } = this.context
         return (
             <>
                 <button 
                     className='button__red'
-                    disabled={(parseInt(currentUser.id) === 1? true: false)}
                     type='button'               
                     onClick={e =>
                         window.confirm("Are you sure you wish to delete this item?") &&
@@ -262,7 +260,6 @@ export default class SavedLessonPlan extends React.Component{
                 </button>
                 <button
                     className='button__yellow'
-                    disabled={(parseInt(currentUser.id) === 1? true: false)}
                     type='button'
                     onClick={e =>
                     this.handleEditLesson(e)
@@ -289,7 +286,7 @@ export default class SavedLessonPlan extends React.Component{
                 </button>
             </>
         )
-      }
+      };
 
     render(){
     const savedlesson = this.state
@@ -398,5 +395,5 @@ export default class SavedLessonPlan extends React.Component{
             </main>
             </>
         )
-    }
+    };
 }

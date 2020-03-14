@@ -1,9 +1,9 @@
 import React from 'react';
 import ApiContext from '../ApiContext';
-import './Savedlessons.css'
-import {findSavedlesson, getUserSavedlesson} from './lessonhelper'
-import config from '../config'
-import TokenService from '../services/token-service'
+import './Savedlessons.css';
+import {findSavedlesson, getUserSavedlesson} from './lessonhelper';
+import config from '../config';
+import TokenService from '../services/token-service';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -17,37 +17,37 @@ export default class Savedlessons extends React.Component {
             button: true
         };
         this.handleSubmitForm = this.handleSubmitForm.bind(this);
-    }
+    };
 
-    static contextType = ApiContext 
+    static contextType = ApiContext ;
     
     handleSubmitForm = e => {
-        e.preventDefault()
-        const lessonId = this.state.lesson[0].id
-        this.props.history.push(`/savedlessonplan/${lessonId}`)
-    }
+        e.preventDefault();
+        const lessonId = this.state.lesson[0].id;
+        this.props.history.push(`/savedlessonplan/${lessonId}`);
+    };
 
     handleCreateLessonForm = () => {
-        this.props.history.push('/create')
+        this.props.history.push('/create');
     };
 
     updateState(savedlesson) {
-        const { savedlessons = [] } = this.context
-        const lesson = findSavedlesson(savedlessons, savedlesson)
+        const { savedlessons = [] } = this.context;
+        const lesson = findSavedlesson(savedlessons, savedlesson);
         if (!lesson) {
-            this.setState({button: true})
+            this.setState({button: true});
         } else {
-            this.setState({lesson: [lesson], button: false})
+            this.setState({lesson: [lesson], button: false});
         }
-    }
+    };
 
     onDeleteLesson = () => {
-      this.props.history.push('/savedlessons')
+      this.props.history.push('/savedlessons');
   };
 
     handleDeleteLesson = e =>{
-      e.preventDefault()
-      const savedId = this.state.lesson[0].id
+      e.preventDefault();
+      const savedId = this.state.lesson[0].id;
       fetch(`${config.API_ENDPOINT}/savedlessons/${savedId}`, {
         method: 'DELETE',
         headers: {
@@ -67,7 +67,6 @@ export default class Savedlessons extends React.Component {
     }
 
     renderButtons() {
-      const { currentUser } = this.context
         return (
           <> 
           <div className='get-del-buttons'>
@@ -80,7 +79,7 @@ export default class Savedlessons extends React.Component {
               <button 
               type = 'button' 
               disabled = { this.state.button}
-              className = {(parseInt(currentUser.id) === 1? 'button__red hidden' : 'button__red')}
+              className = 'button__red'
               onClick={e =>
                       window.confirm("Are you sure you wish to delete this item?") &&
                       this.handleDeleteLesson(e)
@@ -104,7 +103,7 @@ export default class Savedlessons extends React.Component {
             </div>
           </>
         )
-    }
+    };
 
     handleClickGoBack = () => {
         this.props.history.push('/')
@@ -124,7 +123,7 @@ export default class Savedlessons extends React.Component {
                 </option>)} 
             </>
     )
-  }
+  };
 
   render() {
     const {currentUser =[]} = this.context
@@ -155,5 +154,5 @@ export default class Savedlessons extends React.Component {
         </main>
     </>
         )
-    }
+    };
 }

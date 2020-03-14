@@ -11,16 +11,16 @@ export default class FormCooldown extends React.Component {
 continue = e => {
     e.preventDefault();
     this.props.nextStep();
-}
+};
 
 back = e => {
     e.preventDefault();
     this.props.prevStep();
-}
+};
 
 renderOptions(catId){
-    const { activities } = this.props
-    const activityForCategory = getActivityForCategory(activities, catId)
+    const { activities } = this.props;
+    const activityForCategory = getActivityForCategory(activities, catId);
     return(
         <>
         {activityForCategory.map(activity =>
@@ -32,11 +32,11 @@ renderOptions(catId){
         )}   
         </>
     )
-}
+};
 
 renderTooltipinfo(actId){
-    const {activities} = this.props
-    const activity = findActivity(activities, actId) || { content: '' }
+    const {activities} = this.props;
+    const activity = findActivity(activities, actId) || { content: '' };
 
  return(
       <>
@@ -48,7 +48,7 @@ renderTooltipinfo(actId){
         </IconButton>
       </Tooltip>
       </>)
-  }
+  };
 
     render() {
         const { values, handleChange } = this.props;
@@ -98,5 +98,5 @@ renderTooltipinfo(actId){
                     </div>
             </div>
         )
-    }
+    };
 }

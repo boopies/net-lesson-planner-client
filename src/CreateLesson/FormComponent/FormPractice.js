@@ -1,33 +1,33 @@
 import React from 'react';
-import { getActivityForCategory, findActivity } from '../../ReadActivities/helpers'
+import { getActivityForCategory, findActivity } from '../../ReadActivities/helpers';
 import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import ValidationError from '../../ReadActivities/ValidationError/ValidationError'
+import ValidationError from '../../ReadActivities/ValidationError/ValidationError';
 import CancelIcon from '@material-ui/icons/Cancel';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 
-export class FormPractice extends React.Component {    
+export default class FormPractice extends React.Component {    
 continue = e => {
     e.preventDefault();
     this.props.nextStep();
-}
+};
 
 back = e => {
     e.preventDefault();
     this.props.prevStep();
-}
+};
 
 reset = e => {
     e.preventDefault();
     this.props.resetForm();
-}
+};
 
 renderOptions(catId){
-    const { activities } = this.props
-    const activityForCategory = getActivityForCategory(activities, catId)
+    const { activities } = this.props;
+    const activityForCategory = getActivityForCategory(activities, catId);
     return(
         <>
         {activityForCategory.map(activity =>
@@ -39,7 +39,7 @@ renderOptions(catId){
         )}   
         </>
     )
-}
+};
 
 validatePractice(fieldValue) {
     const { values  } = this.props;
@@ -47,11 +47,11 @@ validatePractice(fieldValue) {
     if (parseInt(practice) === 3) {
       return 'A practice activity is required';
     }
-  }
+  };
 
 renderTooltipinfo(actId){
-    const {activities} = this.props
-    const activity = findActivity(activities, actId) || {content: ' '}
+    const {activities} = this.props;
+    const activity = findActivity(activities, actId) || {content: ' '};
 
  return(
       <>
@@ -63,7 +63,7 @@ renderTooltipinfo(actId){
         </IconButton>
       </Tooltip>
       </>)
-  }
+  };
 
     render() {
         const { values, handleChange } = this.props;
@@ -146,7 +146,5 @@ renderTooltipinfo(actId){
                     </div>
             </div>
         )
-    }
+    };
 }
-
-export default FormPractice

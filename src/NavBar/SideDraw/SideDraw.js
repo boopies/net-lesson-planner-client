@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import './SideDraw.css';
-import TokenService from '../../services/token-service'
-import ApiContext from '../../ApiContext'
+import TokenService from '../../services/token-service';
+import ApiContext from '../../ApiContext';
 
 class SideDraw extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
     sideDrawOpen: false
-    }}
+    }};
 
     static contextType = ApiContext;
 
@@ -19,7 +19,7 @@ class SideDraw extends React.Component {
     this.context.setTokenFalse()
     this.forceUpdate()
     this.context.removeCurrentUser();
-      }
+      };
 
     renderLogoutLink() {
       return (
@@ -32,7 +32,7 @@ class SideDraw extends React.Component {
           </Link>
         </>
       )
-    }
+    };
   
     renderLoginLink() {
       return (
@@ -49,7 +49,7 @@ class SideDraw extends React.Component {
           </Link>
         </>
       )
-    }
+    };
 
 render(){
     let drawClasses = 'nav-side-draw';
@@ -68,7 +68,7 @@ render(){
                     : this.renderLoginLink()}
         </nav>
     )
-}
+};
 }
 
 

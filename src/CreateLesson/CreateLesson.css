@@ -59,7 +59,7 @@
     list-style: none;
 }
 .create-confirmation h4{
-    text-align: center;
+    text-align: left;
 }
 
 .create-lesson__practice{
@@ -99,7 +99,7 @@
 
 .create-confirmation{
     color: black;
-    column-count: 2;
+    column-count: 1;
     column-gap: 20px;
 }
 

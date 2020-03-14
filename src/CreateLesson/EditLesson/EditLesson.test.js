@@ -38,11 +38,12 @@ const location = {
 };
 
 describe('Edit Created Lesson Component', () => {
-
-
     it('renders without crashing', () => {
-      const div = document.createElement('div');
-      ReactDOM.render(<BrowserRouter><EditLesson  location={location} /></BrowserRouter>, div);
-      ReactDOM.unmountComponentAtNode(div);
+        const div = document.createElement('div');
+        ReactDOM.render(
+            <BrowserRouter><EditLesson location={location}/></BrowserRouter>,
+            div
+        );
+        ReactDOM.unmountComponentAtNode(div);
     });
-  });
+});

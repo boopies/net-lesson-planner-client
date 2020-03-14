@@ -1,13 +1,22 @@
 
-import React from 'react'
-import { Link } from 'react-router-dom'
-import ApiContext from '../../ApiContext'
-import { findAuthor, findCategory } from '../helpers'
-import './ActivityItem.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import ApiContext from '../../ApiContext';
+import { findAuthor, findCategory } from '../helpers';
+import './ActivityItem.css';
 import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode';
 
 
 export default class ActivityItem extends React.Component {
+  static defaultProps = {
+    match: {
+      params: {}
+    },
+    history: {
+      goBack: () => {}
+    }
+  };
+
   static contextType = ApiContext;
 
 renderCategory(categoryId){
@@ -33,7 +42,7 @@ renderAuthor(authorId){
 }
 
   render() {
-    const { title, duration, grouping, id, authorId, categoryId } = this.props
+    const { title, duration, grouping, id, authorId, categoryId, readme } = this.props;
     return (
       <div className={'act'+categoryId + ' activity__card'}>
             <h3 className='activity-card__title'>
@@ -50,7 +59,8 @@ renderAuthor(authorId){
             </div>
           <div className='activity-card__readmore'>
             <Link to={`/read/activity/${id}`}>
-            <button className='button__blue'>
+            <button 
+            className= {readme ? 'button__blue': 'button__blue hidden'}>
             <ChromeReaderModeIcon /> Read More</button>
             </Link>
           </div>

@@ -39,7 +39,7 @@ const activities = [{id: 1,
     duration: 'test',
     author_id: 'test'}]
 
-const handleChange = () => {}
+const handleChange = () => {};
   
 describe('Form Warmup Selection Component', () => {
     it('renders without crashing', () => {

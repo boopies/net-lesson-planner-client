@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FormLessonTGOM from './FormLessonTGOM'
+import FormLessonTGOM from './FormLessonTGOM';
 import {BrowserRouter} from "react-router-dom";
 
 const values = {
@@ -29,10 +29,10 @@ const values = {
               reflection_one: 'test',
               reflection_two: 'test',
               reflection_three: 'test'
-    }
+    };
 
 
-    const handleChange = () => {}
+    const handleChange = () => {};
   
 describe('Form Lesson Goals, Objectives, Topic, and Materials input Component', () => {
     it('renders without crashing', () => {

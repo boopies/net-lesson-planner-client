@@ -1,9 +1,9 @@
-import React from 'react'
-import ActivityItem from '../ActivityItem/ActivityItem'
-import ApiContext from '../../ApiContext'
-import { findActivity } from '../helpers'
-import PropTypes from 'prop-types'
-import './ActivityPage.css'
+import React from 'react';
+import ActivityItem from '../ActivityItem/ActivityItem';
+import ApiContext from '../../ApiContext';
+import { findActivity } from '../helpers';
+import PropTypes from 'prop-types';
+import './ActivityPage.css';
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 import EditIcon from '@material-ui/icons/Edit';
 
@@ -15,13 +15,14 @@ export default class ActivityPage extends React.Component {
     history: {
       goBack: () => {}
     }
-  }
-  static contextType = ApiContext
+  };
+
+  static contextType = ApiContext;
 
   render() {
-    const { activities=[], currentUser } = this.context
-    const { activityId } = this.props.match.params
-    const activity = findActivity(activities, activityId) || { content: '' }
+    const { activities=[], currentUser } = this.context;
+    const { activityId } = this.props.match.params;
+    const activity = findActivity(activities, activityId) || { content: '' };
     return (
       <section className='read_ActivityPage'>
         <ActivityItem
@@ -31,6 +32,7 @@ export default class ActivityPage extends React.Component {
           grouping={activity.grouping}
           authorId={activity.user_id}
           categoryId={activity.category_id}
+          readme={false}
         />
         
         <div className='ActivityPage__content'>
@@ -42,7 +44,6 @@ export default class ActivityPage extends React.Component {
         <div className='activities-content__buttons'>
           <button
               type='button'
-              disabled={parseInt(currentUser.id) === 1? true: false}
               className={(activity.user_id === currentUser.id? 'button__yellow' : 'button__yellow hidden')}
               onClick={() => this.props.history.push(`/read/edit-activity/${activity.id}`)}>
               <EditIcon /> Edit

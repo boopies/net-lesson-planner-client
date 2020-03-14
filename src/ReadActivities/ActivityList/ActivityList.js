@@ -1,9 +1,9 @@
-import React from 'react'
-import ActivityItem from '../ActivityItem/ActivityItem'
-import { Link } from 'react-router-dom'
-import ApiContext from '../../ApiContext'
-import { getActivityForCategory, removedBlankActivities } from '../helpers'
-import './ActivityList.css'
+import React from 'react';
+import ActivityItem from '../ActivityItem/ActivityItem';
+import { Link } from 'react-router-dom';
+import ApiContext from '../../ApiContext';
+import { getActivityForCategory, removedBlankActivities } from '../helpers';
+import './ActivityList.css';
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
 
 export default class ActivityList extends React.Component {
@@ -13,13 +13,13 @@ export default class ActivityList extends React.Component {
                   filterCategory: ''
     };
     this.handleClick = this.handleClick.bind(this);
-  }
+  };
 
   static defaultProps = {
     match: {
       params: {}
     }
-  }
+  };
 
   static contextType = ApiContext
 
@@ -27,49 +27,49 @@ export default class ActivityList extends React.Component {
     this.setState({
       currentPage: Number(event.target.id)
     });
-  }
+  };
 
   handleFilter(filter){
     this.setState({
       filterCategory: filter})
-  }
+  };
 
   handleAddActivitiesForm= () => {
     this.props.history.push('/read/add-activity')
   };
 
   renderSelectionCategory(){
-    const { filterCategory } = this.state
+    const { filterCategory } = this.state;
     switch(parseInt(filterCategory)){
     default:
         return (<h2 className='read-activity__activities_h2'>
-        All Activities</h2>)
+        All Activities</h2>);
     case 1:
         return(
         <h2 className='read-activity__activities_h2'>
         Warmup Activities</h2>
-        )  
+        );
     case 2: 
         return(
             <h2 className='read-activity__activities_h2'>
-            Presentation Activities</h2>)  
+            Presentation Activities</h2>);  
     case 3:
         return(
             <h2 className='read-activity__activities_h2'>
-            Practice Activities</h2>)  
+            Practice Activities</h2>);  
     case 4:
         return(
           <h2 className='read-activity__activities_h2'>
-          Production Activities</h2>)  
+          Production Activities</h2>); 
     case 5:
         return(
           <h2 className='read-activity__activities_h2'>
-          Cooldown Activities</h2>)  
+          Cooldown Activities</h2>);  
   }
-  }
+  };
 
   renderFilterButtons(){
-    const {categories =[]} = this.context
+    const {categories =[]} = this.context;
     return(
        <div className='activitlist_filters__all'>
           <label 
@@ -104,11 +104,11 @@ export default class ActivityList extends React.Component {
        )}
        </div>
     )
-  }
+  };
 
  renderActivities(){
   const {activities = [], category, currentPage, activitiesPerPage} = this.context;
-  const removedBlank = removedBlankActivities(activities)
+  const removedBlank = removedBlankActivities(activities);
   const activityForCategory = getActivityForCategory(removedBlank, category);
   const indexOfLastActivity = currentPage * activitiesPerPage;
   const indexOfFirstActivity = indexOfLastActivity - activitiesPerPage;
@@ -125,6 +125,7 @@ export default class ActivityList extends React.Component {
           grouping={activity.grouping}
           authorId={activity.user_id}
           categoryId={activity.category_id}
+          readme={true}
         />
       </li>
     :
@@ -138,7 +139,7 @@ export default class ActivityList extends React.Component {
         })
       }
     </>)
-  }
+  };
 
   renderPageNumbers(){
     const {activities = [], category='', activitiesPerPage } = this.context;

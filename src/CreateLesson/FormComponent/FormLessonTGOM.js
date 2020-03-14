@@ -1,21 +1,21 @@
 import React from 'react';
-import ValidationError from '../../ReadActivities/ValidationError/ValidationError'
-import '../CreateLesson.css'
+import ValidationError from '../../ReadActivities/ValidationError/ValidationError';
+import '../CreateLesson.css';
 import CancelIcon from '@material-ui/icons/Cancel';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
-export class FormLessonTGOM extends React.Component {
+export default class FormLessonTGOM extends React.Component {
 
     continue = e => {
         e.preventDefault();
         this.props.nextStep();
-    }
+    };
 
     back = e => {
         e.preventDefault();
         this.props.prevStep();
-    }
+    };
 
     validateTopic(fieldValue) {
         const { values  } = this.props;
@@ -25,7 +25,7 @@ export class FormLessonTGOM extends React.Component {
         } else if (topic.length < 3) {
           return <div id="ANErrorMessage">Topic mus be at least 3 characters long.</div>;
         }
-      }
+      };
 
       validateGoal(fieldValue) {
         const { values  } = this.props;
@@ -35,7 +35,7 @@ export class FormLessonTGOM extends React.Component {
         } else if (goal.length < 32) {
           return <div id="ANErrorMessage">Add more to this sentence</div>;
         }
-      }
+      };
 
       validateObjective(fieldValue) {
         const { values  } = this.props;
@@ -45,7 +45,7 @@ export class FormLessonTGOM extends React.Component {
         } else if (objective.length < 5) {
           return <div id="ANErrorMessage">Add add one Objective</div>;
         }
-      }
+      };
 
     render() {
         const { values, handleChange } = this.props;
@@ -162,7 +162,5 @@ export class FormLessonTGOM extends React.Component {
                 </div>
             </>
         )
-    }
+    };
 }
-
-export default FormLessonTGOM

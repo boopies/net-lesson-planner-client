@@ -1,24 +1,24 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import NavBar from './NavBar/NavBar'
-import LandingPage from './LandingPage/LandingPage'
-import CreateLesson from './CreateLesson/CreateLesson'
-import LessonPlan from './CreateLesson/LessonPlan/LessonPlan'
-import ReadActivities from './ReadActivities/ReadActivities'
-import SideDraw from './NavBar/SideDraw/SideDraw'
-import BackDrop from './BackDrop/BackDrop'
-import ApiContext from './ApiContext'
-import RegistrationForm from './RegistrationForm/RegistrationForm'
-import LoginForm from './LoginForm/LoginForm'
-import EditLesson from './CreateLesson/EditLesson/EditLesson'
-import Savedlessons from './Savedlessons/Savedlessons'
-import PrivateRoute from './Utilities/PrivateRoute'
-import TokenService from './services/token-service'
-import SavedLessonPlan from './Savedlessons/SavedLessonPlan/SavedLessonPlan'
-import EditSavedPlan from './Savedlessons/EditSavedPlan/EditSavedPlan'
-import config from './config'
-import NoPage from './NoPage/NoPage'
+import NavBar from './NavBar/NavBar';
+import LandingPage from './LandingPage/LandingPage';
+import CreateLesson from './CreateLesson/CreateLesson';
+import LessonPlan from './CreateLesson/LessonPlan/LessonPlan';
+import ReadActivities from './ReadActivities/ReadActivities';
+import SideDraw from './NavBar/SideDraw/SideDraw';
+import BackDrop from './BackDrop/BackDrop';
+import ApiContext from './ApiContext';
+import RegistrationForm from './RegistrationForm/RegistrationForm';
+import LoginForm from './LoginForm/LoginForm';
+import EditLesson from './CreateLesson/EditLesson/EditLesson';
+import Savedlessons from './Savedlessons/Savedlessons';
+import PrivateRoute from './Utilities/PrivateRoute';
+import TokenService from './services/token-service';
+import SavedLessonPlan from './Savedlessons/SavedLessonPlan/SavedLessonPlan';
+import EditSavedPlan from './Savedlessons/EditSavedPlan/EditSavedPlan';
+import config from './config';
+import NoPage from './NoPage/NoPage';
 
 export default class App extends React.Component{
   constructor(props) {

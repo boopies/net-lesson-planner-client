@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import ApiContext from '../../ApiContext'
-import ValidationError from '../ValidationError/ValidationError'
+import React, { Component } from 'react';
+import ApiContext from '../../ApiContext';
+import ValidationError from '../ValidationError/ValidationError';
 import PropTypes from 'prop-types';
-import TokenService from '../../services/token-service'
-import config from '../../config'
-import './AddActivity.css'
+import TokenService from '../../services/token-service';
+import config from '../../config';
+import './AddActivity.css';
 import CancelIcon from '@material-ui/icons/Cancel';
 import PublishIcon from '@material-ui/icons/Publish';
 
@@ -32,20 +32,20 @@ export default class AddActivity extends Component {
           value: '',
           touched:false
         },
-  }
-}
+  };
+};
 
   static defaultProps = {
     history: {
       push: () => { }
-    },
-  }
+    }
+  };
   
   static contextType = ApiContext;
 
   goBack = () => {
     this.props.history.goBack();
-}
+};
 
 validateTitle(fieldValue) {
   const title = this.state.title.value.trim();
@@ -54,7 +54,7 @@ validateTitle(fieldValue) {
   } else if (title.length < 2) {
     return <div id="ANErrorMessage">New activity's name must be 3 characters long.</div>;
   }
-}
+};
 
 validateContent(fieldValue) {
   const content = this.state.content.value.trim();
@@ -63,58 +63,58 @@ validateContent(fieldValue) {
 } else if (content.length < 5){
   return <div id="ACErrorMessage">The content must contain 5 or more characters.</div>;
 }
-}
+};
 
 validateCategoryId(fieldValue) {
   const categoryID = this.state.category_id.value.trim();
   if (categoryID.length === 0) {
     return <div id="FSErrorMessage">You must select a category to add the new Activity to.</div>;
   }
-}
+};
 
 validateDuration(fieldValue) {
     const duration = this.state.duration.value.trim();
     if (duration.length === 0) {
       return <div id="DSErrorMessage">You must select the duration of the activity.</div>;
     }
-  }
+  };
 
   validateGrouping(fieldValue) {
     const grouping = this.state.grouping.value.trim();
     if (grouping.length === 0) {
       return <div id="GSErrorMessage">You must select the groups setup.</div>;
     }
-  }
+  };
 
 updateTitle(title){
   this.setState({title: {value: title, touched: true}});
-}
+};
 
 updateContent(content){
   this.setState({content: {value: content, touched: true}});
-}
+};
 
 updateCategoryId(category_id){
   this.setState({category_id: {value: category_id, touched: true}});
-}
+};
 
 updateDuration(duration){
     this.setState({duration: {value: duration, touched: true}});
-  }
+  };
 
 updateGrouping(grouping){
     this.setState({grouping: {value: grouping, touched: true}});
-  }
+  };
 
   handleSubmit = e => {
-    e.preventDefault()
+    e.preventDefault();
     const newActivity = {
         title: e.target['title'].value,
         category_id: e.target['categoryId'].value,
         content: e.target['content'].value,
         grouping: e.target['grouping'].value,
         duration: e.target['duration'].value,
-    }
+    };
     fetch(`${config.API_ENDPOINT}/activities`, {
       method: 'POST',
       headers: {
@@ -138,7 +138,7 @@ updateGrouping(grouping){
   }
   
   render() {
-    const { categories=[], currentUser } = this.context
+    const { categories=[] } = this.context;
     return (
       <section className='AddActivity'>
         <form 
@@ -259,8 +259,7 @@ updateGrouping(grouping){
                 this.validateContent()||
                 this.validateCategoryId()||
                 this.validateDuration()||
-                this.validateGrouping()||
-                parseInt(currentUser.id) === 1? true: false}>
+                this.validateGrouping()}>
               <PublishIcon /> Submit
             </button>
             <button 
@@ -275,7 +274,7 @@ updateGrouping(grouping){
       </section>
     )
   }
-}
+};
 
 AddActivity.defaultProps = {
   title: '',
@@ -291,4 +290,4 @@ AddActivity.propTypes ={
   category_id: PropTypes.string.isRequired,
   grouping: PropTypes.string.isRequired,
   duration: PropTypes.string.isRequired
-}
+};

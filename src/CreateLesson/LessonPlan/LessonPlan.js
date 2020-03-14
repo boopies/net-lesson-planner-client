@@ -1,10 +1,10 @@
 import React from 'react';
-import ApiContext from '../../ApiContext'
-import './LessonPlan.css'
-import { findActivity } from '../../ReadActivities/helpers'
-import uuid from 'react-uuid'
-import TokenService from '../../services/token-service'
-import config from '../../config'
+import ApiContext from '../../ApiContext';
+import './LessonPlan.css';
+import { findActivity } from '../../ReadActivities/helpers';
+import uuid from 'react-uuid';
+import TokenService from '../../services/token-service';
+import config from '../../config';
 import PrintIcon from '@material-ui/icons/Print';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import SaveOutlinedIcon from '@material-ui/icons/SaveOutlined';
@@ -42,12 +42,12 @@ export default class LessonPlan extends React.Component{
                     reflection_three: '',
                     activities: [],
         };
-    }
+    };
 
     static contextType = ApiContext;
 
     componentDidMount() {
-        const lesson = this.props.location.state
+        const lesson = this.props.location.state;
           this.setState({
                     title: lesson.title,
                     date: lesson.date,
@@ -74,11 +74,11 @@ export default class LessonPlan extends React.Component{
                     reflection_one: lesson.reflection_one,
                     reflection_two: lesson.reflection_two,
                     reflection_three: lesson.reflection_three, 
-          })
-      }
+          });
+      };
 
     handleSaveLesson = () => {
-        const lesson = this.state
+        const lesson = this.state;
         const newLesson = {
                     title: `${lesson.title}`,
                     date: `${lesson.date}`,
@@ -105,7 +105,7 @@ export default class LessonPlan extends React.Component{
                     reflection_one: `${lesson.reflection_one}`,
                     reflection_two: `${lesson.reflection_two}`,
                     reflection_three: `${lesson.reflection_three}` 
-        }
+        };
         fetch(`${config.API_ENDPOINT}/savedlessons`, {
           method: 'POST',
           headers: {
@@ -126,18 +126,18 @@ export default class LessonPlan extends React.Component{
           .catch(error => {
             console.error({ error })
           })
-      }
+      };
 
     handlePrintLesson = () =>{
         window.print();
-    }
+    };
 
     handleNewLesson = () => {
-        this.props.history.push('/create')
+        this.props.history.push('/create');
       };
     
     handleGoHome = () => {
-        this.props.history.push('/')
+        this.props.history.push('/');
       };
 
     handleEdit = () => {
@@ -149,7 +149,7 @@ export default class LessonPlan extends React.Component{
       };
 
     renderMaterialsList(){
-        const materialString = this.state.materials
+        const materialString = this.state.materials;
         const materialArray = materialString.split(/[,]+/);
         return (
             <>
@@ -161,12 +161,12 @@ export default class LessonPlan extends React.Component{
             )}
             </>
         )
-    }
+    };
 
     renderObjectives(){
-            const objOne = this.state.objective_one
-            const objTwo = this.state.objective_two
-            const objThree = this.state.objective_three
+            const objOne = this.state.objective_one;
+            const objTwo = this.state.objective_two;
+            const objThree = this.state.objective_three;
 
         if (objTwo.length === 0 && objThree.length === 0){
             return (
@@ -187,12 +187,12 @@ export default class LessonPlan extends React.Component{
                     <li key={uuid()}>{objThree}</li>
                 </>)
         }
-    }
+    };
 
     renderReflection(){
-        const refOne = this.state.reflection_one
-        const refTwo = this.state.reflection_two
-        const refThree = this.state.reflection_three
+        const refOne = this.state.reflection_one;
+        const refTwo = this.state.reflection_two;
+        const refThree = this.state.reflection_three;
 
     if (refTwo.length === 0 && refThree.length === 0){
         return (
@@ -256,7 +256,6 @@ export default class LessonPlan extends React.Component{
     }
 
     renderButtons(){
-        const { currentUser } = this.context
         return(
         <>
             <button
@@ -278,8 +277,7 @@ export default class LessonPlan extends React.Component{
             {TokenService.hasAuthToken()
                 ?   <button 
                         className='button__blue'
-                        type='button' 
-                        disabled={(parseInt(currentUser.id) === 1? true: false)}
+                        type='button'
                         onClick={() => this.handleSaveLesson()}>
                         <SaveOutlinedIcon fontSize="large" />
                         {' '}
@@ -306,74 +304,105 @@ export default class LessonPlan extends React.Component{
         )
     }
 
-    render(){
-        
-        const lesson = this.state
-          return(
-                <>
-                <header>
-                    <h1>{lesson.title}</h1>
-                </header>
-                <main className="full__lesson-plan">
-                    <section id="lesson_plan__full"> 
-                        <div className="lesson_plan_D-and-P">
-                            <div className='lesson_plan topic'>
-                                <div className='lesson_plan__title'><h3>Topic</h3></div>
-                                <div className='lesson_plan__content'><p>{lesson.topic}</p></div>
+render() {
+    const lesson = this.state
+    return (
+        <> 
+        <header> 
+            <h1>{lesson.title}</h1>
+        </header>
+            <main className="full__lesson-plan">
+                <section id="lesson_plan__full">
+                    <div className="lesson_plan_D-and-P">
+                        <div className='lesson_plan topic'>
+                            <div className='lesson_plan__title'>
+                                <h3>Topic</h3>
                             </div>
-                            <div className='lesson_plan date'>
-                                <div className='lesson_plan__title'><h3>Date</h3></div>
-                                <div className='lesson_plan__content'><p>{lesson.day}{' '}{lesson.date}</p></div>
-                            </div>
-                            <div className='lesson_plan period'>
-                                <div className='lesson_plan__title'><h3>Period</h3></div>
-                                <div className='lesson_plan__content'><p>{lesson.period}</p></div>
+                            <div className='lesson_plan__content'>
+                                <p>{lesson.topic}</p>
                             </div>
                         </div>
-                        <div className='lesson_plan_C-CS-CL'>
+                        <div className='lesson_plan date'>
+                            <div className='lesson_plan__title'>
+                                <h3>Date</h3>
+                            </div>
+                            <div className='lesson_plan__content'>
+                                <p>{lesson.day}{' '}{lesson.date}</p>
+                            </div>
+                        </div>
+                        <div className='lesson_plan period'>
+                            <div className='lesson_plan__title'>
+                                <h3>Period</h3>
+                            </div>
+                            <div className='lesson_plan__content'>
+                                <p>{lesson.period}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='lesson_plan_C-CS-CL'>
                         <div className='lesson_plan class'>
-                            <div className='lesson_plan__title'><h3>Class</h3></div>
-                            <div className='lesson_plan__content'><p>{lesson.classlevel}</p></div>
+                            <div className='lesson_plan__title'>
+                                <h3>Class</h3>
+                            </div>
+                            <div className='lesson_plan__content'>
+                                <p>{lesson.classlevel}</p>
+                            </div>
                         </div>
                         <div className='lesson_plan class_size'>
-                            <div className='lesson_plan__title'><h3>Class Size</h3></div>
-                            <div className='lesson_plan__content'><p>{lesson.class_size} {' '} Students</p></div>
+                            <div className='lesson_plan__title'>
+                                <h3>Class Size</h3>
+                            </div>
+                            <div className='lesson_plan__content'>
+                                <p>{lesson.class_size}
+                                    {' '}
+                                    Students</p>
+                            </div>
                         </div>
                         <div className='lesson_plan time'>
-                            <div className='lesson_plan__title'><h3>Class Length</h3></div>
-                            <div className='lesson_plan__content'><p>{lesson.duration}</p></div>
-                        </div>
-                        </div>
-    
-                        <div className='lesson_plan_G-O'>
-                            <div className='lesson_plan goal'>
-                                <div className='lesson_plan__title'><h3>Goal</h3></div>
-                                <div className='lesson_plan__content goal_object'><p>{lesson.goal}</p></div>
+                            <div className='lesson_plan__title'>
+                                <h3>Class Length</h3>
                             </div>
-                            <div className='lesson_plan objectives'>
-                                <div className='lesson_plan__title'><h3>Objectives</h3></div>
-                                <div className='lesson_plan__content goal_object'>                    
-                                <ul>Students Should be able to - 
-                                {this.renderObjectives()}
-                            </ul></div>
+                            <div className='lesson_plan__content'>
+                                <p>{lesson.duration}</p>
+                            </div>
                         </div>
+                    </div>
+                    <div className='lesson_plan_G-O'>
+                        <div className='lesson_plan goal'>
+                            <div className='lesson_plan__title'>
+                                <h3>Goal</h3>
+                            </div>
+                            <div className='lesson_plan__content goal_object'>
+                                <p>{lesson.goal}</p>
+                            </div>
                         </div>
-    
-                        <div className='lesson_plan_mats'>
-                            <div className='lesson_plan materials'>
-                                <div className='lesson_plan__title'>
-                                    <h3>Materials</h3>
-                                </div>
-                                <div className='lesson_plan__content material'>                    
-                                    <ul> 
+                        <div className='lesson_plan objectives'>
+                            <div className='lesson_plan__title'>
+                                <h3>Objectives</h3>
+                            </div>
+                            <div className='lesson_plan__content goal_object'>
+                                <ul>Students Should be able to - {this.renderObjectives()}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='lesson_plan_mats'>
+                        <div className='lesson_plan materials'>
+                            <div className='lesson_plan__title'>
+                                <h3>Materials</h3>
+                            </div>
+                            <div className='lesson_plan__content material'>
+                                <ul>
                                     {this.renderMaterialsList()}
-                                    </ul>
-                                </div>
+                                </ul>
                             </div>
                         </div>
-                        <div className='lesson_plan Star-Lesson-plan'>
-                            <div className='lesson_plan__title'><h2>Lesson</h2></div>
-                            <div className='Warmups lesson_plan_phase'>
+                    </div>
+                    <div className='lesson_plan Star-Lesson-plan'>
+                        <div className='lesson_plan__title'>
+                            <h2>Lesson</h2>
+                        </div>
+                        <div className='Warmups lesson_plan_phase'>
                             <h3>Warm-Up Phase</h3>
                             {this.renderActivities(lesson.warmup_id)}
                         </div>
@@ -383,36 +412,39 @@ export default class LessonPlan extends React.Component{
                             {this.renderActivities(lesson.presentation_two_id)}
                         </div>
                         <div className='Practices lesson_plan_phase'>
-                        <h3>Practice Phase</h3>
+                            <h3>Practice Phase</h3>
                             {this.renderActivities(lesson.practice_one_id)}
                             {this.renderActivities(lesson.practice_two_id)}
                             {this.renderActivities(lesson.practice_three_id)}
                         </div>
                         <div className='Productions lesson_plan_phase'>
-                        <h3>Production Phase</h3>
+                            <h3>Production Phase</h3>
                             {this.renderActivities(lesson.product_one_id)}
                             {this.renderActivities(lesson.product_two_id)}
                         </div>
                         <div className='Cooldowns lesson_plan_phase'>
-                        <h3>Cooldown Phase</h3>
-                        {this.renderActivities(lesson.cooldown_id)}
-                        </div>            
+                            <h3>Cooldown Phase</h3>
+                            {this.renderActivities(lesson.cooldown_id)}
                         </div>
-                        <div className="lesson_plan_ref">
-                            <div className='lesson_plan reflections'>
-                                <div className='lesson_plan__title'><h3>Reflection Questions</h3></div>
-                                <div className='lesson_plan__content'>                        
+                    </div>
+                    <div className="lesson_plan_ref">
+                        <div className='lesson_plan reflections'>
+                            <div className='lesson_plan__title'>
+                                <h3>Reflection Questions</h3>
+                            </div>
+                            <div className='lesson_plan__content'>
                                 <ul>
                                     {this.renderReflection()}
-                                </ul></div>
+                                </ul>
                             </div>
                         </div>
-                        <div className="saved-lessons__buttons">
-                            {this.renderButtons()}
-                        </div>
-                    </section>
-                </main>
-                </>
-            )
-        }
-    }
+                    </div>
+                    <div className="saved-lessons__buttons">
+                        {this.renderButtons()}
+                    </div>
+                </section>
+            </main>
+        </>
+    )
+};
+}

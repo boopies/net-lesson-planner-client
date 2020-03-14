@@ -1,5 +1,5 @@
-import config from '../config'
-import TokenService from './token-service'
+import config from '../config';
+import TokenService from './token-service';
 
 const AuthApiService = {
   postUser(user) {
@@ -54,7 +54,7 @@ const AuthApiService = {
         console.log('refresh token request error')
         console.error(err)
       })
-  },
+  }
 }
 
-export default AuthApiService
+export default AuthApiService;

@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
-import AuthApiService from '../services/auth-api-service'
-import ApiContext from '../ApiContext'
-import config from '../config'
-import './LoginForm.css'
+import React, {Component} from 'react';
+import AuthApiService from '../services/auth-api-service';
+import ApiContext from '../ApiContext';
+import config from '../config';
+import './LoginForm.css';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import CancelIcon from '@material-ui/icons/Cancel';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 
 export default class LoginForm extends Component {
     static defaultProps = {
@@ -13,27 +13,27 @@ export default class LoginForm extends Component {
         history: {
             push: () => {}
         }
-    }
+    };
 
     static contextType = ApiContext;
 
     handleLoginSuccess = () => {
         this.context.setTokenTrue()
         const { location, history } = this.props
-        const destination = (location.state || {}).from || '/'
+        const destination = (location.state || {}).from || '/create'
         history.push(destination)
         window.location.reload()
-    }
+    };
 
     state = {
         error: null
-    }
+    };
 
     handleSubmitJwtAuth = ev => {
-        ev.preventDefault()
-        this.setState({error: null})
-        const {username, password} = ev.target
-        let user = username.value
+        ev.preventDefault();
+        this.setState({error: null});
+        const {username, password} = ev.target;
+        let user = username.value;
         fetch(`${config.API_ENDPOINT}/users/${user}`, {
           method: 'GET',
           headers: {
@@ -66,7 +66,7 @@ export default class LoginForm extends Component {
         }
 
     render() {
-        const {error} = this.state
+        const {error} = this.state;
         return (
             <>
                 <header className="login__header">
@@ -123,5 +123,5 @@ export default class LoginForm extends Component {
                 </main>
             </>
         )
-    }
+    };
 }

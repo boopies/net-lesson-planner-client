@@ -32,7 +32,7 @@ const values = {
     }
 
 
-    const handleChange = () => {}
+    const handleChange = () => {};
   
 describe('Form Reflection Input Component', () => {
     it('renders without crashing', () => {

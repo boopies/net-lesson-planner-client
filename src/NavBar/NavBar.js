@@ -1,9 +1,9 @@
-import React from 'react'
-import './NavBar.css'
-import {Link} from 'react-router-dom'
-import TokenService from '../services/token-service'
-import Hamburger from './SideDraw/Hamburger'
-import ApiContext from '../ApiContext'
+import React from 'react';
+import './NavBar.css';
+import {Link} from 'react-router-dom';
+import TokenService from '../services/token-service';
+import Hamburger from './SideDraw/Hamburger';
+import ApiContext from '../ApiContext';
 
 export default class NavBar extends React.Component {
 
@@ -15,7 +15,7 @@ export default class NavBar extends React.Component {
         this.context.setTokenFalse()
         this.forceUpdate()
         this.context.removeCurrentUser();
-    }
+    };
 
     renderLogoutLink() {
         return (
@@ -28,7 +28,7 @@ export default class NavBar extends React.Component {
                 LOGOUT 
             </Link>
         </>)
-    }
+    };
 
     renderLoginLink() {
         return (
@@ -45,7 +45,7 @@ export default class NavBar extends React.Component {
               </Link>
             </>
         )
-    }
+    };
 
     render() {
         return (
@@ -63,5 +63,5 @@ export default class NavBar extends React.Component {
               </div>
             </>
         )
-    }
+    };
 }

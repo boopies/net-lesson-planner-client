@@ -11,7 +11,7 @@ export default class RegistrationForm extends React.Component {
     history: {
       push: () => {},
     },
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -21,7 +21,7 @@ export default class RegistrationForm extends React.Component {
         showDiv: false,
         error: null
   }
-}
+};
 
 validatePassword2(fieldValue) {
   const password = this.state.password
@@ -29,20 +29,20 @@ validatePassword2(fieldValue) {
   if (password !== password2) {
     return <div id="FSErrorMessage">You must input the same password</div>;
   }
-}
+};
 
 updatePassword(password){
   this.setState({password: password});
-}
+};
 
 updatePassword2(password2){
   this.setState({password2: password2})
-}
+};
 
   handleRegistrationSuccess = user => {
     const { history } = this.props
     history.push('/login')
-  }
+  };
 
   handleSubmit = ev => {
     ev.preventDefault()
@@ -65,8 +65,8 @@ updatePassword2(password2){
   }
 
   render() {
-    const { error } = this.state
-    const pass = this.state.password
+    const { error } = this.state;
+    const pass = this.state.password;
     const lowerCaseLetters = /[a-z]/g;
     const numbers = /[0-9]/g;
     const upperCaseLetters = /[A-Z]/g;
@@ -177,5 +177,5 @@ updatePassword2(password2){
           </main>
         </>
     )
-  }
+  };
 }

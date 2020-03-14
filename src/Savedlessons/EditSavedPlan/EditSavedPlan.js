@@ -40,23 +40,23 @@ export default class EditSavedPlan extends React.Component{
                     reflection_two: '',
                     reflection_three: '', 
                     }
-            }
+            };
          
       static defaultProps = {
         history: {
           push: () => { }
         },
-      }
+      };
       
       static contextType = ApiContext;
     
       handleClickCancel = () => {
         this.props.history.goBack();
     }
-    
+    ;
     renderTooltipinfo(actId){
-      const {activities = []} = this.context
-      const activity = findActivity(activities, actId) || { content: '' }
+      const {activities = []} = this.context;
+      const activity = findActivity(activities, actId) || { content: '' };
       return(
         <>
         <Tooltip title={activity.content.split(/\\n \\r|\\n|\n|\\n \\r/).map((para, i) =>
@@ -67,10 +67,10 @@ export default class EditSavedPlan extends React.Component{
           </IconButton>
         </Tooltip>
         </>)
-    }
+    };
 
     componentDidMount() {
-        const { savedId } = this.props.match.params
+        const { savedId } = this.props.match.params;
         fetch(`${config.API_ENDPOINT}/savedlessons/${savedId}`, {
           method: 'GET',
           headers: {
@@ -114,22 +114,22 @@ export default class EditSavedPlan extends React.Component{
             })
           })
           .catch(error => {
-            console.error(error)
-            this.setState({ error })
+            console.error(error);
+            this.setState({ error });
           })
-      }
+      };
 
 
       handleChange = input => e => {
         this.setState({
           [input]: e.target.value
         })
-      }
+      };
 
     handleSubmitForm = e => {
-        e.preventDefault()
-        const { savedId } = this.props.match.params
-        const updatedLesson = this.state
+        e.preventDefault();
+        const { savedId } = this.props.match.params;
+        const updatedLesson = this.state;
         fetch(`${config.API_ENDPOINT}/savedlessons/${savedId}`, {
           method: 'PATCH',
           body: JSON.stringify(updatedLesson),
@@ -150,7 +150,7 @@ export default class EditSavedPlan extends React.Component{
             console.error(error)
             this.setState({ error })
           })
-      }
+      };
 
 
     renderOptions(catId){
@@ -167,30 +167,30 @@ export default class EditSavedPlan extends React.Component{
             )}   
             </>
         )
-    }
+    };
 
     renderDuration(){
         const classLength = [ '20 min',  '30 min', '40 min', 
         '45 min','50 min', '55 min', 
-        '60 min', '70 min', '90 min']
+        '60 min', '70 min', '90 min'];
         return(
             <>
             {classLength.map(length =>
             <option key={length} value={length}>{length}</option>)}
             </>
         )
-    }
+    };
 
     renderDayofWeek(){
         let weekday = [ 'Monday', 'Tuesday', 'Wednesday',
-                    'Thursday', 'Friday', 'Saturday' ]
+                    'Thursday', 'Friday', 'Saturday' ];
         return(
             <>
             {weekday.map(week =>
             <option key={week} value={week}>{week}</option>)}
             </>
         )
-    }
+    };
 
     renderClassLevel(){
         let classType = [ 'Elementry 1st grade',   'Elementry 2nd Grade', 
@@ -198,28 +198,28 @@ export default class EditSavedPlan extends React.Component{
         'Elementry 5th Grade', 'Elementry 6th Grade', 
         'Junior High 1st Year', 'Junior High 2nd Year', 
         'Junior High 3rd Year', 'High 1st Year', 
-        'High 2nd Year', 'High 3rd Year']
+        'High 2nd Year', 'High 3rd Year'];
         return(
             <>
             {classType.map(classes =>
             <option key={classes} value={classes}>{classes}</option>)}
             </>
         )
-    }
+    };
 
     renderClassPeriod(){
         let period = [ 'Period 01', 'Period 02', 'Period 03',
-                        'Period 04', 'Period 05', 'Period 06', 'Period 07']
+                        'Period 04', 'Period 05', 'Period 06', 'Period 07'];
         return(
             <>
             {period.map(period =>
             <option key={period} value={period}>{period}</option>)}
             </>
         )
-    }
+    };
 
     render(){
-      const { currentUser } = this.context
+      const { currentUser } = this.context;
       const {  title, date, day, duration, classlevel,
                period, topic, goal, class_size,
                objective_one, objective_two, objective_three,
@@ -227,7 +227,7 @@ export default class EditSavedPlan extends React.Component{
                presentation_two_id, practice_one_id,
                practice_two_id, practice_three_id, product_one_id,
                product_two_id, cooldown_id, reflection_one,
-               reflection_two, reflection_three } = this.state
+               reflection_two, reflection_three } = this.state;
         return (
             <div className='edit_lesson-plan'>
               <header className='edit_lesson-plan-title'>
@@ -538,7 +538,7 @@ export default class EditSavedPlan extends React.Component{
             </section>
             </div>
         )
-    }
+    };
 }
 
 

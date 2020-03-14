@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FormPresentation from './FormPresentation'
+import FormPresentation from './FormPresentation';
 import {BrowserRouter} from "react-router-dom";
 
 const values = {
@@ -29,7 +29,7 @@ const values = {
               reflection_one: 'test',
               reflection_two: 'test',
               reflection_three: 'test',
-    }
+    };
 
 const activities = [{id: 1,
     title: 'test',
@@ -37,9 +37,9 @@ const activities = [{id: 1,
     category_id: 1,
     groups: 'test',
     duration: 'test',
-    author_id: 'test'}]
+    author_id: 'test'}];
 
-const handleChange = () => {}
+const handleChange = () => {};
   
 describe('Form Presentation Selection Component', () => {
     it('renders without crashing', () => {
